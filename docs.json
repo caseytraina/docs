@@ -10,6 +10,20 @@
   "description": "An AI Video Marketing Agent for Social Media video creation and posting",
   "favicon": "/favicon.ico",
   "navigation": {
+    "dropdowns": [
+      {
+        "dropdown": "Nodes",
+        "icon": "book-open",
+        "pages": [
+          "nodes/overview",
+          "nodes/youtube",
+          "nodes/audio",
+          "nodes/rss",
+          "nodes/dropbox",
+          "nodes/findclips"
+        ]
+      }
+    ],
     "tabs": [
       {
         "tab": "Guides",
