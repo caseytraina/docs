@@ -1,12 +1,13 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
-  "name": "Mint Starter Kit",
+  "theme": "almond",
+  "name": "Overlap Docs",
   "colors": {
-    "primary": "#ff2700",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#f7f7f7",
+    "light": "#ff2700",
+    "dark": "#ff2700"
   },
+  "description": "An AI Video Marketing Agent for Social Media video creation and posting",
   "favicon": "/favicon.ico",
   "navigation": {
     "tabs": [
@@ -63,12 +64,12 @@
         },
         {
           "anchor": "Community",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
+          "href": "https://discord.gg/7gegWR32",
+          "icon": "discord"
         },
         {
           "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
+          "href": "https://overlap.ai/blog",
           "icon": "newspaper"
         }
       ]
@@ -82,18 +83,18 @@
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "mailto:support@overlap.ai"
       }
     ],
     "primary": {
       "type": "button",
       "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "href": "https://portal.overlap.ai"
     }
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
+      "x": "https://x.com/Overlap_AI",
       "github": "https://github.com/mintlify",
       "linkedin": "https://linkedin.com/company/mintlify"
     }
