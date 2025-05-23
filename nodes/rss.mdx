@@ -1,0 +1,35 @@
+---
+mode: "wide"
+sidebarTitle: "New Dropbox Video"
+---
+
+> Triggers upon a new episode releasing to an RSS feed
+
+<img
+  className="block dark:hidden"
+  src="/node-rss.png"
+  alt="Hero Light"
+  title={true}
+/>
+
+<img
+  className="hidden dark:block"
+  src="/images/hero-dark.png"
+  alt="Hero Dark"
+  style={{ width:"100%" }}
+/>
+
+<Info>
+  ### Schema
+
+  - **Input**: The URL to the RSS Feed
+  - **Output**: The new audio or video episode
+</Info>
+
+<Warning>
+  If this is an Audio-only podcast, we will add a black screen as a video. We suggest adding a [audiogram](/nodes/audiogram) node to your workflow to add visuals
+</Warning>
+
+When a workflow is activated with a _RSS Feed _trigger, we will start listening to the feed for changes, polling every hour. We will ingest only the entries of the last 12 hours that have not yet been ingested.
+
+You can find all of the nodes in the left sidebar

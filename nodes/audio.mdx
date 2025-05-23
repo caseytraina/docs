@@ -1,0 +1,34 @@
+---
+mode: "wide"
+sidebarTitle: "Audio/Video Livestream"
+---
+
+> Runs **continuously **on a video or audio livestream
+
+<img
+  className="block dark:hidden"
+  src="/node-audio.png"
+  alt="Hero Light"
+  title={true}
+/>
+
+<Warning>
+  This will use your usage quota as it runs, so be sure to deactivate your workflow when clips are no longer wanted.
+</Warning>
+
+<img
+  className="hidden dark:block"
+  src="/images/hero-dark.png"
+  alt="Hero Dark"
+/>
+
+<Info>
+  ### Schema
+
+  - **Input**: The direct stream URL (.m3u8)
+  - **Output**: 30-minute chunks of the stream
+</Info>
+
+When a workflow is activated with an _Audio Stream_ trigger, we will start recording the audio in 30-minute chunks, and sending it to trigger the workflow. We can only start from the moment it is activated.
+
+You can find all of the nodes in the left sidebar

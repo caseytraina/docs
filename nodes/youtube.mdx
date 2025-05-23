@@ -1,0 +1,30 @@
+---
+mode: "wide"
+sidebarTitle: "New YouTube Video"
+---
+
+> Triggers upon a new youtube video being posted. Can also be triggered manually with any video.
+
+<img
+  className="block dark:hidden"
+  src="/node-yt.png"
+  alt="Hero Light"
+  title={true}
+/>
+
+<img
+  className="hidden dark:block"
+  src="/images/hero-dark.png"
+  alt="Hero Dark"
+/>
+
+<Info>
+  ### Schema
+
+  - **Input**: The direct URL to a YouTube channel. (e.g. https://youtube.com/@ycombinator)
+  - **Output**: The new youtube video
+</Info>
+
+When a workflow is activated with a _New Youtube Video_ trigger, we will begin polling the channel **every hour** scanning for new videos. When a new video that is **longer than 5 minutes is found**, we will trigger your workflow to find new clips and notify you.
+
+You can find all of the nodes in the left sidebar

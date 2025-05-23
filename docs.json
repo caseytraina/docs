@@ -29,8 +29,7 @@
               "essentials/agents",
               "essentials/editing",
               "essentials/billing",
-              "essentials/team",
-              "nodes/overview"
+              "essentials/team"
             ]
           },
           {

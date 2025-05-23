@@ -1,0 +1,34 @@
+---
+mode: "wide"
+sidebarTitle: "New Dropbox Video"
+---
+
+> Triggers upon a new dropbox video being added to a specified folder.
+
+<img
+  className="block dark:hidden"
+  src="/node-dropbox.png"
+  alt="Hero Light"
+  title={true}
+/>
+
+<Warning>
+  Dropbox accounts are linked at the user-level. So, you have multiple members in the same organization, others may see "Connect Dropbox" even if it is activated and working
+</Warning>
+
+<img
+  className="hidden dark:block"
+  src="/images/hero-dark.png"
+  alt="Hero Dark"
+/>
+
+<Info>
+  ### Schema
+
+  - **Input**: A dropbox folder to listen to
+  - **Output**: The newly uploaded dropbox video
+</Info>
+
+When a workflow is activated with a _New Dropbox Video_ trigger, we will start listening for file changes. When _any_ file is added in the folder, we will ingest **all unused videos.** This includes videos that were previously in the folder.
+
+You can find all of the nodes in the left sidebar
