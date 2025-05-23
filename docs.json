@@ -13,20 +13,6 @@
     "tabs": [
       {
         "tab": "Guides",
-        "dropdowns": [
-          {
-            "dropdown": "Nodes",
-            "icon": "book-open",
-            "pages": [
-              "nodes/overview",
-              "nodes/youtube",
-              "nodes/audio",
-              "nodes/rss",
-              "nodes/dropbox",
-              "nodes/findclips"
-            ]
-          }
-        ],
         "groups": [
           {
             "group": "Get Started",
@@ -50,12 +36,30 @@
             "group": "Nodes",
             "pages": [
               "nodes/overview",
-              "nodes/youtube",
-              "nodes/audio",
-              "nodes/rss",
-              "nodes/dropbox",
-              "nodes/findclips"
-
+              {
+                "group": "Trigger Nodes",
+                "pages": [
+                  "nodes/youtube",
+                  "nodes/audio",
+                  "nodes/rss",
+                  "nodes/dropbox"
+                ]
+              },
+              {
+                "group": "Clips",
+                "pages": [
+                  "nodes/findclips"
+                ]
+              },
+              {
+                "group": "Action Nodes",
+                "pages": [
+                  "nodes/reframe",
+                  "nodes/branding",
+                  "nodes/subtitles",
+                  "nodes/audiogram"
+                ]
+              }
             ]
           }
         ]
