@@ -7,7 +7,7 @@
     "light": "#07C983",
     "dark": "#15803D"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/favicon.ico",
   "navigation": {
     "tabs": [
       {
@@ -18,18 +18,17 @@
             "pages": [
               "index",
               "quickstart",
-              "development"
+              "cases"
             ]
           },
           {
             "group": "Essentials",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/settings",
-              "essentials/navigation",
-              "essentials/reusable-snippets"
+              "essentials/workflows",
+              "essentials/agents",
+              "essentials/editing",
+              "essentials/billing",
+              "essentials/team"
             ]
           }
         ]
