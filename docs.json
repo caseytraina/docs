@@ -41,7 +41,7 @@
             "dropdowns": [
               {
                 "dropdown": "Trigger",
-                "page": [
+                "pages": [
                   "nodes/youtube",
                   "nodes/audio",
                   "nodes/rss",
@@ -50,13 +50,13 @@
               },
               {
                 "dropdown": "Find Clips",
-                "page": [
+                "pages": [
                   "nodes/findclips"
                 ]
               },
               {
                 "dropdown": "Actions",
-                "page": [
+                "pages": [
                   "nodes/youtube",
                   "nodes/audio",
                   "nodes/rss",
