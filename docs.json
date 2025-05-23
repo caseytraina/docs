@@ -97,8 +97,8 @@
     }
   },
   "logo": {
-    "light": "/logo/logo.svg",
-    "dark": "/logo/logo.svg"
+    "light": "/logo/docsIcon.svg",
+    "dark": "/logo/docsIcon.svg"
   },
   "navbar": {
     "links": [
