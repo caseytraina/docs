@@ -32,25 +32,11 @@
               "essentials/team",
               "nodes/overview"
             ]
-          }
-        ]
-      },
-      {
-        "tab": "Nodes",
-        "groups": [
-          {
-            "group": "Over",
-            "pages": [
-              "api-reference/introduction"
-            ]
           },
           {
-            "group": "Endpoint Examples",
+            "group": "Nodes",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "nodes/overview"
             ]
           }
         ]
