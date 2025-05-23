@@ -3,7 +3,7 @@
   "theme": "almond",
   "name": "Overlap Docs",
   "colors": {
-    "primary": "#ffffff",
+    "primary": "#000000",
     "light": "#ff2700",
     "dark": "#ff2700"
   },
