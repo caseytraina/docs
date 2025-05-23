@@ -37,6 +37,32 @@
             "group": "Nodes",
             "pages": [
               "nodes/overview"
+            ],
+            "dropdowns": [
+              {
+                "dropdown": "Trigger",
+                "page": [
+                  "nodes/youtube",
+                  "nodes/audio",
+                  "nodes/rss",
+                  "nodes/dropbox"
+                ]
+              },
+              {
+                "dropdown": "Find Clips",
+                "page": [
+                  "nodes/findclips"
+                ]
+              },
+              {
+                "dropdown": "Actions",
+                "page": [
+                  "nodes/youtube",
+                  "nodes/audio",
+                  "nodes/rss",
+                  "nodes/dropbox"
+                ]
+              }
             ]
           }
         ]
