@@ -3,7 +3,7 @@
   "theme": "almond",
   "name": "Overlap Docs",
   "colors": {
-    "primary": "#f7f7f7",
+    "primary": "#ffffff",
     "light": "#ff2700",
     "dark": "#ff2700"
   },
@@ -29,7 +29,28 @@
               "essentials/agents",
               "essentials/editing",
               "essentials/billing",
-              "essentials/team"
+              "essentials/team",
+              "nodes/overview"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Nodes",
+        "groups": [
+          {
+            "group": "Over",
+            "pages": [
+              "api-reference/introduction"
+            ]
+          },
+          {
+            "group": "Endpoint Examples",
+            "pages": [
+              "api-reference/endpoint/get",
+              "api-reference/endpoint/create",
+              "api-reference/endpoint/delete",
+              "api-reference/endpoint/webhook"
             ]
           }
         ]

@@ -1,0 +1,54 @@
+---
+mode: "wide"
+sidebarTitle: "Nodes"
+icon: "puzzle-piece"
+---
+
+> Nodes unlock limitless capabilities in your workflows
+
+<img
+  className="block dark:hidden"
+  src="/re.png"
+  alt="Hero Light"
+  title={true}
+/>
+
+<img
+  className="hidden dark:block"
+  src="/images/hero-dark.png"
+  alt="Hero Dark"
+/>
+
+## What is a Node?
+
+A **node** in a workflow is a single step or action that performs a specific task in your automated process.
+
+Each node represents an operation, like uploading a video, generating a clip, adding subtitles, or publishing to social media. By connecting nodes together, you define the sequence and logic of your workflow. Think of nodes as building blocks—each one handles one part of the job, and together they create the full, automated workflow.
+
+You can find all of the nodes in the left sidebar
+
+## Types of Nodes
+
+<Accordion title="Trigger Node" defaultOpen icon="rocket-launch" iconType="duotone">
+  A **Trigger node** is the starting point of a workflow. It listens for a specific event—like a new file upload or a new episode being added—and automatically kicks off the rest of the workflow when that event happens. Without a Trigger node, your workflow won’t start on its own. Think of it as the “go” button that tells your workflow when to begin running.
+
+  <Frame>
+    ![Node Trigger Pn](/images/node-trigger.png)
+  </Frame>
+</Accordion>
+
+<Accordion title="Find Clips" icon="face-viewfinder" iconType="duotone">
+  The **Find Clips node** is a step in your workflow that uses AI to automatically scan your uploaded video and identify the most interesting or engaging moments. When this node runs, it analyzes the video and generates highlight clips for you—saving you from having to watch and trim footage manually. It’s an essential building block for automated content creation, making it easy to surface the best parts of any video with a single step in your workflow.
+
+  <Frame>
+    ![Find Clips Pn](/images/find-clips.png)
+  </Frame>
+</Accordion>
+
+<Accordion title="Action Node" icon="person-running-fast" iconType="duotone">
+  An **Action node** is a step in your workflow that performs a specific task or operation—like adding subtitles, resizing a video, or posting to social media. Whenever an Action node is reached in your workflow, it carries out the action you’ve defined. Action nodes let you customize what happens at each stage, so you can automate as many tasks as you need, all in one seamless process.
+
+  <Frame>
+    ![Actions Pn](/images/actions.png)
+  </Frame>
+</Accordion>
