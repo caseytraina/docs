@@ -1,0 +1,75 @@
+---
+mode: "wide"
+sidebarTitle: "Watermarks, Outros, etc."
+---
+
+> Apply watermarks, add end cards, add intro/outro music, or title overlays
+
+## Adding a Watermark
+
+At the top of the _Apply Branding _node, you have the option to add a watermark and configure its size and position
+
+<img
+  className="block dark:hidden"
+  src="/node-watermark.png"
+  alt="Hero Light"
+  title={true}
+/>
+
+<Warning>
+  Make sure your image is a PNG with no background. Otherwise, the background color will be shown.
+</Warning>
+
+<img
+  className="hidden dark:block"
+  src="/images/hero-dark.png"
+  alt="Hero Dark"
+/>
+
+<Info>
+  ### Schema
+
+  - **Size**
+  - **Padding**
+  - **Position**
+</Info>
+
+## Adding an Introduction Title
+
+Introduction text is an overlay that appears at the start of the video. This text can stay on for as long as you wish before fading away and helps orient the consumer to the contents of the video. 
+
+It is also good practice for the thumbnail on socials to have information on what the clip is about from the profile grid.
+
+<Frame>
+  ![Node Titleoverlay Pn](/images/node-titleoverlay.png)
+</Frame>
+
+<Info>
+  ### Schema
+
+  - **Title Generation Prompt**
+  - **Text Styling**
+  - **Background Styling**
+  - **Position**
+  - **Duration**
+</Info>
+
+<Warning>
+  Regardless of the generation prompt, the text will be limited to 8 words or less.
+</Warning>
+
+### Creating Persistent Text using the Title Overlay
+
+If you set the duration slider all the way to the right, the value will snap to _Video Duration. _This will result in the text appearing for the entire time on the screen.
+
+## Video Overlay
+
+A video overlay is used to overlay an image on the entirety of the screen for the duration of the video. Common use cases for this are adding a border around the video or adding a full screen watermark.
+
+## End Card
+
+An end card, by default, appears for the last 4 seconds of the video and will fade in.
+
+## Outro Music
+
+Outro music, by default, appears for the last 6 seconds of the video with a slow fade in.
