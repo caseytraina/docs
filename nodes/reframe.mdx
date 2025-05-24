@@ -1,0 +1,42 @@
+---
+mode: "wide"
+sidebarTitle: "Find Clips"
+---
+
+> Converting horizontal videos to vertical
+
+<img
+  className="block dark:hidden"
+  src="/node-reframe.png"
+  alt="Hero Light"
+  title={true}
+/>
+
+<Warning>
+  For the vast majority clips, Split View will be the optimal choice for a reframe algorithm. This process will add approximately 5 minutes onto your workflow run time.
+</Warning>
+
+<img
+  className="hidden dark:block"
+  src="/images/hero-dark.png"
+  alt="Hero Dark"
+/>
+
+<Info>
+  ### Schema
+
+  - **Reframe Style**
+</Info>
+
+## Style Descriptions
+
+- **Split View:**\
+  Dynamically determines who is speaking, tracks their face and body, and can handle multiple simultaneous speakers
+- **Centered:**\
+  Will take a horizontal video and place it in a vertical frame with padding. You may customize the position and the amount of zoom.
+- **Face Tracking:**\
+  _Deprecated_. This model uses face detection with **no active speaker detection**. Good for single speakers but still recommended to use Split View.
+- **Custom:**\
+  For enterprise customers who will have custom styling. Defaults to a "Streamer" template for Twitch streams, centering faces on top of the main content.
+
+You can find all of the nodes in the left sidebar
