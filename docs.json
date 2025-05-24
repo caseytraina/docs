@@ -18,8 +18,7 @@
             "group": "Get Started",
             "pages": [
               "index",
-              "quickstart",
-              "cases"
+              "quickstart"
             ]
           },
           {
@@ -63,34 +62,14 @@
             ]
           }
         ]
-      },
-      {
-        "tab": "API Reference",
-        "groups": [
-          {
-            "group": "API Documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "Endpoint Examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
-            ]
-          }
-        ]
       }
     ],
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
+          "anchor": "Chat with the Founders",
+          "href": "https://calendly.com/d/cnxy-8gj-ch3/user-interview",
+          "icon": "calendar"
         },
         {
           "anchor": "Community",
@@ -125,8 +104,8 @@
   "footer": {
     "socials": {
       "x": "https://x.com/Overlap_AI",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "instagram": "https://www.instagram.com/overlap.ai/",
+      "linkedin": "https://www.linkedin.com/company/98626340"
     }
   }
 }
