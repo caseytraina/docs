@@ -32,6 +32,13 @@
             ]
           },
           {
+            "group": "Best Practices",
+            "pages": [
+              "essentials/prompting",
+              "essentials/limits"
+            ]
+          },
+          {
             "group": "Nodes",
             "pages": [
               "nodes/overview",
