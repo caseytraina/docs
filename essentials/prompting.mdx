@@ -288,7 +288,7 @@ Like humans, LLMs tend to have a slight preference towards what comes at the beg
   </Tab>
 </Tabs>
 
-## Putting it all Together
+# Putting it all Together
 
 Combine all of the above sections for a singular prompt
 
@@ -546,34 +546,13 @@ insights to a broader audience.
 ## Frequently asked questions
 
 <AccordionGroup>
-  <Accordion title="Why are guardrails so important for voice agents?">
-    Voice interactions tend to be more free-form and unpredictable than text. Guardrails prevent
-    inappropriate responses to unexpected inputs and maintain brand safety. They're essential for
-    voice agents that represent organizations or provide sensitive advice.
+  <Accordion title="Why should I use Markdown or XML?">
+    Many of the popular LLMs were trained using structured markup languages such as Markdown, XML, or in a JSON structure. Using this same format helps the AI decipher meaning and focus on particular sections.
   </Accordion>
-  <Accordion title="Can I update the prompt after deployment?">
-    Yes. The system prompt can be modified at any time to adjust behavior. This is particularly useful
-    for addressing emerging issues or refining the agent's capabilities as you learn from user
-    interactions.
+  <Accordion title="Do I include editing instructions in the prompt?">
+    No. The prompt in the [**Find Clips**](/nodes/findclips) node is purely for _finding_ the best moments. You should only include information about how to clip the content. You'll assign your own editing style via the [**Workflows**](/essentials/workflows)
   </Accordion>
-  <Accordion title="How do I handle users with different speaking styles or accents?">
-    Design your prompt with simple, clear language patterns and instruct the agent to ask for
-    clarification when unsure. Avoid idioms and region-specific expressions that might confuse STT
-    systems processing diverse accents.
-  </Accordion>
-  <Accordion title="How can I make the AI sound more conversational?">
-    Include speech markers (brief affirmations, filler words) in your system prompt. Specify that the
-    AI can use interjections like "Hmm," incorporate thoughtful pauses, and employ natural speech
-    patterns.
-  </Accordion>
-  <Accordion title="Does a longer system prompt guarantee better results?">
-    No. Focus on quality over quantity. Provide clear, specific instructions on essential behaviors
-    rather than exhaustive details. Test different prompt lengths to find the optimal balance for your
-    specific use case.
-  </Accordion>
-  <Accordion title="How do I balance consistency with adaptability?">
-    Define core personality traits and guardrails firmly while allowing flexibility in tone and
-    verbosity based on the user's communication style. This creates a recognizable character that
-    can still respond naturally to different situations.
+  <Accordion title="Does including example clips help?">
+    Yes\!\! The more example clips, the better. If you are going to include examples, however, be sure to include as much information about it as possible. This may be the title, the description, the transcript, etc.
   </Accordion>
 </AccordionGroup>
