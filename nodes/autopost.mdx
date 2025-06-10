@@ -1,0 +1,91 @@
+---
+sidebarTitle: "Auto Posting"
+---
+
+> Set up automated social post scheduling
+
+<Frame>
+  
+
+  <img
+    src="/images/autonode.png"
+    alt="Autonode Pn"
+    title="Autonode Pn"
+    className="mx-auto"
+    style={{ width:"58%" }}
+  />
+</Frame>
+
+The Posting node allows users to set up automated social posting and put their accounts on autopilot. If added, your agent will automatically select the optimal time to post throughout the day, depending on how many clips are generated and your posting configuration.
+
+## Posting Configuration
+
+<Frame>
+  ![Auto Config Pn](/images/autoConfig.png)
+</Frame>
+
+Pressing _Configure_ on your node will bring up the settings. Here, you'll specify the posting account, frequency, and level of autonomy.
+
+Here, the agent is configured to post to the Overlap Comedy X account. Whenever this workflow is run, the agent will automatically generate and **post up to** **three** YouTube Shorts **each day until all clips are scheduled**.
+
+### Double Posting Setting
+
+In the settings, you will see a setting that says "Don't schedule posts if there are already scheduled posts for the same time slot."
+
+If turned on, this agent will schedule posts out in the future to prevent overflow a single day. For example, if you have the same settings above (3 posts per day), and you run the workflow twice in one day, then it will never schedule more than 3 posts per day and instead will schedule them far out in advance.
+
+If left off, then the agent will always follow its configuration starting immediately after it finishes. For example, with the settings above, if we run the workflow three times on one day then clips from each episode will being scheduling immediately and we may have 9 posts scheduled for day one.
+
+### Requiring User Approval
+
+In the settings above, there is a setting that says "Require approval from the user".
+
+If turned on, posts will be scheduled just as they normally are. However, they **will not post unless  accepted by the user**
+
+You can find these suggested posts in the _Social Calendar _on the left sidebar. 
+
+<Frame>
+  ![Suggested Pn](/images/suggested.png)
+</Frame>
+
+If the user here were to press _Approve_, then this post would go out June 10th at 3:47PM, as scheduled.
+
+If the user does not Approve the post in time, then it **will not be posted.**
+
+## View Outgoing Posts
+
+<Info>
+  Once a post has been scheduled, you must manually delete it if you wish for it not to go out. Turning off the agent will **not** remove existing scheduled posts.
+</Info>
+
+Find the _<u>Social Calendar</u>_ in the left sidebar to view outgoing posts.
+
+Green posts represent your history of what has already been shared. Grey represents posts that are scheduled. For example, on May 23rd, we have 14 TikToks scheduled to post.
+
+<Tip>
+  You may edit the text or timing of a scheduled post by pressing on a specific day. The video will show any edits you have made and when the post is shared, we will share the most <u>up-to-date version.</u>
+</Tip>
+
+<Frame>
+  
+</Frame>
+
+## View Social Performance
+
+Select _<u>Social Analytics</u>_ in the left sidebar to view your performance across social profiles.
+
+Platforms update their statistics at different times. YouTube, for example, is often two days delayed.
+
+<Warning>
+  If you do not see analytics for a platform that is connected, this could be because your platform has not reached the minimum threshold.
+
+  - The following platforms are currently supported: Facebook Pages, Instagram, X/Twitter, LinkedIn, Pinterest, Threads, TikTok, and YouTube.
+  - For TikTok analytics access, account owners must:
+    1. Publish at least one video.
+    2. Tap the "Turn On" button on the Analytics page of their mobile TikTok app.
+    3. Have 100 followers to receive additional insights about viewers and content engagement.
+</Warning>
+
+<Frame>
+  
+</Frame>

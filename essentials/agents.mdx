@@ -5,29 +5,29 @@ icon: "video-arrow-up-right"
 
 > Automated your posting across socials
 
-## What is a social agent?
+## What is a posting persona?
 
-A **social agent** is an automated tool that creates and publishes posts to your social media accounts for you.
+Think of a **posting persona** as the social media manager you would hire. You give them a personality, calls-to-action, accounts to mention, restrictions, and more.
 
-Once set up, the agent can watch for new content (like a new episode or video), then automatically generate and schedule posts according to your settings—such as how often to post, which accounts to use, and which workflow to follow.
+These posting personas become the engine of your social media auto-posting and suggested post copy.
 
 You can even add language instructions to control the style or key points of each post. This means you can keep your social channels active and consistent, without manual effort for every post.
 
-## An Example
+## Creating your First Persona
 
-Below shows how you can set up a social posting agent to automate your content distribution.
+To find your personas, go to _Posting Personas_ in the left sidebar.
 
-Here, the agent is configured to monitor the “Theo” workflow for new podcast episodes. Whenever a new episode is detected, the agent will automatically generate and **post up to** **three** YouTube Shorts **each day for three days** to the selected YouTube account.
+Once here, press "Create New Persona"
 
-You can also provide detailed language **instructions** to guide how the agent **writes captions**—for example, making sure the posts are punchy, meme-able, and tailored to Gen Z, with a style and tone that matches the creator’s brand.
+As you'll see, you now have the ability to specify a name, a prompt, target platforms, and more. When drafting your prompt, consider who you would want to hire to be your social media manager: would you want a satirical, Gen-Z college student who specializes in TikTok content, or would you want an industry veteran who focuses on professional, enterprise marketing?
 
 <Frame>
   <img
-    src="/re4.png"
+    src="/agentCreate.png"
     alt="Example Agent"
     className="block dark:hidden mx-auto"
     title="Example Agent"
-    style={{ width:"78%" }}
+    style={{ width:"99%" }}
   />
 
   <img
@@ -37,21 +37,23 @@ You can also provide detailed language **instructions** to guide how the agent *
   />
 </Frame>
 
-This lets the agent handle not only the timing and channel of your posts, but also the voice and content style, so you can consistently publish engaging, on-brand social content without manual effort.
+_Click "Generate Avatar" if you wish to generate a headshot for your new social media manager\!_
 
-## Setting up an Agent
+## Previewing your Persona
 
-Press _<u>Social Agents</u>_ in the sidebar, followed by **Create Agent**.
+As you're building out your prompt, it's good practice to preview your post content to ensure it aligns with what you want.
 
-When creating an agent, you may designate a workflow for it to connect to, a platform and account for it to post to, a frequency for it to post at, and language for it to post with.
+Click _Preview Content_ in the top right to see what your agent would produce for a given clip. If your profile already has clips, then we will take the most recent clip as an example. If your account does _not_ have clips, then we will select a boilerplate public Overlap clip to see the example output.
+
+We recommend building out a [Clipping Agent](/essentials/workflows) first, so you can generate clips and test on your own content\!
 
 <Frame>
   <img
-    src="/re5.png"
+    src="/agentPreview.png"
     alt="Nodes"
     className="block dark:hidden mx-auto"
     title="Nodes"
-    style={{ width:"74%" }}
+    style={{ width:"98%" }}
   />
 
   <img
@@ -61,52 +63,4 @@ When creating an agent, you may designate a workflow for it to connect to, a pla
   />
 </Frame>
 
-## View Outgoing Posts
-
-<Info>
-  Once a post has been scheduled, you must manually delete it if you wish for it not to go out. Turning off the agent will **not** remove existing scheduled posts.
-</Info>
-
-Find the _<u>Social Calendar</u>_ in the left sidebar to view outgoing posts.
-
-Green posts represent your history of what has already been shared. Grey represents posts that are scheduled. For example, on May 23rd, we have 14 TikToks scheduled to post.
-
-<Tip>
-  You may edit the text or timing of a scheduled post by pressing on a specific day. The video will show any edits you have made and when the post is shared, we will share the most <u>up-to-date version.</u>
-</Tip>
-
-<Frame>
-  <img
-    src="/re7.png"
-    alt="Save"
-    className="block dark:hidden"
-    title="Save"
-    style={{ width:"100%" }}
-  />
-
-  <img
-    src="https://mintlify.s3.us-west-1.amazonaws.com/mintlify/images/editor/publish-flow-dark.png"
-    alt="The publish button emphasized in the Mintlify web editor"
-    className="hidden dark:block"
-  />
-</Frame>
-
-## View Social Performance
-
-Select _<u>Social Analytics</u>_ in the left sidebar to view your performance across social profiles.
-
-Platforms update their statistics at different times. YouTube, for example, is often two days delayed.
-
-<Warning>
-  If you do not see analytics for a platform that is connected, this could be because your platform has not reached the minimum threshold.
-
-  - The following platforms are currently supported: Facebook Pages, Instagram, X/Twitter, LinkedIn, Pinterest, Threads, TikTok, and YouTube.
-  - For TikTok analytics access, account owners must:
-    1. Publish at least one video.
-    2. Tap the "Turn On" button on the Analytics page of their mobile TikTok app.
-    3. Have 100 followers to receive additional insights about viewers and content engagement.
-</Warning>
-
-<Frame>
-  ![Re3 Pn](/re6.png)
-</Frame>
+## 
