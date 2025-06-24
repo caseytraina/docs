@@ -70,8 +70,19 @@
             ]
           }
         ]
+      },
+      {
+        "tab" : "API Reference",
+        "groups" : [
+          {
+            "group" : "Endpoints",
+            "pages" : [
+              "api-reference/trigger",
+              "api-reference/results"
+            ]
+          }
+        ]
       }
-
     ],
     "global": {
       "anchors": [

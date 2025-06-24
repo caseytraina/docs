@@ -1,0 +1,84 @@
+---
+title: "Trigger a Clipping Agent"
+description: "POST endpoint to trigger an Agent run"
+sidebarTitle: "Triggering an Agent"
+---
+
+### Endpoint
+
+```http
+POST https://api.joinoverlap.com/{orgId}/{projectId}/{agentId}/trigger
+```
+
+- **Path Parameters**
+  - `orgId` — Your organization’s ID.
+  - `agentId` — The agent to trigger.
+  - `nodeId` — The specific node within the agent to trigger.
+
+<Info>
+  This URL will be provided to you by navigating to Clipping Agents -\> Agent -\> Trigger via API
+</Info>
+
+### Authentication
+
+All requests must include a valid Bearer token:
+
+```http
+Authorization: Bearer YOUR_API_KEY
+Content-Type: application/json
+```
+
+Found by pressing **Trigger via API** then **Generate API Key**
+
+### Request Body
+
+```json
+{
+	"url": "https://youtube.com/watch?v=dQw4w9WgXcQ",
+	"notify": true,
+	"title" : "Never going to give you up"
+}
+```
+
+- `url` (string, required) — The resource URL the workflow should process.
+- `notify` (boolean, optional) — Whether you'd like an email notification when finished. Defaults to `false`.
+- `title` (string, optional) — Override title for the video. A title will be generated if it is not provided.
+
+### Example Usage
+
+```js
+import requests
+
+const orgId      = <Org ID>
+const agentId  = <Agent ID>
+const nodeId = <Node ID>
+const apiUrl     = `https://api.joinoverlap.com/${orgId}/${agentId}/${nodeId}/trigger`
+
+const headers = {
+  "Content-Type": "application/json",
+  "Authorization": "Bearer YOUR_API_KEY"
+}
+
+const payload = {
+	url: "https://youtube.com/watch?v=dQw4w9WgXcQ",
+	notify: True
+}
+
+requests.post(apiUrl, { json: payload, headers })
+  .then(res => console.log(res.data))
+  .catch(err => console.error(err))
+```
+
+### Sample Response
+
+```json
+{
+  "message": "Workflow trigger initiated successfully",
+  "status": "pending",
+  "triggerId": "trigger_20250624184340_3f3c921a"
+}
+```
+
+- `message` (string) — Confirmation text.
+- `status` (string) — Current status of the trigger (`processing`, `learning`, `completed`).
+- `triggerId` (string) — Unique identifier for this workflow run.
