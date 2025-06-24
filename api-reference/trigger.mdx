@@ -46,7 +46,10 @@ Found by pressing **Trigger via API** then **Generate API Key**
 
 ### Example Usage
 
-```js
+
+<CodeGroup>
+
+```javascript icon="square-js"
 import requests
 
 const orgId      = <Org ID>
@@ -68,6 +71,71 @@ requests.post(apiUrl, { json: payload, headers })
   .then(res => console.log(res.data))
   .catch(err => console.error(err))
 ```
+
+```python icon="fa-python"
+
+import requests
+
+org_id = "<Org ID>"
+agent_id = "<Agent ID>"
+node_id = "<Node ID>"
+api_url = f"https://api.joinoverlap.com/{org_id}/{agent_id}/{node_id}/trigger"
+
+headers = {
+    "Content-Type": "application/json",
+    "Authorization": "Bearer YOUR_API_KEY"
+}
+
+payload = {
+    "url": "https://youtube.com/watch?v=dQw4w9WgXcQ",
+    "notify": True
+}
+
+response = requests.post(api_url, json=payload, headers=headers)
+print(response.json())
+
+
+```
+
+```bash icon="code"
+curl -X POST "https://api.joinoverlap.com/<Org ID>/<Agent ID>/<Node ID>/trigger" \
+     -H "Authorization: Bearer YOUR_API_KEY" \
+     -H "Content-Type: application/json" \
+     -d '{
+           "url": "https://youtube.com/watch?v=dQw4w9WgXcQ",
+           "notify": true
+         }'
+
+```
+
+```ruby icon="gem"
+require 'net/http'
+require 'uri'
+require 'json'
+
+org_id = "<Org ID>"
+agent_id = "<Agent ID>"
+node_id = "<Node ID>"
+uri = URI("https://api.joinoverlap.com/#{org_id}/#{agent_id}/#{node_id}/trigger")
+
+http = Net::HTTP.new(uri.host, uri.port)
+http.use_ssl = true
+
+request = Net::HTTP::Post.new(uri.request_uri)
+request['Content-Type'] = 'application/json'
+request['Authorization'] = 'Bearer YOUR_API_KEY'
+request.body = {
+  url: 'https://youtube.com/watch?v=dQw4w9WgXcQ',
+  notify: true
+}.to_json
+
+response = http.request(request)
+puts response.body
+```
+
+
+</CodeGroup>
+
 
 ### Sample Response
 
