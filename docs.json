@@ -70,6 +70,13 @@
             ]
           }
         ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
+          
+        ]
+        
       }
     ],
     "global": {
