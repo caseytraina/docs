@@ -7,6 +7,11 @@
     "light": "#ff2700",
     "dark": "#ff2700"
   },
+  "api": {
+    "playground": {
+      "display": "simple"
+    }
+  },
   "description": "An AI Video Marketing Agent for Social Media video creation and posting",
   "favicon": "/favicon.ico",
   "navigation": {
