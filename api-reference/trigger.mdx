@@ -49,7 +49,7 @@ Found by pressing **Trigger via API** then **Generate API Key**
 
 <RequestExample>
 
-```javascript icon="square-js" request.js
+```javascript icon="square-js"
 // Node.js (using fetch)
 import fetch from 'node-fetch';
 
@@ -79,7 +79,7 @@ fetch(apiUrl, {
 
 ```
 
-```python icon="python" request.py
+```python icon="python"
 import requests
 
 org_id = "<Org ID>"
@@ -102,7 +102,7 @@ print(response.json())
 
 ```
 
-```bash icon="code" request
+```bash icon="code"
 curl -X POST "https://api.joinoverlap.com/<Org ID>/<Agent ID>/<Node ID>/trigger" \
      -H "Authorization: Bearer YOUR_API_KEY" \
      -H "Content-Type: application/json" \
