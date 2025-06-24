@@ -89,10 +89,11 @@ See the structure of Clip at the bottom of the page
 
 - `clips` (array) — List of result clips when `status` is `"Completed"`. Empty array otherwise.
 - `status` (string) — Current state of the workflow run. One of:
+  - `"pending" 
   - `"Processing"`
   - `"Learning"`
   - `"Completed"`
-  - `"Failed"`
+  - `"Error"`
 
 We recommended polling this endpoint in a backoff loop.
 
