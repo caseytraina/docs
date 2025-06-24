@@ -50,7 +50,7 @@ Found by pressing **Trigger via API** then **Generate API Key**
 <!-- <RequestExample> -->
 <CodeGroup>
 
-```javascript icon="square-js"
+```javascript icon="square-js" request.js
 import requests
 
 const orgId      = <Org ID>
@@ -73,8 +73,7 @@ requests.post(apiUrl, { json: payload, headers })
   .catch(err => console.error(err))
 ```
 
-```python icon="fa-python"
-
+```python icon="python" request.py
 import requests
 
 org_id = "<Org ID>"
@@ -95,10 +94,9 @@ payload = {
 response = requests.post(api_url, json=payload, headers=headers)
 print(response.json())
 
-
 ```
 
-```bash icon="code"
+```bash icon="code" request
 curl -X POST "https://api.joinoverlap.com/<Org ID>/<Agent ID>/<Node ID>/trigger" \
      -H "Authorization: Bearer YOUR_API_KEY" \
      -H "Content-Type: application/json" \
@@ -108,33 +106,6 @@ curl -X POST "https://api.joinoverlap.com/<Org ID>/<Agent ID>/<Node ID>/trigger"
          }'
 
 ```
-
-```ruby icon="gem"
-require 'net/http'
-require 'uri'
-require 'json'
-
-org_id = "<Org ID>"
-agent_id = "<Agent ID>"
-node_id = "<Node ID>"
-uri = URI("https://api.joinoverlap.com/#{org_id}/#{agent_id}/#{node_id}/trigger")
-
-http = Net::HTTP.new(uri.host, uri.port)
-http.use_ssl = true
-
-request = Net::HTTP::Post.new(uri.request_uri)
-request['Content-Type'] = 'application/json'
-request['Authorization'] = 'Bearer YOUR_API_KEY'
-request.body = {
-  url: 'https://youtube.com/watch?v=dQw4w9WgXcQ',
-  notify: true
-}.to_json
-
-response = http.request(request)
-puts response.body
-```
-
-
 </CodeGroup>
 <!-- </RequestExample> -->
 
