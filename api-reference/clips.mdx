@@ -1,0 +1,124 @@
+---
+title: "Clips Results"
+description: "GET endpoint to retrieve clips output from a specific workflow"
+sidebarTitle: "Clip Results"
+api: "GET https://api.joinoverlap.com/clip-results/{triggerId}"
+---
+
+### Endpoint
+
+```http
+GET https://api.joinoverlap.com/workflow-results/{triggerId}
+```
+
+- **Path Parameters**
+  - `triggerId` — The unique identifier for this workflow run (returned by the trigger endpoint).
+
+<Info>
+  You can find `triggerId` in the response when you trigger a workflow via the POST `/trigger` endpoint.
+</Info>
+
+### Use Case
+
+Use this endpoint when you wish to integrate Overlap with another platform. Such as uploading clips to your own social service and a partner integration. 
+
+### Authentication
+
+All requests must include a valid Bearer token:
+
+```http
+Authorization: Bearer YOUR_API_KEY
+Content-Type: application/json
+```
+
+### Response Format
+
+```
+{
+	"status" : "Processing" | "Learning" | "Completed | "Error",
+	"clips" : Clip[] # if status=Completed,
+	"error" : string # if status=Error
+}
+```
+
+See the structure of Clip at the bottom of the page
+
+### Sample Response (Completed)
+
+```json
+{
+  "clips": [
+    {
+      "aspectRatio": "16:9",
+      "bio": "An experienced startup founder and investor reveals how a founder’s own psychology—what Carl Jung called the shadow—can make or break a company.",
+      "duration": 51.724999,
+      "endTimestamp": 51.724999,
+      "extendedClipURL": "https://cdn.overlap.ai/fe249157-6be2-4fce-9aec-961f800604f1.mp4",
+      "id": "0e3b1690-3bad-42cc-810d-87fd433054b8",
+      "keywords": [
+        "startup",
+        "founder psychology",
+        "Jung’s shadow",
+        "entrepreneurship",
+        "self-awareness",
+        "growth"
+      ],
+      "people": [
+        "Startup Founder"
+      ],
+      "publicURL": "https://cdn.overlap.ai/fe249157-6be2-4fce-9aec-961f800604f1.mp4",
+      "startTimestamp": 0.0,
+      "thumbnailURL": "https://cdn.overlap.ai/thumbnails/ce99b3c5-4d5d-4cc4-ae69-b835d23fe77a_thumb.jpg",
+      "timestampBoundary": {
+        "start": 0.0,
+        "end": 30.0
+      },
+      "title": "Startup Founder: You're Your Startup’s Biggest Threat",
+      "url": "https://cdn.overlap.ai/fe249157-6be2-4fce-9aec-961f800604f1.mp4",
+      "viralityScore": 89.5
+    }
+  ],
+  "status": "Completed"
+}
+```
+
+### Sample Response (Not Completed)
+
+```json
+{
+  "clips": [],
+  "status": "Processing"
+}
+```
+
+- `clips` (array) — List of result clips when `status` is `"Completed"`. Empty array otherwise.
+- `status` (string) — Current state of the workflow run. One of:
+  - \`"pending"
+  - `"Processing"`
+  - `"Learning"`
+  - `"Completed"`
+  - `"Error"`
+
+We recommended polling this endpoint in a backoff loop.
+
+### Clip Object
+
+| Property                  | Type       | Description                                                         |
+| ------------------------- | ---------- | ------------------------------------------------------------------- |
+| `id`                      | `string`   | Unique identifier for the clip.                                     |
+| `title`                   | `string`   | Title of the clip.                                                  |
+| `bio`                     | `string`   | Short contextual description or bio for the clip.                   |
+| `keywords`                | `string[]` | Array of relevant keywords or tags associated with the clip.        |
+| `people`                  | `string[]` | Array of people (e.g., speakers) featured in the clip.              |
+| `duration`                | `number`   | Total duration of the clip in seconds.                              |
+| `startTimestamp`          | `number`   | Timestamp (in seconds) where the clip starts in the source video.   |
+| `endTimestamp`            | `number`   | Timestamp (in seconds) where the clip ends in the source video.     |
+| `timestampBoundary`       | `object`   | Object defining the clipping boundary (see below).                  |
+| `timestampBoundary.start` | `number`   | Start boundary (in seconds) for clip extraction.                    |
+| `timestampBoundary.end`   | `number`   | End boundary (in seconds) for clip extraction.                      |
+| `aspectRatio`             | `string`   | Aspect ratio of the clip, e.g., `"16:9"` or `"9:16"`.               |
+| `url`                     | `string`   | Public URL to the delivered clip file.                              |
+| `publicURL`               | `string`   | Alias for `url`; public-facing clip URL.                            |
+| `extendedClipURL`         | `string`   | URL to the full-resolution or extended version of the clip.         |
+| `thumbnailURL`            | `string`   | URL to the thumbnail image for the clip.                            |
+| `viralityScore`           | `number`   | Numerical score indicating the clip’s predicted virality potential. |
