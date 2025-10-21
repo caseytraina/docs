@@ -86,7 +86,7 @@
               "api-reference/results",
               "api-reference/clips"
             ]
-          }
+          } 
         ]
       }
     ],
@@ -116,6 +116,10 @@
   },
   "navbar": {
     "links": [
+      {
+        "label": "Changelog",
+        "href": "https://docs.overlap.ai/changelog"
+      },
       {
         "label": "Support",
         "href": "mailto:support@overlap.ai"
