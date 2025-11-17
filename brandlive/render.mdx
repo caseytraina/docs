@@ -1,0 +1,72 @@
+---
+title: "Render Clip"
+description: "POST endpoint to re-render a clip after subtitle or trimming updates"
+sidebarTitle: "Render Clip"
+api: "POST https://api.joinoverlap.com/render"
+---
+
+### Endpoint
+
+```http
+POST https://api.joinoverlap.com/render
+```
+
+This endpoint renders an existing clip when changes are made on the frontend (e.g., subtitle edits, trimming adjustments). This process runs synchronously and will take about 20 seconds + 50% of the video length
+
+### Authentication
+
+```http
+Authorization: Bearer YOUR_API_KEY
+Content-Type: application/json
+```
+
+---
+
+## Request Body
+
+```json
+{
+  "companyId": "string",
+  "clipId": "string" // As obtained from the clip document in /workflow-results
+}
+```
+
+### Field Descriptions
+
+| Field       | Type   | Description                 |
+| ----------- | ------ | --------------------------- |
+| `companyId` | string | Organization identifier     |
+| `clipId`    | string | ID of the clip to re-render |
+
+---
+
+## Response
+
+```json
+{
+ 	"status": "finished" | "failed" | "rendering",
+	"renderUrl": "string",
+	"error": // if relevant
+	"code": // Specific error event, if relevant
+}
+```
+
+### Field Descriptions
+
+| Field       | Type   | Description                    |
+| ----------- | ------ | ------------------------------ |
+| `status`    | string | `success` or `error`           |
+| `renderUrl` | string | URL of the newly rendered clip |
+
+---
+
+## Performance & Behavior
+
+- **Runs synchronously**
+- **Expected runtime:** `20 seconds + video_length_seconds * 0.5`
+
+---
+
+<Card title="View Clip Data Model" icon="square-kanban" color="#ff2700" href="/brandlive/clip-model">
+  Understand all available clip fields
+</Card>

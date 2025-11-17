@@ -1,0 +1,143 @@
+---
+title: "Get Workflow Results"
+description: "GET endpoint to poll the status of a triggered workflow and retrieve generated clips"
+sidebarTitle: "Get Results"
+api: "GET https://api.joinoverlap.com/workflow-results/{taskId}"
+---
+
+### Endpoint
+
+```http
+GET https://api.joinoverlap.com/workflow-results/{triggerId}
+```
+
+Use this endpoint to check the status of a workflow triggered via `POST /trigger-template`. We recommend polling this endpoint every **5–10 seconds** until the workflow is complete.
+
+Use the provided `renderedUrl` as the base video on which you overlay the subtitles.
+
+### Authentication
+
+```http
+Authorization: Bearer YOUR_API_KEY
+Content-Type: application/json
+```
+
+---
+
+## Path Parameters
+
+| Parameter   | Description                                                                               |
+| ----------- | ----------------------------------------------------------------------------------------- |
+| `triggerId` | Unique identifier for the workflow run (returned from `/trigger-template` as `triggerId`) |
+
+---
+
+## Response Format
+
+### When workflow is still processing
+
+```json
+{
+  "status": string // Begins as 'Pending', then sends relevant updates such as "Learning". Finishes as "Completed" or "Error"
+}
+```
+
+### When workflow has completed successfully
+
+```json
+{
+  "status": "Completed",
+  "clips": Clip[]
+}
+```
+
+### When workflow has failed
+
+```json
+{
+  "status": "Error"
+}
+```
+
+---
+
+## Example Response (Completed)
+
+```json
+{
+    "clips": [
+        {
+            "aspectRatio": "16:9",
+            "backgroundMusicOption": {
+                "url": // URL to the music in the background
+            },
+            "bio": "Boston radio host Chuck Dolan lays down hilarious, rapid-fire etiquette for adults who dare show up to a Halloween costume party without actually wearing a costume.",
+            "duration": 27.159999999999997,
+            "endTimestamp": 88.5,
+            "id": "8701c128-c078-4455-b1c0-830eed2007a1",
+            "keywords": [
+                "Halloween",
+                "costume party",
+                "etiquette",
+                "radio rant",
+                "Chuck Dolan",
+                "party tips"
+            ],
+            "people": [
+                "Chuck Dolan"
+            ],
+            "renderedUrl": // URL of the video rendered with everything except for subtitles. Use the render endpoint to receive burnt in subtitles. 
+            "startTimestamp": 61.34,
+            "subtitleId": true,
+            "thumbnailURL": // Public URL of the video thumbnail
+            "timestampBoundary": {
+                "end": 30.0,
+                "start": 30.0
+            },
+            "title": "Chuck Dolan’s No-Excuses Halloween Costume Rule",
+            "titleText": "No Costume? No Candy, No Entry!",
+            "videoHeight": 1080,
+            "videoResolution": "1920x1080",
+            "viralityScore": 72.4
+        }
+    ],
+    "status": "Completed"
+}
+```
+
+---
+
+## Clip Object
+
+| Property         | Type     | Description                                        |
+| ---------------- | -------- | -------------------------------------------------- |
+| `id`             | string   | Unique identifier for the clip                     |
+| `title`          | string   | Human-readable clip title                          |
+| `bio`            | string   | Short description or context                       |
+| `keywords`       | string[] | Keywords or tags associated with the clip          |
+| `people`         | string[] | Speakers or people detected in the clip            |
+| `duration`       | number   | Duration of the clip in seconds                    |
+| `startTimestamp` | number   | Start timestamp in the original source video       |
+| `endTimestamp`   | number   | End timestamp                                      |
+| `aspectRatio`    | string   | `"16:9"` or `"9:16"`                               |
+| `renderedUrl`    | string   | Public URL of the rendered clip (with no captions) |
+| `rawUrl`         | string   | Raw clip URL (no subtitles)                        |
+| `thumbnailUrl`   | string   | Thumbnail image URL                                |
+| `transcriptUrl`  | string   | URL to the JSON transcript for the clip            |
+| `viralityScore`  | number   | Score estimating predicted performance             |
+| `fps`            | number   | Frames per second of the clip                      |
+
+---
+
+## Recommended Approach
+
+We recommend polling this endpoint using a backoff interval (5–10 seconds) until:
+
+- `status === "Completed"` → clips available
+- `status === "Error"` → retry or notify [support@overlap.ai](mailto:support@overlap.ai)
+
+---
+
+<Card title="Render your final video" icon="play" color="#ff2700" href="/brandlive/render">
+  Use the Render endpoint to burn in your subtitles and any user changes
+</Card>

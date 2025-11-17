@@ -1,0 +1,163 @@
+---
+title: "Trigger Template"
+description: "POST endpoint to initiate automated clip generation from a long-form video URL"
+sidebarTitle: "Trigger Template"
+api: "POST https://api.joinoverlap.com/trigger-template"
+---
+
+### Endpoint
+
+```http
+POST https://api.joinoverlap.com/trigger-template
+```
+
+This endpoint starts the full Overlap clipping workflow for a given long-form video URL. It returns a `triggerId` which you will use to poll for status and retrieve generated clips.
+
+### Authentication
+
+```http
+Authorization: Bearer YOUR_API_KEY
+Content-Type: application/json
+```
+
+---
+
+## Request Body
+
+> **Required fields:** `companyId`, `workflowId`, `url` All other fields are optional.
+
+```json
+{
+  "companyId": "string",
+  "workflowId": "string",
+  "url": "string",
+
+  "orientation": "string",
+  "minLengthTarget": "number",
+  "maxLengthTarget": "number",
+  "musicUrl": "string",
+  "broll": "boolean",
+  "removeFillerWords": "boolean",
+  "removeStutteredWords": "boolean",
+  "removeSilences": "boolean",
+  "outroImageUrl": "string",
+  "outroMusicUrl": "string",
+  "subtitles": "boolean",
+
+  "subtitleConfig": {
+    "amplifiedColor": "string",
+    "amplifiedColors": "string[]",
+    "amplifiedOpacity": "number",
+    "amplifyOpacityTransitionDuration": "number",
+    "amplifySpokenWords": "boolean",
+    "animationStyle": "string",
+    "backgroundColor": "string",
+    "backgroundBorderRadius": "number",
+    "backgroundFillStyle": "string",
+    "backgroundOpacity": "number",
+    "backgroundPadding": "number",
+    "fontColor": "string",
+    "isItalic": "boolean",
+    "outlineColor": "string",
+    "maxCharsPerLine": "number",
+    "subtitleY": "number"
+  },
+
+  "watermarkUrl": "string",
+  "keywords": "string[]",
+  "promptAdjustment": "string"
+}
+```
+
+### Field Descriptions (Condensed)
+
+| Field                                                           | Type     | Description                                           |
+| --------------------------------------------------------------- | -------- | ----------------------------------------------------- |
+| `companyId`                                                     | string   | **Required.** Brandlive org/company identifier        |
+| `workflowId`                                                    | string   | **Required.** Workflow/template to use                |
+| `url`                                                           | string   | **Required.** Publicly accessible long-form video URL |
+| `minLengthTarget` / `maxLengthTarget`                           | number   | Clip duration bounds                                  |
+| `musicUrl`                                                      | string   | Background music                                      |
+| `broll`                                                         | boolean  | Enable automatic b-roll                               |
+| `removeFillerWords` / `removeStutteredWords` / `removeSilences` | boolean  | Cleanup options                                       |
+| `outroImageUrl` / `outroMusicUrl`                               | string   | Outro media                                           |
+| `subtitles`                                                     | boolean  | Whether to include subtitles                          |
+| `subtitleConfig`                                                | object   | Styling overrides                                     |
+| `watermarkUrl`                                                  | string   | Overlay watermark                                     |
+| `keywords`                                                      | string[] | Custom keyword hints                                  |
+| `promptAdjustment`                                              | string   | Prompt extension for custom behavior                  |
+
+---
+
+## Response
+
+```json
+{
+  "triggerId": "string",
+  "status": "pending",
+  "message": "string"
+}
+```
+
+- `triggerId` — Use this to poll for results via `GET /{triggerId}/status`
+- `status` — Always `"pending"` immediately after triggering
+- `message` — Additional context
+
+---
+
+## Sample Request
+
+```http
+POST https://api.joinoverlap.com/trigger-template
+Authorization: Bearer YOUR_API_KEY
+Content-Type: application/json
+```
+
+```json
+{
+  "companyId": "brandlive-prod",
+  "workflowId": "webinar-template",
+  "url": "https://brandlive.com/webinars/stream123.mp4",
+  "broll": true,
+  "subtitles": true
+}
+```
+
+## Sample Response
+
+```json
+{
+  "triggerId": "c1a27b63-91d9-45fb-9c89-5f418442fb6e",
+  "status": "pending",
+  "message": "Workflow triggered successfully."
+}
+```
+
+---
+
+## Processing Time
+
+- **Horizontal clips:** ~3 minutes per hour of input
+- **Vertical clips:** ~10 minutes per hour
+- Actual duration varies depending on template configuration and video complexity.
+
+---
+
+## Notes & Considerations
+
+<AccordionGroup>
+  <Accordion title="How does filler/stutter/silence removal work?">
+    Filler words and stuttered words will be removed from the transcript and on-screen captions, without affecting the video timeline. Silences will be cut from the video entirely.
+  </Accordion>
+  <Accordion title="How should I prompt?">
+    See our [guide on prompting](/essentials/prompting) best practices. We recommend using markdown.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Next Step
+
+<Card title="Check Workflow Status" icon="rotate" color="#ff2700" href="/brandlive/results">
+  Poll for clip results using your triggerId
+</Card>

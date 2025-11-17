@@ -1,0 +1,57 @@
+---
+sidebarTitle: "Overview"
+icon: "video"
+mode: "wide"
+title: "Brandlive API Overview"
+---
+
+<Frame>
+  ![Graphoc Pn](/graphoc.png)
+</Frame>
+
+## Brandlive Webinar Clipping Integration
+
+This integration enables Brandlive to automatically generate high-quality, social-ready clips from any webinar or long-form video URL. Overlap’s automated pipeline handles ingestion, transcription, semantic understanding, editing, subtitle styling, rendering, and delivery — all accessible through a suite of APIs.
+
+<Card title="Quickstart" icon="bolt" color="#ff2700" href="/brandlive/quickstart">
+  Trigger a clip workflow and retrieve clips via the API
+</Card>
+
+## End-to-End Flow
+
+1. **`POST /trigger-template`**
+
+   <Card title="Trigger Template" icon="rocket-launch" color="#f93910" href="docs.overlap.ai/brandlive/trigger">
+     Send webinar URL + optional parameters (b-roll, subtitles, watermark, prompts) to initiate the clipping process.
+   </Card>
+2. `GET /workflow-results/{task_id}`
+
+   <Card title="Poll for Results" icon="timer" color="#f93910" href="docs.overlap.ai/brandlive/results">
+     Transcribes, analyzes, selects moments, trims, styles subtitles, and renders clips.
+   </Card>
+3. **`POST /render`**
+
+   <Card title="Render Video" icon="video-arrow-up-right" color="#f93910" href="docs.overlap.ai/brandlive/render">
+     For re-rendering clips when downloads are requested
+   </Card>
+4. `@overlap.ai/react-subtitles`
+
+   <Card title="Subtitles Component Overlay" icon="closed-captioning" color="#f93910" href="docs.overlap.ai/brandlive/component">
+     A React component layer provided to display dynamic subtitles to the end user
+   </Card>
+
+---
+
+## Processing Times
+
+- **Horizontal clips:** ~3 minutes per hour of video
+- **Vertical clips:** ~10 minutes per hour of video
+- **Re-render sync endpoint:** ~0.75× clip duration
+
+---
+
+## Help
+
+This provides a plug-and-play interface for displaying subtitles in Brandlive’s editor or preview environment.
+
+For any questions or issues, please reach out to [support@overlap.ai](mailto:support@overlap.ai).
