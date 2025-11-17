@@ -14,13 +14,13 @@ The `<Subtitles />` component renders animated subtitles based on timing data an
 Install the package in your React application:
 
 ```bash
-npm install @overlap/subtitles
+npm install @overlap.ai/react-video-subtitles
 ```
 
 ## Basic Usage
 
 ```tsx
-import { Subtitles } from '@overlap/subtitles';
+import { Subtitles } from '@overlap.ai/react-video-subtitles';
 
 function MyComponent() {
   return (
@@ -377,7 +377,7 @@ Control how subtitles appear and disappear.
 
 #### `animationStyle`
 - **Type:** `string`
-- **Options:** `"fade"`, `"fade-word"`, `"spring"`, `"spring-word"`, `"bounce"`, `"intense"`, `"tiktok"`, or custom values
+- **Options:** `"fade"`, `"fade-word"`, `"spring"`, `"spring-word"`, `"bounce"`, `"tiktok"`, or custom values
 - **Description:** Defines the animation effect when subtitles enter and exit.
 
 **Available Animation Styles:**
@@ -391,8 +391,6 @@ Control how subtitles appear and disappear.
 - **`"spring-word"`** - Each word springs into view individually as it's spoken, combining spring physics with word-by-word animation.
 
 - **`"bounce"`** - Subtitles bounce with a playful oscillating effect, adding extra emphasis and energy.
-
-- **`"intense"`** - Dramatic entrance animation where subtitles fly in from random directions (top, bottom, left, or right) with strong motion. Great for high-energy content.
 
 - **`"tiktok"`** - Optimized animation style for TikTok-style short-form vertical video content.
 
@@ -415,9 +413,9 @@ Control how subtitles appear and disappear.
 ```
 
 ```json
-// High energy / sports
+// Playful / energetic
 {
-  "animationStyle": "intense"
+  "animationStyle": "bounce"
 }
 ```
 
@@ -536,6 +534,18 @@ const customStyle = {
 />
 ```
 
+### Minimal Setup
+
+```tsx
+// Uses default styling
+<Subtitles
+  words={words}
+  currentTime={currentTime}
+  width={1920}
+  height={1080}
+  fps={30}
+/>
+```
 
 ### With Position and Highlighting
 
@@ -581,11 +591,193 @@ The component follows this priority order for configuration:
 
 ---
 
+## Hooks
+
+The package includes two powerful hooks for managing subtitle configurations programmatically.
+
+### useUpdatePersistentSubtitleConfig
+
+Update subtitle configuration in the database.
+
+**Import:**
+```typescript
+import { useUpdatePersistentSubtitleConfig } from '@overlap.ai/react-video-subtitles';
+```
+
+**Usage:**
+```typescript
+const { updateConfig } = useUpdatePersistentSubtitleConfig({
+  apiKey: 'your-api-key',
+  companyId: 'your-company-id',
+  clipId: 'your-clip-id'
+});
+
+// Update specific configuration properties
+await updateConfig({
+  fontSize: '32px',
+  fontColor: '#FF0000',
+  fontFamily: 'Arial'
+});
+```
+
+**Parameters:**
+- `apiKey` (string, required) - Your API authentication key
+- `companyId` (string, required) - Your company identifier
+- `clipId` (string, required) - The clip identifier
+
+**Returns:**
+- `updateConfig` (function) - Async function that accepts a partial `StyleConfig` object and updates the database
+
+**Features:**
+- Merges with existing config (only updates specified fields)
+- Preserves all other configuration values
+- Returns a promise that resolves when the update is complete
+
+**Example Use Cases:**
+
+```typescript
+// Change font size
+await updateConfig({ fontSize: '28px' });
+
+// Update multiple properties
+await updateConfig({
+  fontFamily: 'Helvetica',
+  fontColor: '#00FF00',
+  backgroundColor: '#000000',
+  backgroundOpacity: 0.8
+});
+
+// Change animation style
+await updateConfig({ animationStyle: 'spring-word' });
+```
+
+---
+
+### useRefreshSubtitlesComponent
+
+Refresh subtitle configuration from the database.
+
+**Import:**
+```typescript
+import { useRefreshSubtitlesComponent } from '@overlap.ai/react-video-subtitles';
+```
+
+**Usage:**
+```typescript
+const { refresh, isRefreshing, lastRefreshedConfig } = useRefreshSubtitlesComponent({
+  apiKey: 'your-api-key',
+  companyId: 'your-company-id',
+  clipId: 'your-clip-id',
+  onConfigRefreshed: (config) => {
+    console.log('Config refreshed:', config);
+  }
+});
+
+// Refresh the configuration
+const newConfig = await refresh();
+```
+
+**Parameters:**
+- `apiKey` (string, required) - Your API authentication key
+- `companyId` (string, required) - Your company identifier
+- `clipId` (string, required) - The clip identifier
+- `onConfigRefreshed` (function, optional) - Callback fired when config is successfully refreshed
+
+**Returns:**
+- `refresh` (function) - Async function that fetches the latest config from the database
+- `isRefreshing` (boolean) - Loading state indicator
+- `lastRefreshedConfig` (StyleConfig | null) - The most recently fetched configuration
+
+**Example Use Case:**
+
+```typescript
+function SubtitleEditor() {
+  const [showSubtitles, setShowSubtitles] = useState(true);
+  
+  const { refresh, isRefreshing, lastRefreshedConfig } = useRefreshSubtitlesComponent({
+    apiKey: 'your-api-key',
+    companyId: 'your-company-id',
+    clipId: 'your-clip-id',
+    onConfigRefreshed: () => {
+      // Optionally hide and show component to ensure clean remount
+      setShowSubtitles(false);
+      setTimeout(() => setShowSubtitles(true), 100);
+    }
+  });
+
+  return (
+    <div>
+      <button onClick={refresh} disabled={isRefreshing}>
+        {isRefreshing ? 'Refreshing...' : 'Refresh Config'}
+      </button>
+      
+      {showSubtitles && (
+        <Subtitles
+          words={words}
+          currentTime={currentTime}
+          width={1920}
+          height={1080}
+          fps={30}
+          apiKey="your-api-key"
+          companyId="your-company-id"
+          clipId="your-clip-id"
+        />
+      )}
+    </div>
+  );
+}
+```
+
+**Best Practice:**
+
+For optimal results when refreshing, temporarily unmount the Subtitles component to ensure a clean re-render with the new configuration:
+
+```typescript
+const [refreshTrigger, setRefreshTrigger] = useState(0);
+const [isRefreshingComponent, setIsRefreshingComponent] = useState(false);
+
+const { refresh } = useRefreshSubtitlesComponent({
+  apiKey,
+  companyId,
+  clipId,
+  onConfigRefreshed: () => {
+    setRefreshTrigger(prev => prev + 1);
+    setTimeout(() => setIsRefreshingComponent(false), 100);
+  }
+});
+
+const handleRefresh = async () => {
+  setIsRefreshingComponent(true);
+  await refresh();
+};
+
+return (
+  <>
+    <button onClick={handleRefresh}>Refresh</button>
+    {!isRefreshingComponent && (
+      <Subtitles
+        key={refreshTrigger}
+        words={words}
+        currentTime={currentTime}
+        width={1920}
+        height={1080}
+        fps={30}
+        apiKey={apiKey}
+        companyId={companyId}
+        clipId={clipId}
+      />
+    )}
+  </>
+);
+```
+
+---
+
 ## Complete TypeScript Example
 
 ```tsx
 import React, { useState, useEffect } from 'react';
-import { Subtitles } from '@overlap/subtitles';
+import { Subtitles } from '@overlap.ai/react-video-subtitles';
 
 interface Word {
   text: string;
@@ -703,19 +895,21 @@ interface SubtitlesProps {
   currentTime: number;
   width: number;
   height: number;
-  fps: number; (can be 30)
-  apiKey?: string;
-  companyId?: string;
-  clipId?: string;
+  fps: number;
+  
   // Optional - Styling
   styleConfig?: StyleConfig;
+  x?: number;
   y?: number;
   maxCharsPerLine?: number;
   lineCount?: number;
   highlightWordsColor?: string;
   currentFrame?: number;
   
-
+  // Optional - API Config
+  apiKey?: string;
+  companyId?: string;
+  clipId?: string;
 }
 ```
 
