@@ -107,20 +107,6 @@ These standard dimensions ensure font sizes work correctly without any complex c
 </div>
 ```
 
-**Example Setup (Vertical Video):**
-```tsx
-<Subtitles
-  words={words}
-  currentTime={currentTime}
-  width={1080}
-  height={1920}
-  fps={30}
-  apiKey="your-api-key"
-  companyId="your-company-id"
-  clipId="your-clip-id"
-/>
-```
-
 <Info>
   The font size calculations are optimized for 1920x1080 (horizontal) and 1080x1920 (vertical). Using these standard dimensions means you don't need to adjust fontSize values based on your video's actual resolution.
 </Info>
@@ -202,392 +188,25 @@ The component can fetch styling configuration from your API endpoint. Provide th
 
 ## StyleConfig Object
 
-The `styleConfig` prop controls the visual appearance of subtitles. All properties are optional. When using API configuration, the styleConfig is fetched automatically from your server.
+The `styleConfig` prop controls the visual appearance of subtitles. For detailed documentation on all available properties, see:
 
-### Complete StyleConfig Example
+<Card title="StyleConfig Properties" icon="palette" href=".docs/overlap.ai/brandlive/component/subtitleconfig">
+  Complete reference for all styling options including text properties, effects, backgrounds, animations, and more.
+</Card>
+
+**Quick Example:**
 
 ```json
 {
-  "name": "Default Style",
-  "amplifiedColor": "#ffffff",
-  "amplifySpokenWords": true,
   "fontFamily": "Arial",
+  "fontSize": "24px",
   "fontWeight": "bold",
   "fontColor": "#ffffff",
-  "fontSize": "24px",
-  "textCase": "normal",
-  "outlineColor": "#000000",
-  "outlineWidth": "2px",
-  "shadowColor": "#000000",
-  "shadowBlur": "4px",
-  "shadowOffsetX": "2px",
-  "shadowOffsetY": "2px",
   "backgroundColor": "#000000",
   "backgroundOpacity": 0.7,
-  "textAlign": "center",
   "animationStyle": "fade"
 }
 ```
-
----
-
-## StyleConfig Properties
-
-### Text Styling
-
-Control the core typography and text appearance of your subtitles.
-
-#### `fontFamily`
-- **Type:** `string`
-- **Example:** `"Arial"`, `"Helvetica"`, `"Inter"`, `"Roboto"`
-- **Description:** Sets the font family for subtitle text. Use web-safe fonts or ensure custom fonts are loaded in your application.
-
-#### `fontWeight`
-- **Type:** `string | number`
-- **Example:** `"normal"`, `"bold"`, `"600"`, `700`
-- **Description:** Controls the thickness of the text. Common values include `"normal"` (400), `"bold"` (700), or numeric values from 100-900.
-
-#### `fontColor`
-- **Type:** `string`
-- **Example:** `"#ffffff"`, `"#00ff00"`, `"rgba(255, 255, 255, 0.9)"`
-- **Description:** Sets the text color. Accepts hex codes, RGB/RGBA values, or named CSS colors.
-
-#### `fontSize`
-- **Type:** `string`
-- **Example:** `"24px"`, `"24"`, `"32px"`, `"32"`
-- **Description:** Defines the size of the text in pixels. You can pass either `"24px"` or `"24"` (both work). Recommended range: 20-48 for typical videos. **Note:** Font size is calculated based on standard dimensions (1920x1080 for horizontal, 1080x1920 for vertical), so you don't need to adjust fontSize based on your actual video resolution.
-
-#### `textCase`
-- **Type:** `string`
-- **Options:** `"normal"`, `"uppercase"`, `"lowercase"`, `"capitalize"`
-- **Description:** Transforms the text case. Use `"uppercase"` for bold statements, `"capitalize"` for title case, or `"normal"` to preserve original casing.
-
-#### `textAlign`
-- **Type:** `string`
-- **Options:** `"left"`, `"center"`, `"right"`
-- **Description:** Aligns text horizontally. `"center"` is most common for subtitles.
-
----
-
-### Word Highlighting
-
-Control how individual words are emphasized as they're spoken.
-
-#### `amplifySpokenWords`
-- **Type:** `boolean`
-- **Default:** `false`
-- **Description:** When `true`, the currently spoken word will be highlighted with a different color, creating a karaoke-style effect that helps viewers follow along.
-
-#### `amplifiedColor`
-- **Type:** `string`
-- **Example:** `"#ffcc00"`, `"#ff0000"`
-- **Description:** The color to apply to the currently spoken word when `amplifySpokenWords` is enabled. Choose a contrasting color for maximum visibility.
-
-**Example Use Case:**
-```json
-{
-  "amplifySpokenWords": true,
-  "amplifiedColor": "#ffcc00",
-  "fontColor": "#ffffff"
-}
-```
-This creates white text with a yellow highlight on the current word.
-
----
-
-### Text Effects
-
-Add depth and readability to your subtitles with outlines and shadows.
-
-#### `outlineColor`
-- **Type:** `string`
-- **Example:** `"#000000"`, `"#333333"`
-- **Description:** Creates a stroke/outline around text characters. Dark outlines (black/dark gray) improve readability on light backgrounds.
-
-#### `outlineWidth`
-- **Type:** `string`
-- **Example:** `"2px"`, `"3px"`, `"1.5px"`
-- **Description:** Controls the thickness of the text outline. Recommended: 2-3px for standard subtitles.
-
-#### `shadowColor`
-- **Type:** `string`
-- **Example:** `"#000000"`, `"rgba(0, 0, 0, 0.8)"`
-- **Description:** Sets the color of the drop shadow behind the text. Typically black or dark gray for maximum contrast.
-
-#### `shadowBlur`
-- **Type:** `string`
-- **Example:** `"4px"`, `"8px"`, `"6px"`
-- **Description:** Controls how soft/blurred the shadow appears. Higher values create a softer, more diffused shadow.
-
-#### `shadowOffsetX`
-- **Type:** `string`
-- **Example:** `"2px"`, `"-2px"`, `"0px"`
-- **Description:** Horizontal displacement of the shadow. Positive moves right, negative moves left.
-
-#### `shadowOffsetY`
-- **Type:** `string`
-- **Example:** `"2px"`, `"4px"`, `"0px"`
-- **Description:** Vertical displacement of the shadow. Positive moves down, negative moves up.
-
-**Example Use Case:**
-```json
-{
-  "outlineColor": "#000000",
-  "outlineWidth": "2px",
-  "shadowColor": "rgba(0, 0, 0, 0.8)",
-  "shadowBlur": "4px",
-  "shadowOffsetX": "2px",
-  "shadowOffsetY": "2px"
-}
-```
-This creates a black outline with a subtle drop shadow for excellent readability on any background.
-
----
-
-### Background
-
-Add a background box behind subtitle text for improved readability.
-
-#### `backgroundColor`
-- **Type:** `string`
-- **Example:** `"#000000"`, `"#1a1a1a"`, `"rgba(0, 0, 0, 0.8)"`
-- **Description:** Sets the color of the rectangular background behind the text. Black or dark colors are standard for subtitles.
-
-#### `backgroundOpacity`
-- **Type:** `number`
-- **Range:** `0` to `1`
-- **Example:** `0.7`, `0.5`, `0.9`
-- **Description:** Controls the transparency of the background. Lower values (0.5-0.7) allow some of the video to show through, while higher values (0.8-1.0) provide maximum text contrast.
-
-**Example Use Case:**
-```json
-{
-  "backgroundColor": "#000000",
-  "backgroundOpacity": 0.7,
-  "fontColor": "#ffffff"
-}
-```
-This creates white text on a semi-transparent black background - a classic, readable subtitle style.
-
----
-
-### Animation
-
-Control how subtitles appear and disappear.
-
-#### `animationStyle`
-- **Type:** `string`
-- **Options:** `"fade"`, `"fade-word"`, `"spring"`, `"spring-word"`, `"bounce"`, `"tiktok"`, or custom values
-- **Description:** Defines the animation effect when subtitles enter and exit.
-
-**Available Animation Styles:**
-
-- **`"fade"`** - Subtitles smoothly fade in and out. Recommended for professional, clean content. The entire phrase fades together.
-
-- **`"fade-word"`** - Each word fades in individually as it's spoken, creating a progressive reveal effect.
-
-- **`"spring"`** - Subtitles bounce into view with a spring physics effect. More dynamic and playful than fade.
-
-- **`"spring-word"`** - Each word springs into view individually as it's spoken, combining spring physics with word-by-word animation.
-
-- **`"bounce"`** - Subtitles bounce with a playful oscillating effect, adding extra emphasis and energy.
-
-- **`"tiktok"`** - Optimized animation style for TikTok-style short-form vertical video content.
-
-- **Custom values** - You can pass any string value to implement custom animation logic if you extend the component.
-
-**Example Use Cases:**
-
-```json
-// Professional content
-{
-  "animationStyle": "fade"
-}
-```
-
-```json
-// Engaging social media
-{
-  "animationStyle": "spring-word"
-}
-```
-
-```json
-// Playful / energetic
-{
-  "animationStyle": "bounce"
-}
-```
-
-```json
-// Vertical short-form content
-{
-  "animationStyle": "tiktok"
-}
-```
-
----
-
-## Style Presets
-
-Here are some common styleConfig presets for different use cases:
-
-### Professional / Corporate
-```json
-{
-  "fontFamily": "Arial",
-  "fontSize": "28px",
-  "fontWeight": "bold",
-  "fontColor": "#ffffff",
-  "backgroundColor": "#000000",
-  "backgroundOpacity": 0.8,
-  "textAlign": "center",
-  "animationStyle": "fade"
-}
-```
-
-### Social Media / Engaging
-```json
-{
-  "fontFamily": "Inter",
-  "fontSize": "32px",
-  "fontWeight": "700",
-  "fontColor": "#ffffff",
-  "amplifySpokenWords": true,
-  "amplifiedColor": "#ffcc00",
-  "outlineColor": "#000000",
-  "outlineWidth": "3px",
-  "textAlign": "center",
-  "animationStyle": "slide"
-}
-```
-
-### Minimal / Clean
-```json
-{
-  "fontFamily": "Helvetica",
-  "fontSize": "24px",
-  "fontWeight": "normal",
-  "fontColor": "#ffffff",
-  "shadowColor": "rgba(0, 0, 0, 0.6)",
-  "shadowBlur": "4px",
-  "shadowOffsetX": "0px",
-  "shadowOffsetY": "2px",
-  "textAlign": "center",
-  "animationStyle": "fade"
-}
-```
-
-### High Contrast / Accessibility
-```json
-{
-  "fontFamily": "Arial",
-  "fontSize": "32px",
-  "fontWeight": "bold",
-  "fontColor": "#ffff00",
-  "backgroundColor": "#000000",
-  "backgroundOpacity": 1,
-  "outlineColor": "#000000",
-  "outlineWidth": "2px",
-  "textAlign": "center",
-  "animationStyle": "none"
-}
-
----
-
-## Usage Examples
-
-### With Custom StyleConfig
-
-```tsx
-const customStyle = {
-  fontFamily: "Helvetica",
-  fontSize: "32px",
-  fontColor: "#00ff00",
-  backgroundColor: "#000000",
-  backgroundOpacity: 0.8,
-  animationStyle: "fade"
-};
-
-<Subtitles
-  words={words}
-  styleConfig={customStyle}
-  currentTime={currentTime}
-  width={1920}
-  height={1080}
-  fps={30}
-/>
-```
-
-### With API Configuration
-
-```tsx
-<Subtitles
-  words={words}
-  currentTime={currentTime}
-  width={1920}
-  height={1080}
-  fps={30}
-  apiKey="your-api-key"
-  companyId="your-company-id"
-  clipId="your-clip-id"
-/>
-```
-
-### Minimal Setup
-
-```tsx
-// Uses default styling
-<Subtitles
-  words={words}
-  currentTime={currentTime}
-  width={1920}
-  height={1080}
-  fps={30}
-/>
-```
-
-### With Position and Highlighting
-
-```tsx
-<Subtitles
-  words={words}
-  styleConfig={styleConfig}
-  currentTime={currentTime}
-  width={1920}
-  height={1080}
-  fps={30}
-  x={960}
-  y={900}
-  maxCharsPerLine={20}
-  lineCount={2}
-  highlightWordsColor="#FFCC00"
-/>
-```
-
----
-
-## Configuration Priority
-
-The component follows this priority order for configuration:
-
-<Steps>
-  <Step title="API Config (Highest Priority)">
-    If `apiKey`, `companyId`, and `clipId` are all provided, the component fetches configuration from the API endpoint.
-  </Step>
-  
-  <Step title="Custom StyleConfig">
-    If `styleConfig` prop is provided and no API credentials are given.
-  </Step>
-  
-  <Step title="No Display">
-    If neither API credentials nor styleConfig is provided, the component will not render anything.
-  </Step>
-</Steps>
-
-<Warning>
-  The component requires EITHER API credentials (all three) OR a custom styleConfig to render. Providing none will result in no subtitle display.
-</Warning>
 
 ---
 
@@ -688,46 +307,6 @@ const newConfig = await refresh();
 - `isRefreshing` (boolean) - Loading state indicator
 - `lastRefreshedConfig` (StyleConfig | null) - The most recently fetched configuration
 
-**Example Use Case:**
-
-```typescript
-function SubtitleEditor() {
-  const [showSubtitles, setShowSubtitles] = useState(true);
-  
-  const { refresh, isRefreshing, lastRefreshedConfig } = useRefreshSubtitlesComponent({
-    apiKey: 'your-api-key',
-    companyId: 'your-company-id',
-    clipId: 'your-clip-id',
-    onConfigRefreshed: () => {
-      // Optionally hide and show component to ensure clean remount
-      setShowSubtitles(false);
-      setTimeout(() => setShowSubtitles(true), 100);
-    }
-  });
-
-  return (
-    <div>
-      <button onClick={refresh} disabled={isRefreshing}>
-        {isRefreshing ? 'Refreshing...' : 'Refresh Config'}
-      </button>
-      
-      {showSubtitles && (
-        <Subtitles
-          words={words}
-          currentTime={currentTime}
-          width={1920}
-          height={1080}
-          fps={30}
-          apiKey="your-api-key"
-          companyId="your-company-id"
-          clipId="your-clip-id"
-        />
-      )}
-    </div>
-  );
-}
-```
-
 **Best Practice:**
 
 For optimal results when refreshing, temporarily unmount the Subtitles component to ensure a clean re-render with the new configuration:
@@ -773,6 +352,30 @@ return (
 
 ---
 
+## Configuration Priority
+
+The component follows this priority order for configuration:
+
+<Steps>
+  <Step title="API Config (Highest Priority)">
+    If `apiKey`, `companyId`, and `clipId` are all provided, the component fetches configuration from the API endpoint.
+  </Step>
+  
+  <Step title="Custom StyleConfig">
+    If `styleConfig` prop is provided and no API credentials are given.
+  </Step>
+  
+  <Step title="No Display">
+    If neither API credentials nor styleConfig is provided, the component will not render anything.
+  </Step>
+</Steps>
+
+<Warning>
+  The component requires EITHER API credentials (all three) OR a custom styleConfig to render. Providing none will result in no subtitle display.
+</Warning>
+
+---
+
 ## Complete TypeScript Example
 
 ```tsx
@@ -786,15 +389,6 @@ interface Word {
   speaker?: number;
 }
 
-interface StyleConfig {
-  fontFamily?: string;
-  fontSize?: string;
-  fontColor?: string;
-  backgroundColor?: string;
-  backgroundOpacity?: number;
-  animationStyle?: string;
-}
-
 function SubtitlePlayer() {
   const [currentTime, setCurrentTime] = useState(0);
   
@@ -804,15 +398,6 @@ function SubtitlePlayer() {
     { text: "our", start: 0.8, end: 1.2, speaker: 0 },
     { text: "presentation", start: 1.2, end: 2.0, speaker: 0 },
   ];
-  
-  const styleConfig: StyleConfig = {
-    fontFamily: "Arial",
-    fontSize: "28px",
-    fontColor: "#ffffff",
-    backgroundColor: "#000000",
-    backgroundOpacity: 0.7,
-    animationStyle: "fade"
-  };
   
   // Simulate time updates
   useEffect(() => {
@@ -827,7 +412,6 @@ function SubtitlePlayer() {
     <div style={{ position: 'relative', width: 1920, height: 1080 }}>
       <Subtitles
         words={words}
-        styleConfig={styleConfig}
         currentTime={currentTime}
         currentFrame={Math.floor(currentTime * 30)}
         width={1920}
@@ -835,6 +419,9 @@ function SubtitlePlayer() {
         fps={30}
         maxCharsPerLine={15}
         lineCount={1}
+        apiKey="your-api-key"
+        companyId="your-company-id"
+        clipId="your-clip-id"
       />
     </div>
   );
@@ -867,18 +454,14 @@ function SubtitlePlayer() {
 
 ### Styling Issues
 
-**Text too small/large:**
-- Adjust `fontSize` in styleConfig
-- Consider the canvas dimensions (width/height) relative to font size
+**Text size wrong:**
+- Always use standard dimensions: `width={1920} height={1080}` for horizontal videos, `width={1080} height={1920}` for vertical videos
+- Adjust the `fontSize` value in your styleConfig (e.g., change from `"24"` to `"32"`)
 
 **Text position wrong:**
 - Adjust `x` and `y` props for precise positioning
 - Verify the Subtitles component is positioned over the video in your HTML/CSS
-- Make sure you're using standard dimensions: 1920x1080 (horizontal) or 1080x1920 (vertical)
-
-**Text size wrong:**
-- Always use standard dimensions: `width={1920} height={1080}` for horizontal videos, `width={1080} height={1920}` for vertical videos
-- Adjust the `fontSize` value in your styleConfig (e.g., change from `"24"` to `"32"`)
+- Make sure you're using standard dimensions
 
 **Animation not smooth:**
 - Ensure `fps` matches your expected framerate
