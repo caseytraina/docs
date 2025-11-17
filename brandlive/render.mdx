@@ -31,6 +31,67 @@ Content-Type: application/json
 }
 ```
 
+<RequestExample>
+
+```javascript javascript
+// Node.js (using fetch)
+import fetch from "node-fetch";
+
+const apiUrl = "https://api.joinoverlap.com/render";
+
+const headers = {
+  "Content-Type": "application/json",
+  "Authorization": "Bearer YOUR_API_KEY"
+};
+
+const payload = {
+  companyId: "brandlive-prod",
+  clipId: "<CLIP_ID>"
+};
+
+fetch(apiUrl, {
+  method: "POST",
+  headers,
+  body: JSON.stringify(payload)
+})
+  .then(res => res.json())
+  .then(data => console.log(data))
+  .catch(err => console.error(err));
+```
+
+
+```python python
+import requests
+
+api_url = "https://api.joinoverlap.com/render"
+
+headers = {
+    "Content-Type": "application/json",
+    "Authorization": "Bearer YOUR_API_KEY"
+}
+
+payload = {
+    "companyId": "brandlive-prod",
+    "clipId": "<CLIP_ID>"
+}
+
+response = requests.post(api_url, json=payload, headers=headers)
+print(response.json())
+```
+
+
+```bash cURL
+curl -X POST "https://api.joinoverlap.com/render" \
+     -H "Authorization: Bearer YOUR_API_KEY" \
+     -H "Content-Type: application/json" \
+     -d '{
+           "companyId": "brandlive-prod",
+           "clipId": "<CLIP_ID>"
+         }'
+```
+
+</RequestExample>
+
 ### Field Descriptions
 
 | Field       | Type   | Description                 |

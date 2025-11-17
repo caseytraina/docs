@@ -105,23 +105,72 @@ Content-Type: application/json
 
 ---
 
-## Sample Request
+<RequestExample>
 
-```http
-POST https://api.joinoverlap.com/trigger-template
-Authorization: Bearer YOUR_API_KEY
-Content-Type: application/json
+```javascript javascript
+// Node.js (using fetch)
+import fetch from "node-fetch";
+
+const apiUrl = "https://api.joinoverlap.com/trigger-template";
+
+const headers = {
+  "Content-Type": "application/json",
+  "Authorization": "Bearer YOUR_API_KEY"
+};
+
+const payload = {
+  companyId: "brandlive-prod",
+  workflowId: "webinar-template",
+  url: "https://brandlive.com/webinars/stream123.mp4",
+  broll: true
+};
+
+fetch(apiUrl, {
+  method: "POST",
+  headers,
+  body: JSON.stringify(payload)
+})
+  .then(res => res.json())
+  .then(data => console.log(data))
+  .catch(err => console.error(err));
 ```
 
-```json
-{
-  "companyId": "brandlive-prod",
-  "workflowId": "webinar-template",
-  "url": "https://brandlive.com/webinars/stream123.mp4",
-  "broll": true,
-  "subtitles": true
+
+```python python
+import requests
+
+api_url = "https://api.joinoverlap.com/trigger-template"
+
+headers = {
+    "Content-Type": "application/json",
+    "Authorization": "Bearer YOUR_API_KEY"
 }
+
+payload = {
+    "companyId": "brandlive-prod",
+    "workflowId": "webinar-template",
+    "url": "https://brandlive.com/webinars/stream123.mp4",
+    "broll": True
+}
+
+response = requests.post(api_url, json=payload, headers=headers)
+print(response.json())
 ```
+
+
+```bash cURL
+curl -X POST "https://api.joinoverlap.com/trigger-template" \
+     -H "Authorization: Bearer YOUR_API_KEY" \
+     -H "Content-Type: application/json" \
+     -d '{
+           "companyId": "brandlive-prod",
+           "workflowId": "webinar-template",
+           "url": "https://brandlive.com/webinars/stream123.mp4",
+           "broll": true
+         }'
+```
+
+</RequestExample>
 
 ## Sample Response
 

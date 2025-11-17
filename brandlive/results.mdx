@@ -61,6 +61,54 @@ Content-Type: application/json
 
 ---
 
+<RequestExample>
+
+```javascript javascript
+// Node.js (using fetch)
+import fetch from "node-fetch";
+
+const triggerId = "<TRIGGER_ID>";
+const apiUrl = `https://api.joinoverlap.com/workflow-results/${triggerId}`;
+
+const headers = {
+  "Content-Type": "application/json",
+  "Authorization": "Bearer YOUR_API_KEY"
+};
+
+fetch(apiUrl, {
+  method: "GET",
+  headers
+})
+  .then(res => res.json())
+  .then(data => console.log(data))
+  .catch(err => console.error(err));
+```
+
+
+```python python
+import requests
+
+trigger_id = "<TRIGGER_ID>"
+api_url = f"https://api.joinoverlap.com/workflow-results/{trigger_id}"
+
+headers = {
+    "Content-Type": "application/json",
+    "Authorization": "Bearer YOUR_API_KEY"
+}
+
+response = requests.get(api_url, headers=headers)
+print(response.json())
+```
+
+
+```bash cURL
+curl -X GET "https://api.joinoverlap.com/workflow-results/<TRIGGER_ID>" \
+     -H "Authorization: Bearer YOUR_API_KEY" \
+     -H "Content-Type: application/json"
+```
+
+</RequestExample>
+
 ## Example Response (Completed)
 
 ```json
