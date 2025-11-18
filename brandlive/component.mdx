@@ -46,13 +46,13 @@ function MyComponent() {
 
 ## Required Props
 
-| Prop | Type | Description |
-|------|------|-------------|
-| `words` | `Array<Word>` | Array of word objects with timing data |
-| `currentTime` | `number` | Current playback time in seconds |
-| `width` | `number` | Canvas width in pixels - use standard dimensions (see below) |
-| `height` | `number` | Canvas height in pixels - use standard dimensions (see below) |
-| `fps` | `number` | Frames per second for animation |
+| Prop          | Type          | Description                                                     |
+| ------------- | ------------- | --------------------------------------------------------------- |
+| `words`       | `Array<Word>` | Array of word objects with timing data. Included in Clip object |
+| `currentTime` | `number`      | Current playback time in seconds                                |
+| `width`       | `number`      | Canvas width in pixels - use standard dimensions (see below)    |
+| `height`      | `number`      | Canvas height in pixels - use standard dimensions (see below)   |
+| `fps`         | `number`      | Frames per second for animation                                 |
 
 <Warning>
   **Use standard dimensions, not your actual video size.** The Subtitles component renders as a transparent overlay that sits on top of your video element with pointer passthrough enabled, so click events pass through to the video controls below.
@@ -63,12 +63,14 @@ function MyComponent() {
 The `width` and `height` props control how subtitle font sizes are calculated. **Do not change these based on your video's actual dimensions.** Instead, use these standard values:
 
 **Standard Dimensions to Use:**
+
 - **Horizontal videos (16:9)**: `width={1920}` `height={1080}`
 - **Vertical videos (9:16)**: `width={1080}` `height={1920}`
 
 These standard dimensions ensure font sizes work correctly without any complex calculations. Even if your video is 720p, 4K, or any other size, always use these standard dimensions.
 
 **Key Points:**
+
 - **Always use standard dimensions**: 1920x1080 for horizontal, 1080x1920 for vertical
 - **Don't match actual video size**: The dimensions are for font scaling, not video matching
 - **Component positioning**: Place the Subtitles component over the video in your HTML structure with the same size
@@ -76,6 +78,7 @@ These standard dimensions ensure font sizes work correctly without any complex c
 - **Pointer passthrough**: Mouse clicks and interactions pass through to the video below
 
 **Example Setup (Horizontal Video):**
+
 ```tsx
 <div style={{ position: 'relative', width: '100%' }}>
   {/* Video element - can be any size */}
@@ -115,7 +118,7 @@ These standard dimensions ensure font sizes work correctly without any complex c
 
 ## Word Object Structure
 
-Each word object in the `words` array should follow this structure:
+Pass through the word array returned in the [Clip object](/brandlive/results) via `transcriptUrl`. Each word object in the `words` array should follow this structure:
 
 ```typescript
 interface Word {
@@ -143,15 +146,15 @@ const words = [
 
 ## Optional Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `styleConfig` | `StyleConfig` | `null` | Styling configuration object |
-| `x` | `number` | `width/2` | Horizontal position |
-| `y` | `number` | `height/2` | Vertical position |
-| `maxCharsPerLine` | `number` | `12` | Maximum characters per line |
-| `lineCount` | `number` | `1` | Number of subtitle lines |
-| `highlightWordsColor` | `string` | - | Color for highlighted words |
-| `currentFrame` | `number` | - | Current frame number |
+| Prop                  | Type          | Default    | Description                  |
+| --------------------- | ------------- | ---------- | ---------------------------- |
+| `styleConfig`         | `StyleConfig` | `null`     | Styling configuration object |
+| `x`                   | `number`      | `width/2`  | Horizontal position          |
+| `y`                   | `number`      | `height/2` | Vertical position            |
+| `maxCharsPerLine`     | `number`      | `12`       | Maximum characters per line  |
+| `lineCount`           | `number`      | `1`        | Number of subtitle lines     |
+| `highlightWordsColor` | `string`      | -          | Color for highlighted words  |
+| `currentFrame`        | `number`      | -          | Current frame number         |
 
 ---
 
@@ -159,11 +162,11 @@ const words = [
 
 The component can fetch styling configuration from your API endpoint. Provide these three props to enable API mode:
 
-| Prop | Type | Description |
-|------|------|-------------|
-| `apiKey` | `string` | Your API authentication key |
-| `companyId` | `string` | Your company identifier |
-| `clipId` | `string` | The clip identifier |
+| Prop        | Type     | Description                 |
+| ----------- | -------- | --------------------------- |
+| `apiKey`    | `string` | Your API authentication key |
+| `companyId` | `string` | Your company identifier     |
+| `clipId`    | `string` | The clip identifier         |
 
 <Info>
   When all three API props are provided, the component will automatically fetch the styleConfig from your server, overriding any manually provided styleConfig.
@@ -219,11 +222,13 @@ The package includes two powerful hooks for managing subtitle configurations pro
 Update subtitle configuration in the database.
 
 **Import:**
+
 ```typescript
 import { useUpdatePersistentSubtitleConfig } from '@overlap.ai/react-video-subtitles';
 ```
 
 **Usage:**
+
 ```typescript
 const { updateConfig } = useUpdatePersistentSubtitleConfig({
   apiKey: 'your-api-key',
@@ -240,14 +245,17 @@ await updateConfig({
 ```
 
 **Parameters:**
+
 - `apiKey` (string, required) - Your API authentication key
 - `companyId` (string, required) - Your company identifier
 - `clipId` (string, required) - The clip identifier
 
 **Returns:**
+
 - `updateConfig` (function) - Async function that accepts a partial `StyleConfig` object and updates the database
 
 **Features:**
+
 - Merges with existing config (only updates specified fields)
 - Preserves all other configuration values
 - Returns a promise that resolves when the update is complete
@@ -277,11 +285,13 @@ await updateConfig({ animationStyle: 'spring-word' });
 Refresh subtitle configuration from the database.
 
 **Import:**
+
 ```typescript
 import { useRefreshSubtitlesComponent } from '@overlap.ai/react-video-subtitles';
 ```
 
 **Usage:**
+
 ```typescript
 const { refresh, isRefreshing, lastRefreshedConfig } = useRefreshSubtitlesComponent({
   apiKey: 'your-api-key',
@@ -297,12 +307,14 @@ const newConfig = await refresh();
 ```
 
 **Parameters:**
+
 - `apiKey` (string, required) - Your API authentication key
 - `companyId` (string, required) - Your company identifier
 - `clipId` (string, required) - The clip identifier
 - `onConfigRefreshed` (function, optional) - Callback fired when config is successfully refreshed
 
 **Returns:**
+
 - `refresh` (function) - Async function that fetches the latest config from the database
 - `isRefreshing` (boolean) - Loading state indicator
 - `lastRefreshedConfig` (StyleConfig | null) - The most recently fetched configuration
@@ -360,11 +372,9 @@ The component follows this priority order for configuration:
   <Step title="API Config (Highest Priority)">
     If `apiKey`, `companyId`, and `clipId` are all provided, the component fetches configuration from the API endpoint.
   </Step>
-  
   <Step title="Custom StyleConfig">
     If `styleConfig` prop is provided and no API credentials are given.
   </Step>
-  
   <Step title="No Display">
     If neither API credentials nor styleConfig is provided, the component will not render anything.
   </Step>
@@ -435,35 +445,42 @@ function SubtitlePlayer() {
 ### Subtitles Not Showing
 
 **No configuration provided:**
+
 - Ensure either API credentials (all three: apiKey, companyId, clipId) OR a custom styleConfig is provided
 - Component will not render without valid configuration
 
 **Invalid timing:**
+
 - Check that `currentTime` is within the range of your words' start/end times
 - Verify words array has proper start/end values in seconds
 
 ### API Errors
 
 **401 Unauthorized:**
+
 - Verify your API key is correct
 - Check that the API key has proper permissions
 
 **404 Not Found:**
+
 - Verify the companyId and clipId exist
 - Check for typos in the IDs
 
 ### Styling Issues
 
 **Text size wrong:**
+
 - Always use standard dimensions: `width={1920} height={1080}` for horizontal videos, `width={1080} height={1920}` for vertical videos
 - Adjust the `fontSize` value in your styleConfig (e.g., change from `"24"` to `"32"`)
 
 **Text position wrong:**
+
 - Adjust `x` and `y` props for precise positioning
 - Verify the Subtitles component is positioned over the video in your HTML/CSS
 - Make sure you're using standard dimensions
 
 **Animation not smooth:**
+
 - Ensure `fps` matches your expected framerate
 - Verify `currentTime` updates smoothly (typically 30-60 times per second)
 
@@ -499,4 +516,3 @@ interface SubtitlesProps {
 <Info>
   For production use, consider implementing error boundaries around the Subtitles component to gracefully handle API failures or invalid configurations.
 </Info>
-
