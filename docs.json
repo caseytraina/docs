@@ -88,6 +88,18 @@
             ]
           } 
         ]
+      },
+      {
+        "tab": "Brandlive",
+        "hidden": true,
+        "pages": [
+          "brandlive/overview",
+          "brandlive/quickstart",
+          "brandlive/trigger",
+          "brandlive/results",
+          "brandlive/render",
+          "brandlive/component"
+        ]
       }
     ],
     "global": {
