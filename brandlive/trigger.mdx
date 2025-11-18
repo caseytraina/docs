@@ -70,21 +70,21 @@ Content-Type: application/json
 
 ### Field Descriptions (Condensed)
 
-| Field                                                           | Type     | Description                                           |
-| --------------------------------------------------------------- | -------- | ----------------------------------------------------- |
-| `companyId`                                                     | string   | **Required.** Brandlive org/company identifier        |
-| `workflowId`                                                    | string   | **Required.** Workflow/template to use                |
-| `url`                                                           | string   | **Required.** Publicly accessible long-form video URL |
-| `minLengthTarget` / `maxLengthTarget`                           | number   | Clip duration bounds                                  |
-| `musicUrl`                                                      | string   | Background music                                      |
-| `broll`                                                         | boolean  | Enable automatic b-roll                               |
-| `removeFillerWords` / `removeStutteredWords` / `removeSilences` | boolean  | Cleanup options                                       |
-| `outroImageUrl` / `outroMusicUrl`                               | string   | Outro media                                           |
-| `subtitles`                                                     | boolean  | Whether to include subtitles                          |
-| `subtitleConfig`                                                | object   | Styling overrides                                     |
-| `watermarkUrl`                                                  | string   | Overlay watermark                                     |
-| `keywords`                                                      | string[] | Custom keyword hints                                  |
-| `promptAdjustment`                                              | string   | Prompt extension for custom behavior                  |
+| Field                                                           | Type     | Description                                                           |
+| --------------------------------------------------------------- | -------- | --------------------------------------------------------------------- |
+| `companyId`                                                     | string   | **Required.** Brandlive org/company identifier                        |
+| `workflowId`                                                    | string   | **Required.** Workflow/template to use                                |
+| `url`                                                           | string   | **Required.** Publicly accessible long-form video URL                 |
+| `minLengthTarget` / `maxLengthTarget`                           | number   | Clip duration bounds                                                  |
+| `musicUrl`                                                      | string   | Background music                                                      |
+| `broll`                                                         | boolean  | Enable automatic b-roll                                               |
+| `removeFillerWords` / `removeStutteredWords` / `removeSilences` | boolean  | Cleanup options                                                       |
+| `outroImageUrl` / `outroMusicUrl`                               | string   | Outro media                                                           |
+| `subtitles`                                                     | boolean  | Whether to include subtitles                                          |
+| `subtitleConfig`                                                | object   | See [StyleConfig](/brandlive/component/subtitleconfig) for attributes |
+| `watermarkUrl`                                                  | string   | Overlay watermark                                                     |
+| `keywords`                                                      | string[] | Custom keyword hints                                                  |
+| `promptAdjustment`                                              | string   | Prompt extension for custom behavior                                  |
 
 ---
 
@@ -199,6 +199,11 @@ curl -X POST "https://api.joinoverlap.com/trigger-template" \
   </Accordion>
   <Accordion title="How should I prompt?">
     See our [guide on prompting](/essentials/prompting) best practices. We recommend using markdown.
+  </Accordion>
+  <Accordion title="Do I have to include all of these fields?">
+    No! By default, we will apply all of the same styling as your configured template. For example, if you designed a template to return vertical clips with red subtitles and soft background music, then any request made with only the `url` parameter will include this styling. 
+
+    You should use the properties to override template styling, when desired. If you wanted the subtitles to be blue instead of red, then you would pass that specific attribute.
   </Accordion>
 </AccordionGroup>
 
