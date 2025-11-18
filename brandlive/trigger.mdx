@@ -83,7 +83,7 @@ Content-Type: application/json
 | `subtitles`                                                     | boolean  | Whether to include subtitles                                          |
 | `subtitleConfig`                                                | object   | See [StyleConfig](/brandlive/component/subtitleconfig) for attributes |
 | `watermarkUrl`                                                  | string   | Overlay watermark                                                     |
-| `keywords`                                                      | string[] | Custom keyword hints                                                  |
+| `keywords`                                                      | string[] | Custom words for transcriptions enrichment. Limited to 150 max.       |
 | `promptAdjustment`                                              | string   | Prompt extension for custom behavior                                  |
 
 ---
@@ -201,7 +201,7 @@ curl -X POST "https://api.joinoverlap.com/trigger-template" \
     See our [guide on prompting](/essentials/prompting) best practices. We recommend using markdown.
   </Accordion>
   <Accordion title="Do I have to include all of these fields?">
-    No! By default, we will apply all of the same styling as your configured template. For example, if you designed a template to return vertical clips with red subtitles and soft background music, then any request made with only the `url` parameter will include this styling. 
+    No! By default, we will apply all of the same styling as your configured template. For example, if you designed a template to return vertical clips with red subtitles and soft background music, then any request made with only the `url` parameter will include this styling.
 
     You should use the properties to override template styling, when desired. If you wanted the subtitles to be blue instead of red, then you would pass that specific attribute.
   </Accordion>
