@@ -105,8 +105,14 @@
             "pages": [
               "brandlive/trigger",
               "brandlive/results",
-              "brandlive/render",
-              "brandlive/component"
+              "brandlive/render"
+            ]
+          },
+          {
+            "group": "Subtitles Component",
+            "pages": [
+              "brandlive/component",
+              "brandlive/component/subtitleconfig"
             ]
           }
         ]
