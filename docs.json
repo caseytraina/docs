@@ -93,12 +93,22 @@
         "tab": "Brandlive",
         "hidden": true,
         "pages": [
-          "brandlive/overview",
-          "brandlive/quickstart",
-          "brandlive/trigger",
-          "brandlive/results",
-          "brandlive/render",
-          "brandlive/component"
+          {
+            "group": "Getting Started",
+            "pages": [
+              "brandlive/overview",
+              "brandlive/quickstart"
+            ]
+          },
+          {
+            "group": "Core",
+            "pages": [
+              "brandlive/trigger",
+              "brandlive/results",
+              "brandlive/render",
+              "brandlive/component"
+            ]
+          }
         ]
       }
     ],
