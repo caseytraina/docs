@@ -1,0 +1,91 @@
+---
+title: 'System Requirements'
+---
+
+
+## Introduction
+
+Overlap is an AI video marketing agent that can completely automate your video clipping and social media posting.
+
+Our agent understands your style and will learn what's performing well on socials, improving itself over time.
+
+## System Requirements
+
+Overlap runs **entirely in the browser** and relies on **Web Codecs** for smooth, low-latency video playback and editing. That means you must use a **browser + version that supports Web Codecs**, on a device that can handle hardware-accelerated video decoding.
+
+### Browser Requirements (Web Codecs support)
+
+We recommend **Chrome** (or **Edge**) for the most consistent experience.
+
+| Browser | Web Codecs Support | Minimum Version |
+|--------|---------------------|-----------------|
+| Google Chrome | ✅ Supported | **94+** |
+| Microsoft Edge (Chromium) | ✅ Supported | **94+** |
+| Mozilla Firefox | ✅ Supported | **130+** |
+| Opera | ✅ Supported | **80+** |
+| Safari (macOS / iOS) | ✅ Supported | **26.0+** |
+
+> Notes:
+> - Ensure your browser version is at least what is defined above.
+
+**References:** WebCodecs compatibility tables and notes: MDN + Can I use.  
+(See: https://developer.mozilla.org/en-US/docs/Web/API/VideoDecoder and https://caniuse.com/webcodecs)
+
+### Download Links (Supported Browsers)
+
+- **Google Chrome (recommended)**: https://www.google.com/chrome/  
+- **Microsoft Edge**: https://www.microsoft.com/edge/download  
+- **Mozilla Firefox**: https://www.firefox.com/  
+- **Opera**: https://www.opera.com/download  
+- **Safari (update via macOS update)**: https://support.apple.com/en-us/102665  
+- **Safari Technology Preview (optional, for newest WebKit features)**: https://developer.apple.com/safari/technology-preview/
+
+### Operating System Requirements
+
+Your OS must support hardware-accelerated video decoding.
+
+**Supported**
+- **macOS**: 11 (Big Sur) or newer  
+- **Windows**: Windows 10 or newer (64-bit)
+- **Linux**: Modern distributions with GPU acceleration enabled
+
+**Not supported**
+- ❌ iOS / iPadOS browsers for production workflows (may work on newer versions, but not recommended for editing)
+- ❌ Android browsers for production workflows
+- ❌ Older/unsupported OS versions without modern GPU decode
+
+### Hardware Requirements
+
+Because video decoding and rendering happen locally, your device must be capable of handling modern codecs efficiently.
+
+**Minimum**
+- **CPU**: Intel i5 / Apple Silicon M1 / AMD Ryzen 5 (or equivalent)
+- **RAM**: 8 GB
+- **GPU**: Integrated GPU with hardware video decode support
+
+**Recommended**
+- **CPU**: Apple Silicon (M1/M2/M3) or modern Intel i7 / Ryzen 7
+- **RAM**: 16 GB
+- **GPU**: Dedicated GPU or Apple Silicon media engine
+
+> If your machine is below minimum specs, you may see choppy playback, lag when scrubbing, or export instability.
+
+### Network Requirements
+
+- **Stable broadband connection**
+- Recommended: **25 Mbps down / 10 Mbps up**
+- Wired or strong Wi-Fi preferred during editing sessions
+
+Uploads, downloads, and AI processing all rely on a consistent connection.
+
+### Quick Checks
+
+**Check your browser version**
+- Chrome: `chrome://version`
+- Edge: `edge://version`
+- Firefox: Menu → Help → About Firefox
+- Safari: Safari → About Safari
+
+**Ensure hardware acceleration is enabled (Chrome/Edge)**
+- Settings → System → **Use hardware acceleration when available**
+

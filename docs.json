@@ -15,6 +15,25 @@
   "description": "An AI Video Marketing Agent for Social Media video creation and posting",
   "favicon": "/favicon.ico",
   "navigation": {
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Chat with the Founders",
+          "icon": "calendar",
+          "href": "https://calendly.com/d/cnxy-8gj-ch3/user-interview"
+        },
+        {
+          "anchor": "Community",
+          "icon": "discord",
+          "href": "https://discord.gg/BfpK7vc8"
+        },
+        {
+          "anchor": "Blog",
+          "icon": "newspaper",
+          "href": "https://overlap.ai/blog"
+        }
+      ]
+    },
     "tabs": [
       {
         "tab": "Guides",
@@ -22,6 +41,7 @@
           {
             "group": "Get Started",
             "pages": [
+              "guides/get-started/system-requirements",
               "index",
               "quickstart"
             ]
@@ -77,16 +97,16 @@
         ]
       },
       {
-        "tab" : "API Reference",
-        "groups" : [
+        "tab": "API Reference",
+        "groups": [
           {
-            "group" : "Endpoints",
-            "pages" : [
+            "group": "Endpoints",
+            "pages": [
               "api-reference/trigger",
               "api-reference/results",
               "api-reference/clips"
             ]
-          } 
+          }
         ]
       },
       {
@@ -117,26 +137,7 @@
           }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Chat with the Founders",
-          "href": "https://calendly.com/d/cnxy-8gj-ch3/user-interview",
-          "icon": "calendar"
-        },
-        {
-          "anchor": "Community",
-          "href": "https://discord.gg/BfpK7vc8",
-          "icon": "discord"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://overlap.ai/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
+    ]
   },
   "logo": {
     "light": "/logo/docsIcon.svg",
