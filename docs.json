@@ -41,9 +41,9 @@
           {
             "group": "Get Started",
             "pages": [
-              "guides/get-started/system-requirements",
               "index",
-              "quickstart"
+              "quickstart",
+              "guides/get-started/system-requirements"
             ]
           },
           {
