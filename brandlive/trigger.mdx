@@ -1,6 +1,6 @@
 ---
 title: "Trigger Template"
-description: "POST endpoint to initiate automated clip generation from a long-form video URL"
+description: "POST endpoint to launch a clipping workflow from a template using a long-form video URL (with optional per-request overrides)"
 sidebarTitle: "Trigger Template"
 api: "POST https://api.joinoverlap.com/trigger-template"
 ---
@@ -11,7 +11,13 @@ api: "POST https://api.joinoverlap.com/trigger-template"
 POST https://api.joinoverlap.com/trigger-template
 ```
 
-This endpoint starts the full Overlap clipping workflow for a given long-form video URL. It returns a `triggerId` which you will use to poll for status and retrieve generated clips.
+This endpoint launches an Overlap clipping workflow **from an existing template** for a given long-form video URL.
+
+- You must provide `companyId`, `workflowId`, and `url`.
+- **All other fields are optional overrides**. If you include them, they override the template’s defaults **for this trigger only** (they do not change the saved template).
+- **Override behavior:** An override is only applied if the corresponding node exists in the referenced workflow. If the workflow does **not** include that node, the override is ignored.
+
+The endpoint returns a `triggerId` which you’ll use to poll for status and retrieve generated clips.
 
 ### Authentication
 
@@ -24,13 +30,16 @@ Content-Type: application/json
 
 ## Request Body
 
-> **Required fields:** `companyId`, `workflowId`, `url` All other fields are optional.
+> **Required fields:** `companyId`, `workflowId`, `url`  
+> **Overrides:** Every other field is optional and overrides the template defaults for this run.
 
 ```json
 {
   "companyId": "string",
   "workflowId": "string",
   "url": "string",
+
+ /* Optional Overrides */
 
   "orientation": "string",
   "minLengthTarget": "number",
@@ -44,23 +53,10 @@ Content-Type: application/json
   "outroMusicUrl": "string",
   "subtitles": "boolean",
 
-  "subtitleConfig": {
-    "amplifiedColor": "string",
-    "amplifiedOpacity": "number",
-    "amplifyOpacityTransitionDuration": "number",
-    "amplifySpokenWords": "boolean",
-    "animationStyle": "string",
-    "backgroundColor": "string",
-    "backgroundBorderRadius": "number",
-    "backgroundFillStyle": "string",
-    "backgroundOpacity": "number",
-    "backgroundPadding": "number",
-    "fontColor": "string",
-    "isItalic": "boolean",
-    "outlineColor": "string",
-    "maxCharsPerLine": "number",
-    "subtitleY": "number"
-  },
+  "subtitleConfig": { /* SubtitleConfig */ },
+
+  "titleOverlay": "boolean",
+  "titleConfig": { /* TitleConfig */ },
 
   "watermarkUrl": "string",
   "keywords": "string[]",
@@ -68,23 +64,83 @@ Content-Type: application/json
 }
 ```
 
+---
+
+## Definitions
+
+### SubtitleConfig (map)
+
+See also: [StyleConfig](/brandlive/component/subtitleconfig)
+
+```json
+{
+  "amplifiedColor": "string",
+  "amplifiedOpacity": "number",
+  "amplifyOpacityTransitionDuration": "number",
+  "amplifySpokenWords": "boolean",
+  "animationStyle": "string",
+  "backgroundColor": "string",
+  "backgroundBorderRadius": "number",
+  "backgroundFillStyle": "string",
+  "backgroundOpacity": "number",
+  "backgroundPadding": "number",
+  "fontColor": "string",
+  "isItalic": "boolean",
+  "outlineColor": "string",
+  "maxCharsPerLine": "number",
+  "subtitleY": "number"
+}
+```
+
+### TitleConfig (map)
+
+Controls the AI-generated title overlay node (when present in the workflow).
+
+```json
+{
+  "allCaps": "boolean",
+  "backgroundColor": "string",
+  "backgroundOpacity": "number",
+  "backgroundStyle": "string",
+  "borderRadius": "number",
+  "boxShadow": "string",
+  "characterSpacing": "number",
+  "duration": "number",
+  "fontColor": "string",
+  "fontFamily": "string",
+  "fontScale": "number",
+  "fontWeight": "string",
+  "lineHeight": "number",
+  "lineMargin": "number",
+  "padding": "number",
+  "prompt": "string",
+  "text": "string",
+  "textAlign": "string",
+  "verticalPadding": "number",
+  "yPosition": "number"
+}
+```
+
 ### Field Descriptions (Condensed)
 
-| Field                                                           | Type     | Description                                                           |
-| --------------------------------------------------------------- | -------- | --------------------------------------------------------------------- |
-| `companyId`                                                     | string   | **Required.** Brandlive org/company identifier                        |
-| `workflowId`                                                    | string   | **Required.** Workflow/template to use                                |
-| `url`                                                           | string   | **Required.** Publicly accessible long-form video URL                 |
-| `minLengthTarget` / `maxLengthTarget`                           | number   | Clip duration bounds                                                  |
-| `musicUrl`                                                      | string   | Background music                                                      |
-| `broll`                                                         | boolean  | Enable automatic b-roll                                               |
-| `removeFillerWords` / `removeStutteredWords` / `removeSilences` | boolean  | Cleanup options                                                       |
-| `outroImageUrl` / `outroMusicUrl`                               | string   | Outro media                                                           |
-| `subtitles`                                                     | boolean  | Whether to include subtitles                                          |
-| `subtitleConfig`                                                | object   | See [StyleConfig](/brandlive/component/subtitleconfig) for attributes |
-| `watermarkUrl`                                                  | string   | Overlay watermark                                                     |
-| `keywords`                                                      | string[] | Custom words for transcriptions enrichment. Limited to 150 max.       |
-| `promptAdjustment`                                              | string   | Prompt extension for custom behavior                                  |
+| Field                                                           | Type      | Description                                                                 |
+| --------------------------------------------------------------- | --------- | --------------------------------------------------------------------------- |
+| `companyId`                                                     | string    | **Required.** Brandlive org/company identifier                              |
+| `workflowId`                                                    | string    | **Required.** Workflow/template identifier to launch                         |
+| `url`                                                           | string    | **Required.** Publicly accessible long-form video URL                        |
+| `orientation`                                                   | string    | Override output orientation for this run (e.g., `horizontal`, `vertical`)   |
+| `minLengthTarget` / `maxLengthTarget`                           | number    | Override clip duration bounds (seconds)                                      |
+| `musicUrl`                                                      | string    | Override background music URL                                                |
+| `broll`                                                         | boolean   | Override: enable/disable automatic b-roll                                    |
+| `removeFillerWords` / `removeStutteredWords` / `removeSilences` | boolean   | Override cleanup options                                                     |
+| `outroImageUrl` / `outroMusicUrl`                               | string    | Override outro media                                                         |
+| `subtitles`                                                     | boolean   | Override: include subtitles                                                  |
+| `subtitleConfig`                                                | map       | Override subtitle style (applies only if subtitle node exists in workflow)   |
+| `titleOverlay`                                                  | boolean   | Override: enable/disable title overlay (if title node exists in workflow)    |
+| `titleConfig`                                                   | map       | Override title overlay styling/prompt (if title node exists in workflow)     |
+| `watermarkUrl`                                                  | string    | Override watermark URL                                                       |
+| `keywords`                                                      | string[]  | Override transcription enrichment keywords (max 150)                          |
+| `promptAdjustment`                                              | string    | Override prompt extension for custom behavior                                |
 
 ---
 
@@ -98,11 +154,10 @@ Content-Type: application/json
 }
 ```
 
-- `triggerId` — Use this to poll for results via `GET /{triggerId}/status`
-- `status` — Always `"pending"` immediately after triggering
+- `triggerId` — Use this to poll for results via `GET /workflow-results/{triggerId}`
+- `status` — Typically `"pending"` immediately after triggering
 - `message` — Additional context
 
----
 
 <RequestExample>
 
