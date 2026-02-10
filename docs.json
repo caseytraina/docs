@@ -106,6 +106,12 @@
               "api-reference/results",
               "api-reference/clips"
             ]
+          },
+          {
+            "group": "Misc",
+            "pages": [
+              "error-codes"
+            ]
           }
         ]
       },

@@ -1,0 +1,183 @@
+---
+sidebarTitle: "Error Codes"
+icon: "triangle-exclamation"
+mode: "wide"
+title: "API Error Codes"
+---
+
+## Overview
+
+Overlap API endpoints return structured error responses when a request fails. This page lists the common error codes you may receive across all integrations (not Brandlive-specific), what they mean, and typical HTTP status codes/messages.
+
+### Error response shape
+
+Most errors follow this pattern:
+
+```json
+{
+  "errorCode": "INVALID_REQUEST",
+  "message": "Missing request body"
+}
+
+
+Notes:
+- `errorCode` is the stable, programmatic identifier to key off of.
+- `message` is human-readable and may change slightly over time.
+- HTTP status codes generally align with the category (4xx client errors, 5xx server errors).
+
+---
+
+## Auth / API Key
+
+- **`INVALID_API_KEY` (401)**  
+  Missing or invalid `Authorization` header / API key for the endpoint or company.  
+  **Typical messages:** `"Missing API key"`, `"Invalid API key"`.
+
+---
+
+## Request Validation (Generic)
+
+- **`INVALID_REQUEST` (400)**  
+  Missing request body or required parameters (varies by endpoint).  
+  **Typical messages:** `"Missing request body"`, `"Missing companyId parameter"`, `"Missing clipId parameter"`.
+
+---
+
+## URL / Time Validation (Clip Generation)
+
+- **`INVALID_URL` (400)**  
+  Missing or invalid URL parameter.  
+  **Typical messages:** `"Missing URL parameter"`.
+
+- **`INVALID_YOUTUBE_URL` (400)**  
+  URL appears to be YouTube but fails format validation.  
+  **Typical messages:** `"Invalid YouTube URL format"`.
+
+- **`INVALID_TIME` (400)**  
+  `minimumTime` / `maximumTime` out of allowed range.
+
+- **`VIDEO_TOO_SHORT` (400)**  
+  Video is shorter than the requested minimum clip length.
+
+- **`VIDEO_LENGTH_ERROR` (400)**  
+  Couldn’t fetch or compute video length.  
+  **Typical messages:** contains provider-specific detail about the failure.
+
+- **`INSUFFICIENT_HOURS` (403)**  
+  Team/company doesn’t have enough quota hours to process the request.  
+  **Typical messages:** includes quota detail in the message.
+
+---
+
+## Task / Workflow Lookup + Authorization
+
+- **`TASK_NOT_FOUND` (404)**  
+  Task ID doesn’t exist.
+
+- **`UNAUTHORIZED_ACCESS` (403)**  
+  Task exists but belongs to a different team/company.
+
+- **`WORKFLOW_TRIGGER_NOT_FOUND` (404)**  
+  Workflow trigger ID not found.
+
+---
+
+## Workflow Validation / Quotas
+
+- **`WORKFLOW_TRIGGER_LIMIT_REACHED` (403)**  
+  Company hit workflow trigger quota limit.
+
+- **`VALIDATION_ERROR` (varies; often 4xx/5xx)**  
+  Workflow/company validation failed (validator returns the details).  
+  **Typical messages:** depends on the specific validation failure.
+
+- **`WORKFLOW_NOT_FOUND` (404)**  
+  Workflow document not found for the company.
+
+---
+
+## Render Endpoint
+
+- **`MISSING_COMPANY_ID` (400)**  
+  `/render` missing `companyId`.
+
+- **`MISSING_CLIP_ID` (400)**  
+  `/render` missing `clipId`.
+
+- **`EXCEEDED_RATE_LIMIT` (429)**  
+  Too many in-flight render jobs for the company.  
+  **Typical messages:** `"Render job limit reached..."`.
+
+- **`CLIP_NOT_FOUND` (404)**  
+  Clip doc not found under `companies/{companyId}/clips/{clipId}`.
+
+- **`RENDER_FAILED` (500)**  
+  Rendering returned no URL.  
+  **Typical messages:** `"Failed to render video..."`.
+
+---
+
+## Playback Helper
+
+- **`REPLAY_URL_NOT_FOUND` (404)**  
+  Playback API returned 200 but no `replayHLSURL`.
+
+- **`PLAYBACK_API_ERROR` (varies)**  
+  Playback API returned a non-200 response.  
+  **Typical messages:** `"Failed to fetch playback data"`.
+
+- **`INTERNAL_ERROR` (500)**  
+  Exception while calling the Playback API.  
+  **Typical messages:** `"Internal server error"`.
+
+---
+
+## Subtitles Endpoints
+
+- **`SUBTITLE_CONFIG_NOT_FOUND` (422)**  
+  Clip exists but has no `subtitleConfig`.
+
+- **`INVALID_STYLE_ID_TYPE` (400)**  
+  `subtitleConfig.styleId` exists but isn’t a string.
+
+- **`INVALID_SUBTITLE_CONFIG` (400)**  
+  `subtitleConfig` in the request is not a JSON object (dict).
+
+- **`CLIP_NOT_FOUND` (404)**  
+  Clip not found when fetching or updating subtitles.
+
+- **`SERVER_ERROR` (500)**  
+  Failure retrieving/updating subtitle configuration.  
+  **Typical messages:** `"Failed to retrieve/update subtitle configuration: ..."`.
+
+---
+
+## Server / Processing Failures
+
+- **`SERVER_ERROR` (500)**  
+  Unhandled exception in an endpoint.  
+  **Typical messages:** often the exception string.
+
+- **`TRIGGER_ERROR` (500)**  
+  Exception while processing a workflow trigger request.  
+  **Typical messages:** `"Failed to process workflow trigger: ..."`.
+
+- **`KEY_GENERATION_ERROR` (500)**  
+  Failure generating an API key.  
+  **Typical messages:** `"Failed to generate API key: ..."`.
+
+---
+
+## Recommended Client Handling
+
+- **Retryable (usually):** `SERVER_ERROR`, `TRIGGER_ERROR`, `PLAYBACK_API_ERROR` (when status is 5xx), `INTERNAL_ERROR`  
+  Use exponential backoff and cap retries.
+
+- **Fix request and retry:** `INVALID_REQUEST`, `INVALID_URL`, `INVALID_YOUTUBE_URL`, `INVALID_TIME`, `INVALID_SUBTITLE_CONFIG`
+
+- **Auth / permissions:** `INVALID_API_KEY`, `UNAUTHORIZED_ACCESS`
+
+- **Quotas / throttling:** `INSUFFICIENT_HOURS`, `WORKFLOW_TRIGGER_LIMIT_REACHED`, `EXCEEDED_RATE_LIMIT`  
+  Avoid retries until quota resets or concurrency drops.
+
+---
