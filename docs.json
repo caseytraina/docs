@@ -103,8 +103,7 @@
             "group": "Endpoints",
             "pages": [
               "api-reference/trigger",
-              "api-reference/results",
-              "api-reference/clips"
+              "api-reference/results"
             ]
           },
           {
