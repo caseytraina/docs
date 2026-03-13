@@ -1,0 +1,57 @@
+---
+sidebarTitle: "Overview"
+icon: "video"
+mode: "wide"
+title: "Integration API Overview"
+---
+
+
+## Clipping Integration
+
+This integration enables companies to automatically generate high-quality, social-ready clips from any video URL. Overlap’s automated pipeline handles ingestion, transcription, semantic understanding, editing, subtitle styling, rendering, and delivery — all accessible through a suite of APIs.
+
+<Card title="Quickstart" icon="bolt" color="#ff2700" href="/brandlive/quickstart">
+  Launch a workflow from a video URL and retrieve finished clip(s) via the API
+</Card>
+
+## End-to-End Flow
+
+1. **`POST /trigger-template`**
+
+   <Card title="Launch Workflow" icon="rocket-launch" color="#f93910" href="/brandlive/trigger">
+     Launches a workflow from a saved template using a video URL. You can override any template fields per request (e.g., prompts, clip rules, b-roll, subtitle styling, watermarking, output formats). Returns a <code>task_id</code> to track progress.
+   </Card>
+
+2. **`GET /workflow-results/{task_id}`**
+
+   <Card title="Poll for Results" icon="timer" color="#f93910" href="/brandlive/results">
+     Poll for workflow status and outputs using the returned <code>task_id</code>. When complete, returns generated clips, metadata, and any delivery URLs.
+   </Card>
+
+3. **`POST /render`**
+
+   <Card title="Render Video" icon="video-arrow-up-right" color="#f93910" href="/brandlive/render">
+     Re-renders an existing clip with updated options (e.g., subtitle style, watermark, aspect ratio) when a new export or download is requested.
+   </Card>
+
+4. **`@overlap.ai/react-subtitles`**
+
+   <Card title="Subtitles Component Overlay" icon="closed-captioning" color="#f93910" href="/brandlive/component">
+     A React component for displaying Overlap subtitle timing + styling in Brandlive’s editor/preview environment (without needing a video re-render).
+   </Card>
+
+---
+
+## Processing Times
+
+- **Horizontal clips:** ~3 minutes per hour of video
+- **Vertical clips:** ~10 minutes per hour of video
+- **Re-render sync endpoint:** ~0.75× clip duration
+
+---
+
+## Help
+
+This provides a plug-and-play interface for displaying subtitles in Brandlive’s editor or preview environment.
+
+For any questions or issues, please reach out to [support@overlap.ai](mailto:support@overlap.ai).

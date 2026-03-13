@@ -1,0 +1,215 @@
+---
+title: "Quickstart"
+description: "End-to-end guide: trigger a workflow, poll for status, preview subtitles, re-render, and display final clips."
+sidebarTitle: "Quickstart"
+icon: "bolt"
+---
+
+This guide walks through the full Brandlive → Overlap flow:
+
+1. Triggering the agent
+2. Poll for status and retrieve clips
+3. Preview and display subtitles over video using `<Subtitles />`
+4. Re-render the clip after changes
+5. Return the file result to the user
+
+<Info>
+  When creating initial clipping agents, lean on your Overlap team to support you.
+
+  Each clipping agent will need to include every desired editable field as a node. For example, if you _ever_ want to control the subtitles via the trigger API, then you will need to include a Subtitles node in your agent.
+</Info>
+
+---
+
+## 1. Trigger an Agent (Start Clip Generation)
+
+Before triggering an agent (a.k.a a Workflow), you'll need to find the `workflowId`. This is most easily obtained from the URL when you are looking at a clipping agent. The URL will be structured as follows:
+
+`https://portal.overlap.ai/workflows/<Workflow ID>/trigger`
+
+<Frame>
+  ![Screenshot2025 11 17at3 54 32PM Pn](/images/Screenshot2025-11-17at3.54.32PM.png)
+</Frame>
+
+Use `POST /trigger-template` to start the clipping process from a long-form video URL.
+
+> **Required fields:** `companyId`, `workflowId`, `url`
+
+```http
+POST https://api.joinoverlap.com/trigger-template
+Authorization: Bearer YOUR_API_KEY
+Content-Type: application/json
+```
+
+```json
+{
+  "companyId": "brandlive-prod",
+  "workflowId": "webinar-template",
+  "url": "https://brandlive-cdn.com/webinars/session123.mp4", // Input url of the long form video
+  "broll": true
+}
+```
+
+<Info>
+  This will launch a clipping agent with the exact same settings as what appears in the clipping agent in Overlap, except with B Roll turned ON.
+</Info>
+
+**Sample Response**
+
+```json
+{
+  "triggerId": "c1a27b63-91d9-45fb-9c89-5f418442fb6e",
+  "status": "pending",
+  "message": "Workflow triggered successfully."
+}
+```
+
+Save `triggerId` — you will use it in the next step.
+
+---
+
+## 2. Poll for Status and Retrieve Clips
+
+Use `GET /workflow-results/{triggerId}` to check the status every 5–10 seconds until clips are ready.
+
+```http
+GET https://api.joinoverlap.com/workflow-results/{triggerId}
+Authorization: Bearer YOUR_API_KEY
+Content-Type: application/json
+```
+
+**Example (JavaScript, simple polling)**
+
+```ts
+async function pollForResults(triggerId: string) {
+  const baseUrl = "https://api.joinoverlap.com/workflow-results";
+
+  while (true) {
+    const res = await fetch(`${baseUrl}/${triggerId}`, {
+      headers: {
+        Authorization: `Bearer ${process.env.OVERLAP_API_KEY!}`,
+        "Content-Type": "application/json"
+      }
+    });
+
+    const data = await res.json();
+
+    if (data.status === "Completed") {
+      return data.clips; // Clip[]
+    }
+
+    if (data.status === "Error") {
+      throw new Error(data.error ?? "Unknown Overlap error");
+    }
+
+    // queued | running → wait and try again
+    await new Promise((resolve) => setTimeout(resolve, 5000));
+  }
+}
+```
+
+**Sample Completed Response (simplified)**
+
+```json
+{
+  "status": "Completed",
+  "clips": [
+    {
+      "id": "clip-123",
+      "title": "Product Launch Highlights",
+      "bio": "Key moments from the Brandlive webinar.",
+      "renderedUrl": // The url of the video without subtitles,
+      "thumbnailUrl": "https://cdn.overlap.ai/thumbnails/clip-123.jpg",
+      "transcriptUrl": "https://cdn.overlap.ai/transcripts/clip-123.json",
+      "duration": 42.1,
+      "aspectRatio": "9:16"
+		.... see /brandlive/trigger for remaining fields
+    }
+  ]
+}
+```
+
+Pick a clip (e.g., `clips[0]`) to preview and edit.
+
+---
+
+## 3. Preview Video With \<Subtitles /\>
+
+An overlay component to display on top of the `renderedUrl` to simulate and edit subtitles
+
+```jsx
+import { Subtitles } from "@overlap.ai/react-video-subtitles";
+import { useState, useEffect, useRef } from "react";
+
+export function ClipPreview({ clip, apiKey, companyId }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+	...
+
+  return (
+    <div className="relative w-full">
+      <video
+        ref={videoRef}
+        src={clip.renderedUrl}
+        className="w-full h-auto"
+        controls
+      />
+
+      {/* Transparent overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ width: "100%", height: "100%" }}
+      >
+        <Subtitles
+          words={clip.words}          // word-level timing, obtained from wordTranscriptJSON provided in the clip document
+          currentTime={currentTime}
+          width={WIDTH}
+          height={HEIGHT}
+          apiKey={apiKey}
+          companyId={companyId}
+          clipId={clip.id}            // loads styleConfig automatically, optionally override
+        />
+      </div>
+    </div>
+  );
+}
+```
+
+## Font sizing now uses standard dimensions, not your video size
+
+## 4. Re-render After Edits
+
+Once the user adjusts subtitles or trims, you can re-render the clip by calling `POST /render` with `clipId`.
+
+```http
+POST https://api.joinoverlap.com/render
+Authorization: Bearer YOUR_API_KEY
+Content-Type: application/json
+```
+
+```json
+{
+  "companyId": "brandlive-prod",
+  "clipId": "clip-123"
+}
+```
+
+**Sample Response**
+
+```json
+{
+  "url": // Finalized url with subtitles burnt in.
+}
+```
+
+- Endpoint runs **synchronously**
+- Approximate runtime: `clip_duration_seconds * 0.75`
+
+---
+
+## Summary
+
+1. **Trigger** `POST /trigger-template` with `companyId`, `workflowId`, `url`
+2. **Poll** `GET /workflow-results/{taskId}` until `status === "completed"`
+3. **Preview** video + subtitles using `<Subtitles />` and the transcript from `transcriptUrl`
+4. **Re-render** with `POST /render` after edits are made
+5. **Display** final `url` in your Brandlive experience

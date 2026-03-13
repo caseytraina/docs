@@ -1,0 +1,485 @@
+---
+title: "StyleConfig Properties Reference"
+description: "Complete reference for all subtitle styling configuration options"
+sidebarTitle: "StyleConfig Reference"
+icon: "palette"
+---
+
+The `styleConfig` object controls every aspect of subtitle appearance including typography, colors, effects, backgrounds, and animations. All properties are optional.
+
+---
+
+## Complete StyleConfig Example
+
+```json
+{
+  "name": "Default Style",
+  "amplifiedColor": "#ffffff",
+  "amplifySpokenWords": true,
+  "fontFamily": "Arial",
+  "fontWeight": "bold",
+  "fontColor": "#ffffff",
+  "fontSize": "24px",
+  "textCase": "normal",
+  "outlineColor": "#000000",
+  "outlineWidth": "2px",
+  "shadowColor": "#000000",
+  "shadowBlur": "4px",
+  "shadowOffsetX": "2px",
+  "shadowOffsetY": "2px",
+  "backgroundColor": "#000000",
+  "backgroundOpacity": 0.7,
+  "textAlign": "center",
+  "animationStyle": "fade"
+}
+```
+
+---
+
+## Text Styling
+
+Control the core typography and text appearance of your subtitles.
+
+### `fontFamily`
+- **Type:** `string`
+- **Example:** `"Arial"`, `"Helvetica"`, `"Inter"`, `"Roboto"`
+- **Description:** Sets the font family for subtitle text. Use web-safe fonts or ensure custom fonts are loaded in your application.
+
+### `fontWeight`
+- **Type:** `string | number`
+- **Example:** `"normal"`, `"bold"`, `"600"`, `700`
+- **Description:** Controls the thickness of the text. Common values include `"normal"` (400), `"bold"` (700), or numeric values from 100-900.
+
+### `fontColor`
+- **Type:** `string`
+- **Example:** `"#ffffff"`, `"#00ff00"`, `"rgba(255, 255, 255, 0.9)"`
+- **Description:** Sets the text color. Accepts hex codes, RGB/RGBA values, or named CSS colors.
+
+### `fontSize`
+- **Type:** `string`
+- **Example:** `"24px"`, `"24"`, `"32px"`, `"32"`
+- **Description:** Defines the size of the text in pixels. You can pass either `"24px"` or `"24"` (both work). Recommended range: 20-48 for typical videos. 
+
+<Info>
+  Font size is calculated based on standard dimensions (1920x1080 for horizontal, 1080x1920 for vertical), so you don't need to adjust fontSize based on your actual video resolution.
+</Info>
+
+### `textCase`
+- **Type:** `string`
+- **Options:** `"normal"`, `"uppercase"`, `"lowercase"`, `"capitalize"`
+- **Description:** Transforms the text case. Use `"uppercase"` for bold statements, `"capitalize"` for title case, or `"normal"` to preserve original casing.
+
+### `textAlign`
+- **Type:** `string`
+- **Options:** `"left"`, `"center"`, `"right"`
+- **Description:** Aligns text horizontally. `"center"` is most common for subtitles.
+
+---
+
+## Word Highlighting
+
+Control how individual words are emphasized as they're spoken.
+
+### `amplifySpokenWords`
+- **Type:** `boolean`
+- **Default:** `false`
+- **Description:** When `true`, the currently spoken word will be highlighted with a different color, creating a karaoke-style effect that helps viewers follow along.
+
+### `amplifiedColor`
+- **Type:** `string`
+- **Example:** `"#ffcc00"`, `"#ff0000"`
+- **Description:** The color to apply to the currently spoken word when `amplifySpokenWords` is enabled. Choose a contrasting color for maximum visibility.
+
+**Example Use Case:**
+```json
+{
+  "amplifySpokenWords": true,
+  "amplifiedColor": "#ffcc00",
+  "fontColor": "#ffffff"
+}
+```
+This creates white text with a yellow highlight on the current word.
+
+---
+
+## Text Effects
+
+Add depth and readability to your subtitles with outlines and shadows.
+
+### `outlineColor`
+- **Type:** `string`
+- **Example:** `"#000000"`, `"#333333"`
+- **Description:** Creates a stroke/outline around text characters. Dark outlines (black/dark gray) improve readability on light backgrounds.
+
+### `outlineWidth`
+- **Type:** `string`
+- **Example:** `"2px"`, `"3px"`, `"1.5px"`
+- **Description:** Controls the thickness of the text outline. Recommended: 2-3px for standard subtitles.
+
+### `shadowColor`
+- **Type:** `string`
+- **Example:** `"#000000"`, `"rgba(0, 0, 0, 0.8)"`
+- **Description:** Sets the color of the drop shadow behind the text. Typically black or dark gray for maximum contrast.
+
+### `shadowBlur`
+- **Type:** `string`
+- **Example:** `"4px"`, `"8px"`, `"6px"`
+- **Description:** Controls how soft/blurred the shadow appears. Higher values create a softer, more diffused shadow.
+
+### `shadowOffsetX`
+- **Type:** `string`
+- **Example:** `"2px"`, `"-2px"`, `"0px"`
+- **Description:** Horizontal displacement of the shadow. Positive moves right, negative moves left.
+
+### `shadowOffsetY`
+- **Type:** `string`
+- **Example:** `"2px"`, `"4px"`, `"0px"`
+- **Description:** Vertical displacement of the shadow. Positive moves down, negative moves up.
+
+**Example Use Case:**
+```json
+{
+  "outlineColor": "#000000",
+  "outlineWidth": "2px",
+  "shadowColor": "rgba(0, 0, 0, 0.8)",
+  "shadowBlur": "4px",
+  "shadowOffsetX": "2px",
+  "shadowOffsetY": "2px"
+}
+```
+This creates a black outline with a subtle drop shadow for excellent readability on any background.
+
+---
+
+## Background
+
+Add a background box behind subtitle text for improved readability.
+
+### `backgroundColor`
+- **Type:** `string`
+- **Example:** `"#000000"`, `"#1a1a1a"`, `"rgba(0, 0, 0, 0.8)"`
+- **Description:** Sets the color of the rectangular background behind the text. Black or dark colors are standard for subtitles.
+
+### `backgroundOpacity`
+- **Type:** `number`
+- **Range:** `0` to `1`
+- **Example:** `0.7`, `0.5`, `0.9`
+- **Description:** Controls the transparency of the background. Lower values (0.5-0.7) allow some of the video to show through, while higher values (0.8-1.0) provide maximum text contrast.
+
+**Example Use Case:**
+```json
+{
+  "backgroundColor": "#000000",
+  "backgroundOpacity": 0.7,
+  "fontColor": "#ffffff"
+}
+```
+This creates white text on a semi-transparent black background - a classic, readable subtitle style.
+
+---
+
+## Animation
+
+Control how subtitles appear and disappear.
+
+### `animationStyle`
+- **Type:** `string`
+- **Options:** `"fade"`, `"fade-word"`, `"spring"`, `"spring-word"`, `"bounce"`, `"tiktok"`, or custom values
+- **Description:** Defines the animation effect when subtitles enter and exit.
+
+**Available Animation Styles:**
+
+#### `"fade"`
+Subtitles smoothly fade in and out. Recommended for professional, clean content. The entire phrase fades together.
+
+**Best for:** Corporate videos, documentaries, professional presentations
+
+#### `"fade-word"`
+Each word fades in individually as it's spoken, creating a progressive reveal effect.
+
+**Best for:** Educational content, tutorials, emphasis on each word
+
+#### `"spring"`
+Subtitles bounce into view with a spring physics effect. More dynamic and playful than fade.
+
+**Best for:** Casual content, vlogs, lifestyle videos
+
+#### `"spring-word"`
+Each word springs into view individually as it's spoken, combining spring physics with word-by-word animation.
+
+**Best for:** Social media content, engaging storytelling, dynamic presentations
+
+#### `"bounce"`
+Subtitles bounce with a playful oscillating effect, adding extra emphasis and energy.
+
+**Best for:** Entertainment, comedy, high-energy content
+
+#### `"tiktok"`
+Optimized animation style for TikTok-style short-form vertical video content.
+
+**Best for:** Vertical videos, TikTok, Instagram Reels, YouTube Shorts
+
+**Example Use Cases:**
+
+```json
+// Professional content
+{
+  "animationStyle": "fade"
+}
+```
+
+```json
+// Engaging social media
+{
+  "animationStyle": "spring-word"
+}
+```
+
+```json
+// Playful / energetic
+{
+  "animationStyle": "bounce"
+}
+```
+
+```json
+// Vertical short-form content
+{
+  "animationStyle": "tiktok"
+}
+```
+
+---
+
+## Style Presets
+
+Here are some common styleConfig presets for different use cases:
+
+### Professional / Corporate
+```json
+{
+  "fontFamily": "Arial",
+  "fontSize": "28px",
+  "fontWeight": "bold",
+  "fontColor": "#ffffff",
+  "backgroundColor": "#000000",
+  "backgroundOpacity": 0.8,
+  "textAlign": "center",
+  "animationStyle": "fade"
+}
+```
+
+### Social Media / Engaging
+```json
+{
+  "fontFamily": "Inter",
+  "fontSize": "32px",
+  "fontWeight": "700",
+  "fontColor": "#ffffff",
+  "amplifySpokenWords": true,
+  "amplifiedColor": "#ffcc00",
+  "outlineColor": "#000000",
+  "outlineWidth": "3px",
+  "textAlign": "center",
+  "animationStyle": "spring-word"
+}
+```
+
+### Minimal / Clean
+```json
+{
+  "fontFamily": "Helvetica",
+  "fontSize": "24px",
+  "fontWeight": "normal",
+  "fontColor": "#ffffff",
+  "shadowColor": "rgba(0, 0, 0, 0.6)",
+  "shadowBlur": "4px",
+  "shadowOffsetX": "0px",
+  "shadowOffsetY": "2px",
+  "textAlign": "center",
+  "animationStyle": "fade"
+}
+```
+
+### High Contrast / Accessibility
+```json
+{
+  "fontFamily": "Arial",
+  "fontSize": "32px",
+  "fontWeight": "bold",
+  "fontColor": "#ffff00",
+  "backgroundColor": "#000000",
+  "backgroundOpacity": 1,
+  "outlineColor": "#000000",
+  "outlineWidth": "2px",
+  "textAlign": "center",
+  "animationStyle": "fade"
+}
+```
+
+### TikTok / Vertical Video
+```json
+{
+  "fontFamily": "Inter",
+  "fontSize": "36px",
+  "fontWeight": "900",
+  "fontColor": "#ffffff",
+  "amplifySpokenWords": true,
+  "amplifiedColor": "#00ff00",
+  "outlineColor": "#000000",
+  "outlineWidth": "4px",
+  "shadowColor": "rgba(0, 0, 0, 0.8)",
+  "shadowBlur": "8px",
+  "textAlign": "center",
+  "animationStyle": "tiktok"
+}
+```
+
+---
+
+## Usage Examples
+
+### With Custom StyleConfig
+
+```tsx
+const customStyle = {
+  fontFamily: "Helvetica",
+  fontSize: "32px",
+  fontColor: "#00ff00",
+  backgroundColor: "#000000",
+  backgroundOpacity: 0.8,
+  animationStyle: "fade"
+};
+
+<Subtitles
+  words={words}
+  styleConfig={customStyle}
+  currentTime={currentTime}
+  width={1920}
+  height={1080}
+  fps={30}
+/>
+```
+
+### Programmatic Updates
+
+Use the `useUpdatePersistentSubtitleConfig` hook to update configuration:
+
+```tsx
+import { useUpdatePersistentSubtitleConfig } from '@overlap.ai/react-video-subtitles';
+
+const { updateConfig } = useUpdatePersistentSubtitleConfig({
+  apiKey: 'your-api-key',
+  companyId: 'your-company-id',
+  clipId: 'your-clip-id'
+});
+
+// Update just the font size
+await updateConfig({ fontSize: '32px' });
+
+// Update multiple properties
+await updateConfig({
+  fontSize: '28px',
+  fontColor: '#ff0000',
+  backgroundColor: '#000000',
+  backgroundOpacity: 0.9
+});
+```
+
+---
+
+## Property Groups Quick Reference
+
+### Typography
+- `fontFamily` - Font face
+- `fontSize` - Text size (20-48px recommended)
+- `fontWeight` - Text thickness (normal/bold/100-900)
+- `fontColor` - Text color
+- `textCase` - Text transformation (uppercase/lowercase/etc)
+- `textAlign` - Horizontal alignment
+
+### Word Highlighting
+- `amplifySpokenWords` - Enable word highlighting
+- `amplifiedColor` - Highlight color
+
+### Effects
+- `outlineColor` - Stroke color around text
+- `outlineWidth` - Stroke thickness (2-3px recommended)
+- `shadowColor` - Drop shadow color
+- `shadowBlur` - Shadow softness
+- `shadowOffsetX` - Shadow horizontal offset
+- `shadowOffsetY` - Shadow vertical offset
+
+### Background
+- `backgroundColor` - Background box color
+- `backgroundOpacity` - Background transparency (0-1)
+
+### Animation
+- `animationStyle` - Entry/exit animation type
+
+---
+
+## Best Practices
+
+### Readability
+- Use high contrast between text and background
+- Add outlines or shadows for text on video
+- Keep font size appropriate for viewing distance (24-32px typical)
+- Center-align for most use cases
+
+### Accessibility
+- Maintain WCAG AA contrast ratios (4.5:1 for normal text)
+- Use clear, readable fonts
+- Avoid overly decorative fonts for subtitles
+- Consider larger font sizes (32px+) for accessibility
+
+### Performance
+- Simpler animations (fade, spring) perform better than complex ones
+- Avoid excessive shadow blur values
+- Test on target devices to ensure smooth playback
+
+### Design Consistency
+- Use consistent styling across all videos in a series
+- Match subtitle style to your brand guidelines
+- Consider your platform (TikTok style vs YouTube style)
+
+---
+
+## TypeScript Interface
+
+```typescript
+interface StyleConfig {
+  // Text Styling
+  name?: string;
+  fontFamily?: string;
+  fontWeight?: string | number;
+  fontColor?: string;
+  fontSize?: string;
+  textCase?: "normal" | "uppercase" | "lowercase" | "capitalize";
+  textAlign?: "left" | "center" | "right";
+  
+  // Word Highlighting
+  amplifySpokenWords?: boolean;
+  amplifiedColor?: string;
+  
+  // Text Effects
+  outlineColor?: string;
+  outlineWidth?: string;
+  shadowColor?: string;
+  shadowBlur?: string;
+  shadowOffsetX?: string;
+  shadowOffsetY?: string;
+  
+  // Background
+  backgroundColor?: string;
+  backgroundOpacity?: number;
+  
+  // Animation
+  animationStyle?: string;
+}
+```
+
+<Info>
+  All properties are optional. Omitted properties will use sensible defaults or inherit from parent styles.
+</Info>
+

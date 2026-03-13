@@ -141,6 +141,34 @@
             ]
           }
         ]
+      },
+      {
+        "tab": "Integration Docs",
+        "hidden": true,
+        "pages": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "brandlive-copied-1/overview",
+              "brandlive-copied-1/quickstart"
+            ]
+          },
+          {
+            "group": "Core",
+            "pages": [
+              "brandlive-copied-1/trigger",
+              "brandlive-copied-1/results",
+              "brandlive-copied-1/render"
+            ]
+          },
+          {
+            "group": "Subtitles Component",
+            "pages": [
+              "brandlive-copied-1/component",
+              "brandlive-copied-1/component/subtitleconfig"
+            ]
+          }
+        ]
       }
     ]
   },
