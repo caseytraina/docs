@@ -149,23 +149,23 @@
           {
             "group": "Getting Started",
             "pages": [
-              "brandlive-copied-1/overview",
-              "brandlive-copied-1/quickstart"
+              "integration/overview",
+              "integration/quickstart"
             ]
           },
           {
             "group": "Core",
             "pages": [
-              "brandlive-copied-1/trigger",
-              "brandlive-copied-1/results",
-              "brandlive-copied-1/render"
+              "integration/trigger",
+              "integration/results",
+              "integration/render"
             ]
           },
           {
             "group": "Subtitles Component",
             "pages": [
-              "brandlive-copied-1/component",
-              "brandlive-copied-1/component/subtitleconfig"
+              "integration/component",
+              "integration/component/subtitleconfig"
             ]
           }
         ]
