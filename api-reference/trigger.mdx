@@ -35,15 +35,17 @@ Found by pressing **Trigger via API** then **Generate API Key**
 
 ```json
 {
-	"url": "https://youtube.com/watch?v=dQw4w9WgXcQ",
-	"notify": true,
-	"title" : "Never going to give you up"
+  "url": "https://youtube.com/watch?v=dQw4w9WgXcQ",
+  "notify": true,
+  "title": "Never going to give you up",
+  "render": false
 }
 ```
 
 - `url` (string, required) — The resource URL the workflow should process.
 - `notify` (boolean, optional) — Whether you'd like an email notification when finished. Defaults to `false`.
 - `title` (string, optional) — Override title for the video. A title will be generated if it is not provided.
+- `render` (boolean, optional) — Defaults to false. Does not wait for final video rendering. Set this to true if you want the final rendered video returned. Note, this will add ~3 minutes to the processing time.
 
 <RequestExample>
 
