@@ -38,7 +38,8 @@ Found by pressing **Trigger via API** then **Generate API Key**
   "url": "https://youtube.com/watch?v=dQw4w9WgXcQ",
   "notify": true,
   "title": "Never going to give you up",
-  "render": false
+  "render": false,
+  "promptAdjustment": "Rick Astley's debut single, "Never Gonna Give You Up," was a #1 hit in 25 countries."
 }
 ```
 
@@ -46,6 +47,8 @@ Found by pressing **Trigger via API** then **Generate API Key**
 - `notify` (boolean, optional) — Whether you'd like an email notification when finished. Defaults to `false`.
 - `title` (string, optional) — Override title for the video. A title will be generated if it is not provided.
 - `render` (boolean, optional) — Defaults to false. Does not wait for final video rendering. Set this to true if you want the final rendered video returned. Note, this will add ~3 minutes to the processing time.
+- `prompt` (string, optional) — Overrides the default clip-finding prompt in the clipping agent. Use sparingly as this will fully replace the current prompt
+- `promptAdjustment` (string, optional) — Text prompt appended to the end of the main clipping agent prompt. Frequently used to inject information that is only known at runtime (i.e. more video information, etc.)
 
 <RequestExample>
 
