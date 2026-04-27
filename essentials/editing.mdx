@@ -3,87 +3,183 @@ sidebarTitle: "Editing Clips"
 icon: "scissors"
 ---
 
-> Fine tuning existing clips to make them perfect
+> Open a clip in Studio to refine timing, text, subtitles, and finishing touches before you export or share it.
 
-<img
-  className="hidden dark:block my-0 pointer-events-none"
-  src="https://mintlify.s3.us-west-1.amazonaws.com/mintlify/images/editor/editor-dark.png"
-  alt="Mintlify Web Editor interface in dark mode"
-/>
+## Opening Studio
 
-## Finding the Studio
+There are two common ways to open Studio, depending on whether you are editing an existing clip or starting a brand-new project.
 
-Overlap _<u>Studio</u>_ is where you'll be able to edit your clip. Here, you'll find controls to edit subtitles, add watermarks, music, and much more.
+### Option 1: Edit an existing clip
 
-[_<u>Workflows</u>_](/essentials/workflows) are where you make and generate clips, which takes you 90% there. Studio, takes you to the finish line.
+Open a clip and click `Edit Clip`. That takes you directly into `Studio`.
 
-<Frame>
-  ![Frame2049517340 Pn](/Frame2049517340.png)
-</Frame>
+You will typically do this from the clip detail page after Overlap has already generated or surfaced a clip for review. A good mental model is:
 
-_Tap "Add Subtitles or Edit" on any clip on the right side of the screen_
-
-## Using the Studio
-
-In Studio, you can edit the timeline editor on the bottom, just as you would in a normal video editor. You can also alternate between tabs on the right in the Editor Sidebar, allowing you to customize captions, add an intro title, and much more.
+- automation and workflows generate or queue the clip
+- the clip detail page gives you a focused view of the selected clip
+- `Edit Clip` opens the manual editor for that specific output
+- `Studio` is where you make the final hands-on changes before exporting or sharing
 
 <Frame>
-  ![Ex Workflow Pn](/studio.png)
-
-  <img
-    src="https://mintlify.s3.us-west-1.amazonaws.com/mintlify/images/editor/mode-toggle-dark.png"
-    alt="Mode toggle icons highlighted in the Mintlify web editor"
-    className="hidden dark:block"
-  />
+  ![Clip detail page with Edit Clip](/images/generated/beta-clip-detail-edit-framed.png)
 </Frame>
 
-## Editing via the Transcript
+### Option 2: Start a video from scratch
 
-One of the Studio's most powerful features is the ability to edit the video like a document.
-
-_Don't like that one sentence? Highlight it and hit delete._
-
-- The _Edit_ button allows you to adjust what appears in the captions.
-- _Combine_, lets you link works to appear at the same time.
-- _Keyword_ will highlight the word as it appears
-- _Remove Caption_ will remove the word from the captions and **will not affect the video**
-- _Cut from Video_ will remove that segment of the video altogether
+From the `Home` page, use `New` in the `Projects` section, then choose `Edit a video from scratch`.
 
 <Frame>
-  <img
-    src="/transcript.png"
-    alt="Branch"
-    className="block dark:hidden"
-    title="Branch"
-  />
-
-  <img
-    src="https://mintlify.s3.us-west-1.amazonaws.com/mintlify/images/editor/visual-mode-dark.png"
-    alt="Visual editing mode in the Mintlify web editor"
-    className="hidden dark:block"
-  />
+  ![New menu with Edit a video from scratch](/images/generated/beta-home-new-menu-framed.png)
 </Frame>
 
-## Adding Introduction Text
-
-Introduction text is an overlay that appears at the start of the video. This text can stay on for as long as you wish before fading away and helps orient the consumer to the contents of the video. It is also good practice for the thumbnail on socials to have information on what the clip is about.
-
-You can find this in the _Title_ tab of the _<u>Editor Sidebar.</u>_ Here you have full control over its appearance.
+That opens a blank project where you can upload a source file and jump straight into editing in Studio.
 
 <Frame>
-  <img
-    src="/title.png"
-    alt="Nodes"
-    className="block dark:hidden"
-    title="Nodes"
-    style={{ width:"100%" }}
-  />
-
-  <img
-    src="https://mintlify.s3.us-west-1.amazonaws.com/mintlify/images/editor/component-menu-dark.png"
-    alt="The unfurled component menu emphasized in the Mintlify web editor"
-    className="hidden dark:block"
-  />
+  ![Blank project upload screen](/images/generated/beta-home-new-edit-from-scratch-framed.png)
 </Frame>
 
-When you're ready, press \*\*Generate Social Posts \*\*to allow AI to learn from your previous posts and suggest text for each of your [_<u>Linked Accounts</u>_](/linking).
+## Understanding the Studio layout
+
+Studio brings the clip preview, playback controls, timeline, and editing tools into one screen.
+
+<Frame>
+  ![Overlap Studio editor](/images/generated/beta-studio-framed.png)
+</Frame>
+
+The main areas of the editor are:
+
+- The top bar, where you can go back, see the clip title, and access `Export` and `Share`
+- The preview canvas in the center, which shows the current frame of the clip
+- The `Reframe` control beside the preview for adjusting composition
+- The playback controls below the preview, including the play button, current time, total duration, speed control, and fit/zoom controls
+- The timeline at the bottom, where Overlap shows each visual or text layer over time
+- The right-side tool rail, which opens different editing panels
+
+## Editing with the transcript
+
+Open `Transcript` in the right-side tool rail to work on the spoken content directly.
+
+<Frame>
+  ![Studio transcript editor](/images/generated/beta-studio-transcript-framed.png)
+</Frame>
+
+In the current `Transcript Editor`, Overlap shows:
+
+- speaker-grouped transcript blocks such as `Speaker 1` and `Speaker 2`
+- markers like `Video start` and `Video end` so you can see what portion of the source is currently inside the clip
+- a transcript-focused toolbar above the text for quick edit operations
+
+This is the fastest place to make content-aware edits because you can work from the words instead of hunting visually through the timeline.
+
+## Highlighting transcript sections
+
+To edit a specific moment, highlight the exact word, phrase, sentence, or paragraph you want to change in the transcript.
+
+From there, use transcript actions such as:
+
+- `Cut from Video` to remove the selected spoken portion from the clip itself
+- `Mute` to silence the selected section when you want to keep the visuals but remove the audio
+- `Edit Captions` to change what appears on screen without treating it as a full video cut
+
+This distinction matters:
+
+- use `Cut from Video` when the pacing or content of the clip should change
+- use `Mute` when the shot should stay but the audio should drop out
+- use `Edit Captions` when the video timing is fine and only the on-screen text needs adjustment
+
+A practical way to use the transcript editor is:
+
+1. Read through the clip from top to bottom in `Transcript`.
+2. Highlight the exact section that feels off.
+3. Decide whether the problem is the spoken content, the audio, or only the captions.
+4. Apply the corresponding action.
+5. Scrub the timeline and preview the result before moving on.
+
+## Working with the timeline
+
+The timeline is the fastest way to understand how the clip is assembled over time. In the current studio view, the clip is split into separate tracks such as:
+
+- `Rich Text`
+- `Subtitles`
+- `Watermark`
+- `Video`
+
+This layered view helps you see what is happening at each moment in the clip.
+
+Use the timeline when you want to:
+
+- Check when subtitle segments begin and end
+- See how long a text overlay remains on screen
+- Confirm whether the watermark spans the full clip
+- Scrub through the video before exporting
+
+The ruler across the top of the timeline shows time markers in seconds, which makes it easier to inspect short-form clips precisely.
+
+## Using the right-side tools
+
+The right rail is where you switch between different editing tasks. In the current studio UI, the tool groups are:
+
+- `Transcript`
+- `Subtitles`
+- `Media`
+- `Text`
+- `AI Tools`
+- `Transitions`
+
+A good way to think about them is:
+
+- Use `Transcript` and `Subtitles` when the spoken words or on-screen captions need refinement
+- Use `Media` when you want to work with supporting visual assets
+- Use `Text` when you want to manage overlays such as headline or supporting copy
+- Use `AI Tools` when you want Overlap to apply a broader cleanup or packaging step for you
+- Use `Transitions` when you want to adjust how the clip moves between visual states
+
+## AI-assisted cleanup and finishing
+
+`AI Tools` collects several of the fastest cleanup and packaging actions in one panel.
+
+<Frame>
+  ![Studio AI tools panel](/images/generated/beta-studio-ai-tools-framed.png)
+</Frame>
+
+In the current editor, Overlap groups these actions into two sections:
+
+- `Transcript Tools`
+- `Video Edits`
+
+Verified options shown in `Transcript Tools` include:
+
+- `Filler Words`
+- `Stutter Words`
+- `Curse Words`
+- `Remove Silences`
+- `Remove Punctuation`
+- `Keyword Highlights`
+
+Verified options shown in `Video Edits` include:
+
+- `End Card`
+- `Intro Music`
+- `Outro Music`
+- `Add Speaker Cards`
+
+This makes Studio useful for both cleanup and packaging. You can remove distracting speech patterns, tighten pacing, highlight important language, and add finishing elements without leaving the editor.
+
+## A practical editing flow
+
+If you are editing a clip manually, a good default flow is:
+
+1. Click `Edit Clip` to open the clip in Studio.
+2. Review the preview and scrub the timeline so you understand the current cut.
+3. Start in `Transcript` if the issue is driven by the spoken content.
+4. Highlight sections to `Cut from Video`, `Mute`, or `Edit Captions` as needed.
+5. Check `Subtitles`, `Text`, and `Rich Text` timing so the on-screen messaging still matches the video.
+6. Use `AI Tools` for broader cleanup passes such as silence removal or filler-word cleanup.
+7. Use `Reframe` if the subject needs better positioning in the final composition.
+8. Finish with `Export` or `Share` once the clip looks right.
+
+## How this relates to workflows
+
+[`Workflows`](/essentials/workflows) are still where you build repeatable automation for generating clips at scale. `Studio` is where you manually polish a specific output after it has been created.
+
+Use workflows when you want the same editing logic to run automatically across incoming content. Use Studio when you want hands-on control over one clip before publishing.

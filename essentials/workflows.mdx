@@ -1,93 +1,126 @@
 ---
-sidebarTitle: "Clipping Agents"
+sidebarTitle: "Workflows"
 icon: "network-wired"
 ---
 
-> A template-structure to craft your brand
+> Build, organize, and publish the workflows that power your clip creation
 
-## What is a Clipping Agent?
+## What is a workflow?
 
-A _Clipping Agent_ in Overlap is an automated series of steps that takes your raw video from upload to finished, ready-to-publish content—without manual intervention.
+A **workflow** is the automation you use to turn source content into publish-ready outputs inside Overlap.
 
-Clipping Agents coordinate everything from AI-powered clip detection and editing, to adding subtitles, overlays, and branding.
+Each workflow combines three layers:
 
-With clipping agents, you can define, customize, and automate your entire video production process, ensuring consistent results at scale while freeing your team from repetitive tasks.
+- A **trigger** that tells Overlap when to start
+- **Editing** logic that shapes the clip
+- An **export** step that defines what gets produced
 
-## An Example
+You can keep multiple workflows in the same workspace, turn them on only when you are ready, and use different workflows for different shows, formats, or channels.
 
-Below is a clipping agent with two <u>branches.</u> The clipping agent is started via the YouTube <u>Trigger </u>-- when a new YouTube video is added to my channel.
+## Managing your workflows
 
-One branch creates horizontal videos with subtitles. Another creates vertical clips with <u>Smart Zoom</u>
+Open **Workflows** from the left sidebar to see every workflow in your workspace.
 
-<Frame>
-  ![Ex Clipping Agent Pn](/images/ex_workflow.png)
-</Frame>
+From this screen you can:
 
-### What is a Branch?
+- Search for a workflow by name
+- Create a new workflow with **New**
+- Switch between **List** and **Cards** views
+- Use **Select** for bulk actions
+- Review each workflow's **status**, **last run**, **triggers**, and **exports**
 
-A **branch** in a clipping agent is a point where your automated process can split and perform multiple actions at the same time or take different paths based on certain conditions.
+In the current workflow list, a workflow marked **Listening** is active and waiting for its trigger. A workflow marked **Off** is saved but not actively listening for new inputs.
 
-For example, after a video is clipped, one branch of your clipping agent might add subtitles while another branch resizes the video for different platforms. Branches help you run several tasks in parallel or customize the clipping agent to fit your unique needs—all within a single, streamlined process.
-
-<Frame>
-  <img
-    src="/re2.png"
-    alt="Branch"
-    className="block dark:hidden"
-    title="Branch"
-  />
-</Frame>
-
-#### What is a Node?
-
-A **node** in a clipping agent is a single step or action that performs a specific task in your automated process.
-
-Each node represents an operation, like uploading a video, generating a clip, adding subtitles, or publishing to social media. By connecting nodes together, you define the sequence and logic of your clipping agent. Think of nodes as building blocks—each one handles one part of the job, and together they create the full, automated clipping agent.
-
-You can find all of the nodes in the left sidebar
-
-Read more in <u>Nodes</u>
+If you created workflows before the newer product naming, you may still see older workflow names that include **Clipping Agent**. Those are still managed from the same workflows screen.
 
 <Frame>
-  <img
-    src="/re.png"
-    alt="Nodes"
-    className="block dark:hidden"
-    title="Nodes"
-    style={{ width:"100%" }}
-  />
+  ![Current workflows list](/images/generated/beta-workflows-framed.png)
 </Frame>
 
-### Output
+Use **List** view when you want to compare run state, triggers, and exports quickly across multiple workflows. Switch to **Cards** when you want a higher-level visual scan of what is in the workspace.
 
-Any finished result from your clipping agent—like a completed video or clip—is automatically saved to your library. You don’t have to do anything extra; as soon as a process finishes, the result is stored and ready for you to use, share, or publish.
+## Creating a workflow
 
-Any node with _No Output Connection_ is considered the "end" and will be saved. Above, the _Add Subtitles_ and the _Smart Zoom_ nodes are considered the end nodes.
+Click **New** in the top-right corner of the workflows page to open the workflow builder.
 
-## Saving & Activating
+The builder is organized into three core stages:
 
-<Info>
-  The number of allowed and activated clipping agents will vary by subscription plan. Free plans may have 3 activated workflows simultaneously
-</Info>
+1. **Trigger**
+2. **Editing**
+3. **Export**
 
-**Save to Draft** will save your clipping agent as it is, but it won’t run or start any actions yet. You may still run this workflow via the Launcher
+This gives you a simple way to think about every workflow:
 
-**Save and Activate** will save your clipping agent and turn on the Trigger node, so your clipping agent will start running automatically whenever its conditions are met.
+- How does it start?
+- What should happen to the content?
+- What should Overlap produce at the end?
+
+For a first build, start with the empty canvas, then click **Manual Trigger** to place the starting node on the canvas. After that, move into **Editing** to add the next step, such as **Find Clips**.
 
 <Frame>
-  <img
-    src="/save.png"
-    alt="Save"
-    className="block dark:hidden"
-    title="Save"
-    style={{ width:"100%" }}
-  />
+  ![Empty workflow builder](/images/generated/beta-workflows-create-framed.png)
 </Frame>
-
-## Trigger Clipping Agent
-
-When you click on a clipping agent, you’ll be taken to the Launcher UI. Here, you can simply drop in a URL or upload a file, then hit **Launch** to start the clipping agent instantly.
 
 <Frame>
-  ![Re3 Pn](/images/re3.png)
+  ![Workflow builder with a trigger node added](/images/generated/beta-workflows-create-with-node-framed.png)
 </Frame>
+
+## Choosing how the workflow starts
+
+The first step is your **trigger**. This determines what wakes the workflow up.
+
+In the current builder, the trigger panel includes options such as:
+
+- **Manual Trigger**
+- **Audio Livestream**
+- **New Dropbox Video**
+- **New YouTube Video**
+- **RSS Feed**
+
+Use a manual trigger when you want to launch the workflow yourself. Use an automatic trigger when you want Overlap to watch a source and begin processing as soon as new content appears.
+
+## Building the flow
+
+After choosing a trigger, move through the **Editing** and **Export** stages to shape the final result.
+
+You can build from scratch or use the canvas helpers already in the builder:
+
+- **Double Click** anywhere on the canvas to add a new node
+- **Explore Templates** if you want to start from a prebuilt structure
+
+Think of each node as one piece of the job. Together, those nodes define how the workflow processes content from input to output.
+
+## Connecting nodes together
+
+Once you add nodes to the canvas, connect them in the order you want Overlap to run them.
+
+A good way to think about it is:
+
+- The trigger starts the workflow
+- Each downstream node performs the next step
+- The final connected nodes define what gets exported at the end
+
+If you want one workflow to create multiple outputs, you can branch the flow and connect different downstream paths to different export outcomes.
+
+<Frame>
+  ![Branched connected workflow example](/images/generated/beta-workflows-connected-framed.png)
+</Frame>
+
+## Saving and publishing
+
+In the top-right corner of the builder, you can save the workflow in different states:
+
+- **Save as Draft** keeps your progress without turning the workflow on
+- **Publish** makes the workflow live so it can begin listening for its trigger
+
+Drafts are useful while you are still refining the flow. Publish when the workflow is ready to run on real content.
+
+## A practical workflow setup
+
+A common pattern is to create separate workflows for different content goals, for example:
+
+- One workflow for long-form episode clipping
+- One workflow for short-form social content
+- One workflow for a specific ingestion source like YouTube, Dropbox, or RSS
+
+This keeps each workflow focused and makes it easier to understand what is active, what is still in draft, and what is producing results.

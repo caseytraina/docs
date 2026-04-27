@@ -2,51 +2,104 @@
 sidebarTitle: "Overview"
 ---
 
-> Nodes unlock limitless capabilities in your workflows
+> Use nodes to decide how a workflow starts, what happens to the content, and where the finished result goes
 
-<img
-  className="block dark:hidden"
-  src="/re.png"
-  alt="Hero Light"
-  title={true}
-/>
+## What nodes are
 
-<img
-  className="hidden dark:block"
-  src="/images/hero-dark.png"
-  alt="Hero Dark"
-/>
+A **node** is one step in your workflow.
 
-## What is a Node?
+You add nodes to the workflow canvas, connect them in order, and Overlap runs that path from input to output. A simple workflow might start with a source like YouTube or RSS, pass through clip-selection and editing nodes, and finish with an export like social posting or email.
 
-A **node** in a workflow is a single step or action that performs a specific task in your automated process.
+<Info>
+  You may still see older `clipping agent` language in some parts of the product. In the current docs, we use `workflow` for the automation and `node` for each step inside it.
+</Info>
 
-Each node represents an operation, like uploading a video, generating a clip, adding subtitles, or publishing to social media. By connecting nodes together, you define the sequence and logic of your workflow. Think of nodes as building blocks—each one handles one part of the job, and together they create the full, automated workflow.
+## Where to add nodes
 
-You can find all of the nodes in the left sidebar
+Open **Workflows** from the left sidebar and click **New** to open the builder.
 
-## Types of Nodes
+The current builder is organized into three stages:
 
-<Accordion title="Trigger Node" defaultOpen icon="rocket-launch" iconType="duotone">
-  A **Trigger node** is the starting point of a workflow. It listens for a specific event—like a new file upload or a new episode being added—and automatically kicks off the rest of the workflow when that event happens. Without a Trigger node, your workflow won’t start on its own. Think of it as the “go” button that tells your workflow when to begin running.
+1. **Trigger**
+2. **Editing**
+3. **Export**
 
-  <Frame>
-    ![Node Trigger Pn](/images/node-trigger.png)
-  </Frame>
-</Accordion>
+Each stage has a searchable node panel on the left. Start with the empty builder, then click **Manual Trigger** to place the first node on the canvas and move into **Editing** to keep building. You can also use **Double Click** anywhere on the canvas to add a new node, or choose **Explore Templates** if you want to start from a prebuilt flow.
 
-<Accordion title="Find Clips" icon="face-viewfinder" iconType="duotone">
-  The **Find Clips node** is a step in your workflow that uses AI to automatically scan your uploaded video and identify the most interesting or engaging moments. When this node runs, it analyzes the video and generates highlight clips for you—saving you from having to watch and trim footage manually. It’s an essential building block for automated content creation, making it easy to surface the best parts of any video with a single step in your workflow.
+<Frame>
+  ![Empty workflow builder](/images/generated/beta-workflows-create-framed.png)
+</Frame>
 
-  <Frame>
-    ![Find Clips Pn](/images/find-clips.png)
-  </Frame>
-</Accordion>
+<Frame>
+  ![Workflow builder with a trigger node added](/images/generated/beta-workflows-create-with-node-framed.png)
+</Frame>
 
-<Accordion title="Action Node" icon="person-running-fast" iconType="duotone">
-  An **Action node** is a step in your workflow that performs a specific task or operation—like adding subtitles, resizing a video, or posting to social media. Whenever an Action node is reached in your workflow, it carries out the action you’ve defined. Action nodes let you customize what happens at each stage, so you can automate as many tasks as you need, all in one seamless process.
+## Trigger nodes
 
-  <Frame>
-    ![Actions Pn](/images/actions.png)
-  </Frame>
-</Accordion>
+Trigger nodes decide what starts the workflow.
+
+In the current builder, the **Trigger** stage includes options such as:
+
+- **Manual Trigger**
+- **Audio Livestream**
+- **New Dropbox Video**
+- **New YouTube Video**
+- **RSS Feed**
+
+Choose the trigger that matches how new content should enter the workflow. Use **Manual Trigger** when you want to launch runs yourself. Use one of the source-based triggers when you want Overlap to listen for new content automatically.
+
+## Editing nodes
+
+Editing nodes shape the clip after the workflow has a source.
+
+This is where you tell Overlap what moments to find, how the video should look, and what should be added before export. Common editing nodes documented in this section include:
+
+- [Find Clips](/nodes/findclips)
+- [Add Subtitles](/nodes/subtitles)
+- [Reframe](/nodes/reframe)
+- [Watermarks, Outros, etc.](/nodes/branding)
+- [Audiogram](/nodes/audiogram)
+
+Think of the **Editing** stage as the part of the workflow where you build your processing chain. You can keep it minimal, or combine multiple editing nodes when you want more control over the final result.
+
+## Export nodes
+
+Export nodes decide what Overlap does with the finished output.
+
+In the current builder, the **Export** stage includes options such as:
+
+- **Email**
+- **Post to Social**
+
+Use export nodes at the end of the flow so the workflow has a clear outcome after processing is complete.
+
+<Frame>
+  ![Export nodes in the workflow builder](/images/generated/beta-nodes-export-framed.png)
+</Frame>
+
+## A common node flow
+
+One practical way to think about nodes is:
+
+- A trigger brings content into the workflow
+- Editing nodes decide what clips get created and how they look
+- An export node sends the finished result somewhere useful
+
+For example, a workflow might look like:
+
+- **New YouTube Video** -> **Find Clips** -> **Add Subtitles** -> **Post to Social**
+- **RSS Feed** -> **Find Clips** -> **Watermarks, Outros, etc.** -> **Email**
+
+## Keep exploring
+
+<CardGroup cols={3}>
+  <Card title="Trigger Nodes" icon="rocket-launch" color="#ff2700" href="/nodes/youtube">
+    Start a workflow from YouTube, RSS, Dropbox, audio livestreams, or a manual run.
+  </Card>
+  <Card title="Find Clips" icon="face-viewfinder" color="#ff2700" href="/nodes/findclips">
+    Guide Overlap toward the moments you want it to surface from each source.
+  </Card>
+  <Card title="Action Nodes" icon="person-running-fast" color="#ff2700" href="/nodes/subtitles">
+    Add subtitles, branding, reframing, and other finishing steps before export.
+  </Card>
+</CardGroup>

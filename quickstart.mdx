@@ -1,153 +1,76 @@
 ---
 sidebarTitle: "Getting Started"
 icon: "rocket"
+description: "Create your first workflow, run it on a source video, and post the results."
 ---
 
-> Starting crafting the perfect clip in minutes
+> Create your first workflow, run it on a video, and move clips toward posting.
 
-<img
-  className="hidden dark:block my-0 pointer-events-none"
-  src="https://mintlify.s3.us-west-1.amazonaws.com/mintlify/images/editor/editor-dark.png"
-  alt="Mintlify Web Editor interface in dark mode"
-/>
+Overlap is easiest to learn when you start with one simple workflow and one real video. This guide walks through the fastest path:
 
-## Introduction
-
-Overlap is an AI video marketing agent that can completely automate your video clipping and social media posting.
-
-Our agent understands your style and will learn what's performing well on socials, improving itself over time.
-
-## Onboarding
-
-Sign up with Gmail or with your email directly
-
-<Frame>
-  <img
-    src="/Screenshot2025-05-22at12.08.02PM.png"
-    alt="Sign up"
-    className="block dark:hidden"
-    title="Sign up"
-  />
-
-  <img
-    src="https://mintlify.s3.us-west-1.amazonaws.com/mintlify/images/editor/mode-toggle-dark.png"
-    alt="Mode toggle icons highlighted in the Mintlify web editor"
-    className="hidden dark:block"
-  />
-</Frame>
-
-### Your first prompt
-
-This prompt is your starting point for quickly finding and generating highlight clips from your uploaded videos using your agent. By submitting this prompt, you instruct Overlap to automatically analyze your video and surface the most engaging moments, making it easy to kick off your content creation workflow—no manual review required.
-
-<Frame>
-  <img
-    src="/Screenshot2025-05-22at12.20.02PM.png"
-    alt="Your first prompt"
-    className="block dark:hidden"
-    title="Your first clipping prompt"
-  />
-
-  <img
-    src="https://mintlify.s3.us-west-1.amazonaws.com/mintlify/images/editor/visual-mode-dark.png"
-    alt="Visual editing mode in the Mintlify web editor"
-    className="hidden dark:block"
-  />
-</Frame>
-
-#### Optionally, Link your YouTube
-
-You can connect a YouTube account to automatically clip new content and add it to your dashboard. For example, when you publish your new podcast episode, your agent will download this, clip it, prepare post, and can even share them immediately.
-
-1. Select the YouTube logo
-2. Paste the full channel URL (with the @username in the URL)
-
-<Frame>
-  ![On Pn](/assets/on.png)
-
-  <img
-    src="https://mintlify.s3.us-west-1.amazonaws.com/mintlify/images/editor/component-menu-dark.png"
-    alt="The unfurled component menu emphasized in the Mintlify web editor"
-    className="hidden dark:block"
-  />
-</Frame>
-
-### Find your episode
-
-When you first enter, you can find your _<u>Workflow</u>_ in the sidebar. It'll run for 5-10 minutes, and when it's done, you can find your clips in the _<u>Episodes</u>_ tab.
-
-<Frame>
-  <img
-    src="/workflowss.png"
-    alt="Sidebar"
-    className="block dark:hidden"
-    title="Sidebar"
-  />
-
-  <img
-    src="https://mintlify.s3.us-west-1.amazonaws.com/mintlify/images/editor/markdown-mode-dark.png"
-    alt="Markdown mode in the Mintlify Web Editor"
-    className="hidden dark:block"
-  />
-</Frame>
-
-## Finalize & Publishing
+1. Create and publish a workflow
+2. Drop in your first source video
+3. Review the clips and post them
 
 <Info>
-  If you wish to share directly to social media, you must connect accounts in the _<u>Linked Accounts</u>_ tab on the sidebar.
+  If you want to publish directly from Overlap, connect your social accounts in **Accounts** before you schedule posts.
 </Info>
 
-When you find a clip you're ready to post, you can edit it further by pressing **Add Subtitles or Edit**, generate social posts by pressing **Share**, or **Download** it.
+## 1. Create your first workflow
+
+Open [**Workflows**](/essentials/workflows) from the left sidebar. This is where you manage every workflow in your workspace, review what is already live, and start a new one.
 
 <Frame>
-  <img
-    src="/Frame2049517340.png"
-    alt="The publish button emphasized in the Mintlify web editor"
-    className="block dark:hidden"
-    title={true}
-  />
-
-  <img
-    src="https://mintlify.s3.us-west-1.amazonaws.com/mintlify/images/editor/publish-flow-dark.png"
-    alt="The publish button emphasized in the Mintlify web editor"
-    className="hidden dark:block"
-  />
+  ![Current workflows list](/images/generated/beta-workflows-framed.png)
 </Frame>
 
-## Troubleshooting
+Click **New** to open the workflow builder.
 
-Here are solutions to common issues you might encounter with the web editor.
+For a first workflow, **Manual Trigger** is the simplest place to start. Begin with the empty builder, then click **Manual Trigger** to drop the trigger node onto the canvas. This is the fastest way to test with one source video before you move on to always-on sources like **New YouTube Video**, **New Dropbox Video**, or **RSS Feed**.
 
-<AccordionGroup>
-  <Accordion title="I logged in. Why aren't my clips here?">
-    **Possible causes:**
+<Frame>
+  ![Empty workflow builder](/images/generated/beta-workflows-create-framed.png)
+</Frame>
 
-    - Your account is still being set up. It takes around 30 seconds for your initial workflow to appear in _<u>Workflows</u>_
-    - Your workflow is still running and clips will appear in 5-10 minutes (\+ you'll receive an email)
-    - Your workflow hasn't been run yet
+<Frame>
+  ![Workflow builder with Manual Trigger added](/images/generated/beta-workflows-create-with-node-framed.png)
+</Frame>
 
-    **Solutions:**
+As you build, think in three stages:
 
-    1. Go to _<u>Workflows</u>_
-    2. If you have a default workflow and it _isn't_ highlighted in blue, then press on it
-    3. Drop in a URL and press **Launch**. Your clips will be ready in 5-10 minutes.
-  </Accordion>
-  <Accordion title='I received an error: "upgrade your plan"'>
-    **Possible causes:**
+- **Trigger** decides how the workflow starts
+- **Editing** defines what Overlap does to the content
+- **Export** decides what gets produced at the end
 
-    - Exceeding your plan's processing hour limit
+When the flow looks right, click **Publish** in the top-right corner to make the workflow ready to run.
 
-    **Solutions:**
+## 2. Drop in your first video
 
-    1. Click your profile in the bottom-left
-    2. Go to **Billing**
-    3. Upgrade to a plan with higher usage
-  </Accordion>
-  <Accordion title="How do I remove the Overlap watermark?">
-    **Solutions:**
+After you publish, return to **Workflows** and click your workflow from the list. This opens the workflow's trigger page, which is where you drop in your first source video.
 
-    1. Click your profile in the bottom-left
-    2. Go to **Billing**
-    3. Upgrade to a paid plan to remove the watermark
-  </Accordion>
-</AccordionGroup>
+If you started with **Manual Trigger**, you can paste a media URL, upload a file, or select a file from Dropbox. For a first pass, keep it simple: use one recording, webinar, interview, or podcast episode and let the workflow process it end to end.
+
+Once a run starts, Overlap surfaces the results back in **Home** under your projects and outgoing work so you can see new clips as they come in.
+
+<Frame>
+  ![Workflow trigger page with upload and URL options](/images/generated/beta-workflow-webinar-clips-framed.png)
+</Frame>
+
+If you want a deeper walkthrough of triggers, nodes, and publishing states, continue with the full [**Workflows**](/essentials/workflows) guide.
+
+## 3. Review clips and post
+
+From the finished project, open the clips you want to keep and make any final edits you need. As clips move toward publishing, you can review scheduled posts in **Social Calendar**.
+
+<Frame>
+  ![Social Calendar](/images/generated/beta-social-calendar-framed.png)
+</Frame>
+
+Use this final pass to:
+
+- confirm the right account is selected
+- check the post copy
+- review the scheduled time
+- use **Create Post** when you want to add or schedule something manually
+
+Once that looks good, your first workflow has gone all the way from setup to post-ready output.

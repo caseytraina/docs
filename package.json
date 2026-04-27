@@ -1,0 +1,17 @@
+{
+  "name": "overlap-docs-scripts",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "capture:beta": "node scripts/capture_beta_homepage.mjs",
+    "capture:workflow-create": "node scripts/capture_beta_homepage.mjs --path /workflows --click-text New --post-click-wait-ms 5000 --output images/generated/beta-workflows-create-raw.png",
+    "frame:beta": "python3 scripts/frame_docs_screenshot.py --screenshot images/generated/beta-homepage-raw.png --output images/generated/beta-homepage-framed.png",
+    "frame:workflow-create": "python3 scripts/frame_docs_screenshot.py --screenshot images/generated/beta-workflows-create-raw.png --output images/generated/beta-workflows-create-framed.png",
+    "refresh:beta": "npm run capture:beta && npm run frame:beta",
+    "refresh:workflow-create": "npm run capture:workflow-create && npm run frame:workflow-create"
+  },
+  "dependencies": {
+    "mintlify": "^4.2.521",
+    "playwright-core": "^1.52.0"
+  }
+}
