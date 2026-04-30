@@ -1,0 +1,37 @@
+---
+sidebarTitle: "Email"
+description: "Send workflow results by email after Overlap finishes processing them."
+---
+
+> Send the finished workflow output to email recipients.
+
+The **Email** export node is for workflows that should notify people when processed clips or videos are ready. Use it at the end of a workflow when the result should land in an inbox instead of being posted directly to social.
+
+<Info>
+  ### Schema
+
+  - **Input**: Finished workflow output from the previous node
+  - **Output**: An email notification or delivery step for the completed result
+</Info>
+
+## Add the node
+
+Open **Workflows** from the left sidebar and click **New** to open the workflow builder.
+
+Build the trigger and editing steps first, then open the **Export** stage and choose **Email**. Overlap adds the Email node as the workflow destination.
+
+<Frame>
+  ![Email export node in the workflow builder](/images/generated/beta-email-export-panel-framed.png)
+</Frame>
+
+## Configure the delivery
+
+Use the Email node when the workflow should send the finished output to an inbox for review, approval, sharing, or handoff.
+
+Because Email is an export node, place it after the editing nodes that create the assets you want delivered. For example, a workflow might run **Find Clips**, add **Subtitles**, then finish with **Email** so the completed clips are sent when the workflow run is done.
+
+## Build the rest of the workflow
+
+Email is usually the final node in the workflow. Before publishing, make sure the earlier nodes produce the clips, captions, reframes, or branded assets you want included in the delivery.
+
+If the workflow should publish directly to connected social accounts instead, use [Post to Social](/nodes/autopost).

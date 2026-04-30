@@ -1,36 +1,56 @@
 ---
 sidebarTitle: "Add Subtitles"
+description: "Generate styled subtitles for clips in a workflow."
 ---
 
-> Customize subtitles or captions however you'd like
-
-<img
-  className="block dark:hidden"
-  src="/node-subtitles.png"
-  alt="Hero Light"
-  title={true}
-/>
-
-<Warning>
-  The toggle for aspect ratios has no effect on the output - it's only for previewing.
-</Warning>
-
-<img
-  className="hidden dark:block"
-  src="/images/hero-dark.png"
-  alt="Hero Dark"
-/>
+> Generate and style subtitles for every clip that reaches this node.
 
 <Info>
   ### Schema
 
-  - **Style Preset**
-  - **Y Position**
-  - **Size**
+  - **Input**: Video or clips from an upstream trigger or editing node
+  - **Output**: Video or clips with generated subtitles applied
 </Info>
 
-## In Practice
+## Add the node
 
-Subtitle styles will be applied to all clips that result from this workflow. If you go to edit this clip, any styles will be overridden by the changes made.
+Open **Workflows** from the left sidebar and click **New** to open the workflow builder.
 
-You can find all of the nodes in the left sidebar
+Add a trigger first, then continue in the **Editing** stage. Choose **Add Subtitles** from the editing node panel. Overlap adds an action node to the canvas and opens the subtitle style panel on the right.
+
+Click the **Add Subtitles** node on the canvas whenever you need to reopen its settings.
+
+<Frame>
+  ![Add Subtitles node settings panel](/images/generated/beta-subtitles-node-settings-framed.png)
+</Frame>
+
+## Choose a subtitle style
+
+The right-side panel opens to **Styles** with a clip preview and preset subtitle looks. Current presets include options such as **Subway Surfers**, **Elegant Speech Highlight**, **Blocky Bounce**, **Standard Loud**, **Plain Black**, **Murder Mystery**, **Futuristic**, **Blue Highlight**, **Fancy Highlight**, and **Smooth Fade**.
+
+Until a style is selected, the node shows **No subtitles selected** and marks the setting as required. Select a preset to apply it, or click **Customize** on a preset when you want to adjust the style before using it.
+
+Use **Choose All Speakers** when the same subtitle style should apply across detected speakers.
+
+## Customize the style
+
+Click **Customize** on a preset to open the subtitle editor. The current controls include:
+
+- **Y Position**
+- **Size**
+- **Max Chars Per Line**
+- **Max Lines**
+- **Typography** controls such as font family, weight, case, italic, letter spacing, and text opacity
+- **Colors** controls such as base text and background
+
+The **Preview** area updates the selected style as you adjust these values. Click **Done** when the subtitle style is ready.
+
+<Frame>
+  ![Add Subtitles customization controls](/images/generated/beta-subtitles-customize-framed.png)
+</Frame>
+
+## Build the rest of the workflow
+
+Use **Add Subtitles** after the workflow has a video or clip source. A common flow is [New YouTube Video](/nodes/youtube) -> [Find Clips](/nodes/findclips) -> **Add Subtitles** -> **Post to Social**.
+
+Finish the workflow with an export node, then click **Publish** when the workflow is ready.

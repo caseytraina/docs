@@ -1,51 +1,63 @@
 ---
 sidebarTitle: "Find Clips"
+description: "Find the best moments in an input video and pass clip outputs to the rest of a workflow."
 ---
 
-> The mitochrondria of your workflow
+> Find Clips scans incoming video and creates clip outputs from your length, model, prompt, and keyword guidance.
 
-<img
-  className="block dark:hidden"
-  src="/findclips-node.png"
-  alt="Hero Light"
-  title={true}
-/>
-
-<Warning>
-  The find clips node is only for _finding_ the clips. It does not perform visual edits like captions, b-roll, etc.
-</Warning>
-
-<img
-  className="hidden dark:block"
-  src="/images/hero-dark.png"
-  alt="Hero Dark"
-/>
+The **Find Clips** node is for selecting moments from the source video. It does not apply visual edits such as subtitles, reframing, b-roll, watermarks, or outros. Add those editing nodes after Find Clips when you want to change how the clips look.
 
 <Info>
   ### Schema
 
-  - **Minimum Time**: 30-600 seconds
-  - \*\*Maximum Time: \*\*30-600 seconds
-  - **Prompt**: Description of how to find the best moments, will use our default if left blank
+  - **Input**: Video or clip output from a trigger or earlier node
+  - **Output**: Clips selected from the input video
 </Info>
 
-## Prompting Best Practices
+## Add the node
 
-To get the most relevant and engaging clips from your videos, it’s important to give the agent clear and focused instructions. Here are some best practices:
+Open **Workflows** from the left sidebar and click **New** to open the workflow builder.
 
-- **Be Specific About What You Want:**\
-  Mention the kind of moments you’re looking for, such as “every time the guest pitches their company”, “all commentary on stock market movement”, “when people start laughing"
-- **Reference Context or Topics:**\
-  If your video covers different topics, specify which sections or themes are most valuable (e.g., “clips about startup advice” or “moments discussing AI trends”).
-- **Audience Matters:**\
-  Tell the agent who the clips are for, such as “Gen Z viewers on TikTok” or “business professionals on LinkedIn.” This helps tailor the selection to the right style and platform.
-- **Use Example Prompts:**
-  - “Find the most insightful moments where the guest shares actionable advice.”
-  - “Highlight the funniest reactions and meme-worthy moments.”
-  - “Surface powerful quotes and viral soundbites”
-- **Avoid Overly Broad Requests:**\
-  Instead of “find good clips,” try to narrow it down to what defines a “good” clip for your content and audience.
-- **Review and Refine:**\
-  After seeing the agent’s results, refine your prompt based on what worked and what didn’t. Iterative prompting often yields the best highlights.
+Add a trigger first, such as **Manual Trigger**, **New YouTube Video**, **RSS Feed**, or another source node. In the **Editing** stage, choose **Find Clips**. Overlap adds the action node to the canvas and connects it to the previous video output.
 
-You can find all of the nodes in the left sidebar
+Click the **Find Clips** node on the canvas whenever you need to reopen its settings on the right side.
+
+<Frame>
+  ![Find Clips node settings panel](/images/generated/beta-findclips-node-settings-framed.png)
+</Frame>
+
+## Configure clip length
+
+Use **Minimum** and **Maximum** under **Clip Length** to set the target duration range for generated clips.
+
+The current defaults are:
+
+- **Minimum**: `30 s`
+- **Maximum**: `120 s`
+
+Clips can be between `10` and `600` seconds, and the minimum must stay below the maximum.
+
+## Choose the model
+
+Use **Model** to choose how Overlap should evaluate the source video.
+
+The current options are:
+
+- **Conversational**: for spoken conversations, podcasts, interviews, and similar talk-driven videos
+- **Multimodal**: for sports or other videos where non-verbal context is important
+
+## Guide clip selection
+
+Use **Prompt** to describe what makes a good clip for this workflow. You can type directly into the editor or click **Select prompt** to choose a saved prompt.
+
+Good prompts usually name the audience, topic, or type of moment you want. For example:
+
+- Find clips where the guest shares practical advice for founders.
+- Surface energetic moments with clear reactions or surprising claims.
+- Focus on segments about AI trends and avoid housekeeping or intro chatter.
+
+Use **Keywords** when certain terms, names, products, or topics should influence what the node looks for. The node starts with no custom keywords.
+
+## Build the rest of the workflow
+
+After Find Clips, continue with editing nodes such as [Add Subtitles](/nodes/subtitles), [Convert to Vertical](/nodes/reframe), [Watermarks, Outros, etc.](/nodes/branding), or [Audiogram](/nodes/audiogram). Finish with an export node so the workflow has a destination for the clips it creates.

@@ -18,14 +18,9 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Chat with the Founders",
+          "anchor": "Book a Demo",
           "icon": "calendar",
           "href": "https://cal.com/team/overlap/overlap-ai-demo"
-        },
-        {
-          "anchor": "Community",
-          "icon": "discord",
-          "href": "https://discord.gg/BfpK7vc8"
         },
         {
           "anchor": "Blog",
@@ -62,6 +57,7 @@
             "group": "Best Practices",
             "pages": [
               "essentials/prompting",
+              "essentials/faq",
               "essentials/limits"
             ]
           },
@@ -72,6 +68,7 @@
               {
                 "group": "Trigger Nodes",
                 "pages": [
+                  "nodes/manual-trigger",
                   "nodes/youtube",
                   "nodes/audio",
                   "nodes/rss",
@@ -88,9 +85,24 @@
                 "group": "Action Nodes",
                 "pages": [
                   "nodes/reframe",
-                  "nodes/branding",
+                  "nodes/add-watermark",
+                  "nodes/image-overlay",
                   "nodes/subtitles",
-                  "nodes/audiogram"
+                  "nodes/title-overlay",
+                  "nodes/remove-fluff",
+                  "nodes/filler-words",
+                  "nodes/remove-curse-words",
+                  "nodes/smart-zoom",
+                  "nodes/audiogram",
+                  "nodes/add-music",
+                  "nodes/add-outro"
+                ]
+              },
+              {
+                "group": "Export Nodes",
+                "pages": [
+                  "nodes/email",
+                  "nodes/post-to-social"
                 ]
               }
             ]

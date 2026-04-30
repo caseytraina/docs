@@ -1,0 +1,307 @@
+{
+  "title": "Overlap Video Marketing Agent",
+  "url": "https://beta.overlap.ai/workflows/new/edit",
+  "text": "Save as Draft\nPublish\n1\nTrigger\n2\nEditing\n3\nExport\nManual Trigger\nAudio Livestream\nNew Dropbox Video\nNew YouTube Video\nRSS Feed\nDouble Click\nanywhere to add a new node\nor\nExplore Templates\n2:10\nNew to Overlap?\nLearn Workflows\nAuto Layout",
+  "controls": [
+    {
+      "text": "",
+      "ariaLabel": "Back",
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 20,
+        "y": 14,
+        "width": 32,
+        "height": 32
+      }
+    },
+    {
+      "text": "",
+      "ariaLabel": "Home",
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 60,
+        "y": 14,
+        "width": 32,
+        "height": 32
+      }
+    },
+    {
+      "text": "",
+      "ariaLabel": "Undo",
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 1088,
+        "y": 14,
+        "width": 32,
+        "height": 32
+      }
+    },
+    {
+      "text": "",
+      "ariaLabel": "Redo",
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 1128,
+        "y": 14,
+        "width": 32,
+        "height": 32
+      }
+    },
+    {
+      "text": "Save as Draft",
+      "ariaLabel": "Save draft",
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 1168,
+        "y": 12,
+        "width": 145,
+        "height": 36
+      }
+    },
+    {
+      "text": "Publish",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 1321,
+        "y": 12,
+        "width": 99,
+        "height": 36
+      }
+    },
+    {
+      "text": "1Trigger",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 20,
+        "y": 58,
+        "width": 81,
+        "height": 30
+      }
+    },
+    {
+      "text": "2Editing",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 101,
+        "y": 58,
+        "width": 79,
+        "height": 30
+      }
+    },
+    {
+      "text": "3Export",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 180,
+        "y": 58,
+        "width": 77,
+        "height": 30
+      }
+    },
+    {
+      "text": "Manual Trigger",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 20,
+        "y": 152,
+        "width": 221,
+        "height": 96
+      }
+    },
+    {
+      "text": "Audio Livestream",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 20,
+        "y": 258,
+        "width": 105,
+        "height": 96
+      }
+    },
+    {
+      "text": "New Dropbox Video",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 135,
+        "y": 258,
+        "width": 105,
+        "height": 96
+      }
+    },
+    {
+      "text": "New YouTube Video",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 20,
+        "y": 364,
+        "width": 105,
+        "height": 96
+      }
+    },
+    {
+      "text": "RSS Feed",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 135,
+        "y": 364,
+        "width": 105,
+        "height": 96
+      }
+    },
+    {
+      "text": "",
+      "ariaLabel": "Hide sidebar",
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 261,
+        "y": 108,
+        "width": 28,
+        "height": 28
+      }
+    },
+    {
+      "text": "",
+      "ariaLabel": "Pointer mode",
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 259,
+        "y": 185,
+        "width": 32,
+        "height": 32
+      }
+    },
+    {
+      "text": "",
+      "ariaLabel": "Pan mode",
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 259,
+        "y": 225,
+        "width": 32,
+        "height": 32
+      }
+    },
+    {
+      "text": "Explore Templates",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 762,
+        "y": 467,
+        "width": 162,
+        "height": 36
+      }
+    },
+    {
+      "text": "Learn Workflows",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 1140,
+        "y": 801,
+        "width": 264,
+        "height": 36
+      }
+    },
+    {
+      "text": "",
+      "ariaLabel": "zoom in",
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 268,
+        "y": 742,
+        "width": 26,
+        "height": 27
+      }
+    },
+    {
+      "text": "",
+      "ariaLabel": "zoom out",
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 268,
+        "y": 769,
+        "width": 26,
+        "height": 27
+      }
+    },
+    {
+      "text": "",
+      "ariaLabel": "fit view",
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 268,
+        "y": 796,
+        "width": 26,
+        "height": 27
+      }
+    },
+    {
+      "text": "",
+      "ariaLabel": "toggle interactivity",
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 268,
+        "y": 823,
+        "width": 26,
+        "height": 27
+      }
+    },
+    {
+      "text": "Auto Layout",
+      "ariaLabel": "Auto layout workflow nodes",
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 1274,
+        "y": 72,
+        "width": 142,
+        "height": 32
+      }
+    },
+    {
+      "text": "",
+      "ariaLabel": "Open assistant",
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 1376,
+        "y": 809,
+        "width": 40,
+        "height": 40
+      }
+    }
+  ]
+}

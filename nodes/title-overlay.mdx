@@ -1,0 +1,53 @@
+---
+sidebarTitle: "Add Title Overlay"
+description: "Add an AI-generated title overlay to clips in a workflow."
+---
+
+> Add an AI-generated title overlay to every video or clip that reaches this node.
+
+<Info>
+  ### Schema
+
+  - **Input**: Video or clips from an upstream trigger or editing node
+  - **Output**: Video or clips with a title overlay applied
+</Info>
+
+## Add the node
+
+Open **Workflows** from the left sidebar and click **New** to open the workflow builder.
+
+Add a trigger first, then continue in the **Editing** stage. Choose **Add Title Overlay** from the editing node panel. Overlap adds an action node to the canvas.
+
+Click the **Add Title Overlay** node on the canvas whenever you need to reopen its settings.
+
+<Frame>
+  ![Add Title Overlay node settings panel](/images/generated/beta-add-title-overlay-node-settings-framed.png)
+</Frame>
+
+## Generate the title
+
+Use **Title Generation Prompt** to describe the kind of title Overlap should create for each clip. The default prompt asks Overlap to create a catchy title that summarizes the main point of the clip.
+
+Use **Title Text** when you want to provide the title text directly instead of relying only on the generated title.
+
+Click **Apply Social Default** to start from the current social title style, then adjust the settings below it.
+
+## Set timing and motion
+
+Use **Duration** to decide how long the title stays visible. The panel notes that dragging duration to **10s** makes the title **Always Visible**.
+
+Set **Intro Transition** and **Outro Transition** to control how the title appears and disappears. The current defaults are **None** for intro and **Fade: Fade** for outro.
+
+## Style the title
+
+Use the typography controls to adjust the title's font, weight, uppercase setting, font color, font size, line height, and character spacing.
+
+Use the background controls to choose the background style, text alignment, background color, padding, vertical padding, border radius, and line margin. Shadow controls let you set the shadow color, blur, and offset.
+
+Enable **Dynamic Position** when the title should anchor to the split-view position from the first frame, if one exists. Use **Position** to set the title's vertical placement.
+
+## Build the rest of the workflow
+
+Use **Add Title Overlay** after the workflow has a video or clip source. A common flow is [New YouTube Video](/nodes/youtube) -> [Find Clips](/nodes/findclips) -> **Add Title Overlay** -> [Add Subtitles](/nodes/subtitles) -> **Post to Social**.
+
+Finish the workflow with an export node, then click **Publish** when the workflow is ready.

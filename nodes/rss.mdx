@@ -1,34 +1,44 @@
 ---
-sidebarTitle: "New RSS Feed Entry"
+sidebarTitle: "RSS Feed"
+description: "Start a workflow when a configured RSS, Atom, podcast, or blog feed publishes a new entry."
 ---
 
-> Triggers upon a new episode releasing to an RSS feed
+> Start a workflow automatically when a configured feed publishes a new entry.
 
-<img
-  className="block dark:hidden"
-  src="/node-rss.png"
-  alt="Hero Light"
-  title={true}
-/>
-
-<img
-  className="hidden dark:block"
-  src="/images/hero-dark.png"
-  alt="Hero Dark"
-  style={{ width:"100%" }}
-/>
+The **RSS Feed** trigger is for always-on workflows that should watch a feed and send new entries into the rest of your workflow. Use it for podcast feeds, blog feeds, or any supported RSS or Atom source. If you want to run one media file by hand, use **Manual Trigger** instead.
 
 <Info>
   ### Schema
 
-  - **Input**: The URL to the RSS Feed
-  - **Output**: The new audio or video episode
+  - **Input**: An RSS feed URL
+  - **Output**: The new feed entry that starts the workflow
 </Info>
 
-<Warning>
-  If this is an Audio-only podcast, we will add a black screen as a video. We suggest adding a [audiogram](/nodes/audiogram) node to your workflow to add visuals
-</Warning>
+## Add the node
 
-When a workflow is activated with a \_RSS Feed \_trigger, we will start listening to the feed for changes, polling every hour. We will ingest only the entries of the last 12 hours that have not yet been ingested.
+Open **Workflows** from the left sidebar and click **New** to open the workflow builder.
 
-You can find all of the nodes in the left sidebar
+In the **Trigger** stage, choose **RSS Feed**. Overlap adds the trigger node to the canvas, selects it, and moves the left panel forward to **Editing** so you can continue building the workflow.
+
+Click the **RSS Feed** node on the canvas whenever you need to reopen its settings on the right side.
+
+<Frame>
+  ![RSS Feed node settings panel](/images/generated/beta-rss-feed-node-settings-framed.png)
+</Frame>
+
+## Configure the feed
+
+In the right-side settings panel, fill in **RSS Feed URL**.
+
+The field accepts:
+
+- RSS 2.0 feeds, such as `.rss` or `.xml` URLs
+- Atom feeds, such as `.atom` URLs
+- podcast feeds from services like Spotify or Anchor
+- blog feeds from services like WordPress or Medium
+
+Overlap verifies that the URL contains valid RSS content before the workflow can listen for new entries.
+
+## Build the rest of the workflow
+
+After the trigger is configured, continue in **Editing** with nodes such as [Find Clips](/nodes/findclips), [Add Subtitles](/nodes/subtitles), [Reframe](/nodes/reframe), or [Audiogram](/nodes/audiogram). Finish with an export node, then click **Publish** when the workflow is ready to listen for new feed entries.

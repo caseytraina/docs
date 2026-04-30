@@ -1,0 +1,271 @@
+{
+  "title": "Overlap Video Marketing Agent",
+  "url": "https://beta.overlap.ai/workflows",
+  "text": "Double A Chattery\nHome\nASSISTANTS\nWorkflows\nPosting Personas\nEditing Agent\nMEDIA\nLibrary\nBrand Kits\nSOCIAL\nSocial Calendar\nAnalytics\nAccounts\n\nOverlap 2.0 is here!\n\nWatch a Guided Tour\nCasey Traina\ncaseytraina5822@gmail.com\nWorkflows\nNew\nSelect\nList\nCards\nNAME\nSTATUS\nLAST RUN\nTRIGGERS\nEXPORTS\nACTIONS\nDouble AA Chattery highlights\nWrite\nListening\nNever",
+  "controls": [
+    {
+      "text": "Double A Chattery",
+      "ariaLabel": "Open organization switcher",
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 16,
+        "y": 64,
+        "width": 212,
+        "height": 32
+      }
+    },
+    {
+      "text": "Home",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "a",
+      "rect": {
+        "x": 8,
+        "y": 154,
+        "width": 228,
+        "height": 32
+      }
+    },
+    {
+      "text": "Workflows",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "a",
+      "rect": {
+        "x": 8,
+        "y": 210,
+        "width": 228,
+        "height": 32
+      }
+    },
+    {
+      "text": "Posting Personas",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "a",
+      "rect": {
+        "x": 8,
+        "y": 244,
+        "width": 228,
+        "height": 32
+      }
+    },
+    {
+      "text": "Editing Agent",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "a",
+      "rect": {
+        "x": 8,
+        "y": 278,
+        "width": 228,
+        "height": 32
+      }
+    },
+    {
+      "text": "Library",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "a",
+      "rect": {
+        "x": 8,
+        "y": 334,
+        "width": 228,
+        "height": 32
+      }
+    },
+    {
+      "text": "Brand Kits",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "a",
+      "rect": {
+        "x": 8,
+        "y": 368,
+        "width": 228,
+        "height": 32
+      }
+    },
+    {
+      "text": "Social Calendar",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "a",
+      "rect": {
+        "x": 8,
+        "y": 424,
+        "width": 228,
+        "height": 32
+      }
+    },
+    {
+      "text": "Analytics",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "a",
+      "rect": {
+        "x": 8,
+        "y": 458,
+        "width": 228,
+        "height": 32
+      }
+    },
+    {
+      "text": "Accounts",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "a",
+      "rect": {
+        "x": 8,
+        "y": 492,
+        "width": 228,
+        "height": 32
+      }
+    },
+    {
+      "text": "Watch a Guided Tour",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 30,
+        "y": 769,
+        "width": 184,
+        "height": 28
+      }
+    },
+    {
+      "text": "Casey Trainacaseytraina5822@gmail.com",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 16,
+        "y": 819,
+        "width": 212,
+        "height": 32
+      }
+    },
+    {
+      "text": "",
+      "ariaLabel": "Open navigation menu",
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      }
+    },
+    {
+      "text": "New",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 1313,
+        "y": 41,
+        "width": 86,
+        "height": 36
+      }
+    },
+    {
+      "text": "Select",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 1126,
+        "y": 144,
+        "width": 76,
+        "height": 36
+      }
+    },
+    {
+      "text": "List",
+      "ariaLabel": null,
+      "role": "radio",
+      "tag": "button",
+      "rect": {
+        "x": 1217,
+        "y": 145,
+        "width": 82,
+        "height": 34
+      }
+    },
+    {
+      "text": "Cards",
+      "ariaLabel": null,
+      "role": "radio",
+      "tag": "button",
+      "rect": {
+        "x": 1298,
+        "y": 145,
+        "width": 98,
+        "height": 34
+      }
+    },
+    {
+      "text": "LAST RUN",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 879,
+        "y": 206,
+        "width": 120,
+        "height": 17
+      }
+    },
+    {
+      "text": "Double AA Chattery highlightsWriteListeningNever",
+      "ariaLabel": null,
+      "role": "button",
+      "tag": "div",
+      "rect": {
+        "x": 281,
+        "y": 240,
+        "width": 1118,
+        "height": 68
+      }
+    },
+    {
+      "text": "Double AA Chattery highlightsWriteManual Trigger > Find Clips > Convert to Vertical > Add Title Overlay > Add Subtitles > Remove Filler Words > Post to SocialConnected apps ListeningRun",
+      "ariaLabel": null,
+      "role": "button",
+      "tag": "div",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      }
+    },
+    {
+      "text": "Run",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      }
+    },
+    {
+      "text": "",
+      "ariaLabel": "Open assistant",
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 1376,
+        "y": 809,
+        "width": 40,
+        "height": 40
+      }
+    }
+  ]
+}

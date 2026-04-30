@@ -56,9 +56,15 @@ This is where you tell Overlap what moments to find, how the video should look, 
 
 - [Find Clips](/nodes/findclips)
 - [Add Subtitles](/nodes/subtitles)
+- [Remove Fluff](/nodes/remove-fluff)
+- [Remove Filler Words](/nodes/filler-words)
+- [Remove Curse Words](/nodes/remove-curse-words)
+- [Smart Zoom](/nodes/smart-zoom)
 - [Reframe](/nodes/reframe)
 - [Watermarks, Outros, etc.](/nodes/branding)
+- [Add Title Overlay](/nodes/title-overlay)
 - [Audiogram](/nodes/audiogram)
+- [Add Music](/nodes/add-music)
 
 Think of the **Editing** stage as the part of the workflow where you build your processing chain. You can keep it minimal, or combine multiple editing nodes when you want more control over the final result.
 
@@ -87,7 +93,9 @@ One practical way to think about nodes is:
 
 For example, a workflow might look like:
 
-- **New YouTube Video** -> **Find Clips** -> **Add Subtitles** -> **Post to Social**
+- **New YouTube Video** -> **Find Clips** -> **Add Title Overlay** -> **Add Subtitles** -> **Post to Social**
+- **New YouTube Video** -> **Find Clips** -> **Remove Fluff** -> **Add Subtitles** -> **Post to Social**
+- **Manual Trigger** -> **Remove Filler Words** -> **Remove Curse Words** -> **Smart Zoom** -> **Add Subtitles** -> **Email**
 - **RSS Feed** -> **Find Clips** -> **Watermarks, Outros, etc.** -> **Email**
 
 ## Keep exploring

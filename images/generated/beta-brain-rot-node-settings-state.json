@@ -1,0 +1,463 @@
+{
+  "title": "Overlap Video Marketing Agent",
+  "url": "https://beta.overlap.ai/workflows/new/edit",
+  "text": "Save as Draft\nPublish\n1\nTrigger\n2\nEditing\n3\nExport\nFind Clips\nConvert to Vertical\nAdd Audiogram\nAdd B-Roll\nAdd Brainrot\nAdd Music\nAdd Outro\nAdd Subtitles\nAdd Title Overlay\nAdd Watermark\nMedia Overlay\nRemove Curse Words\nRemove Filler Words\nRemove Fluff\nSmart Zoom\nRun Manually\nDelete\nTrigger\nVideo/Clips Output\nManual Trigger\nTriggers when the user drops in a new video\nManual trigger - Click Run\nDelete\nAction\nVideo/Clips Output\nAdd Brainrot\nAdd brainrot-style effects to your video\nBrainrot: Random\nVideo on bottom • Overlay 50%\nAuto Layout",
+  "controls": [
+    {
+      "text": "",
+      "ariaLabel": "Back",
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 20,
+        "y": 36,
+        "width": 32,
+        "height": 32
+      }
+    },
+    {
+      "text": "",
+      "ariaLabel": "Home",
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 60,
+        "y": 36,
+        "width": 32,
+        "height": 32
+      }
+    },
+    {
+      "text": "",
+      "ariaLabel": "Undo",
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 807,
+        "y": 14,
+        "width": 32,
+        "height": 32
+      }
+    },
+    {
+      "text": "",
+      "ariaLabel": "Redo",
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 847,
+        "y": 14,
+        "width": 32,
+        "height": 32
+      }
+    },
+    {
+      "text": "Save as Draft",
+      "ariaLabel": "Save draft",
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 887,
+        "y": 12,
+        "width": 145,
+        "height": 36
+      }
+    },
+    {
+      "text": "Publish",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 933,
+        "y": 56,
+        "width": 99,
+        "height": 36
+      }
+    },
+    {
+      "text": "1Trigger",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 20,
+        "y": 102,
+        "width": 81,
+        "height": 30
+      }
+    },
+    {
+      "text": "2Editing",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 101,
+        "y": 102,
+        "width": 79,
+        "height": 30
+      }
+    },
+    {
+      "text": "3Export",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 180,
+        "y": 102,
+        "width": 77,
+        "height": 30
+      }
+    },
+    {
+      "text": "Find Clips",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 20,
+        "y": 196,
+        "width": 216,
+        "height": 96
+      }
+    },
+    {
+      "text": "Convert to Vertical",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 20,
+        "y": 302,
+        "width": 216,
+        "height": 96
+      }
+    },
+    {
+      "text": "Add Audiogram",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 20,
+        "y": 408,
+        "width": 103,
+        "height": 96
+      }
+    },
+    {
+      "text": "Add B-Roll",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 133,
+        "y": 408,
+        "width": 103,
+        "height": 96
+      }
+    },
+    {
+      "text": "Add Brainrot",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 20,
+        "y": 514,
+        "width": 103,
+        "height": 96
+      }
+    },
+    {
+      "text": "Add Music",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 133,
+        "y": 514,
+        "width": 103,
+        "height": 96
+      }
+    },
+    {
+      "text": "Add Outro",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 20,
+        "y": 620,
+        "width": 103,
+        "height": 96
+      }
+    },
+    {
+      "text": "Add Subtitles",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 133,
+        "y": 620,
+        "width": 103,
+        "height": 96
+      }
+    },
+    {
+      "text": "Add Title Overlay",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 20,
+        "y": 726,
+        "width": 103,
+        "height": 96
+      }
+    },
+    {
+      "text": "Add Watermark",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 133,
+        "y": 726,
+        "width": 103,
+        "height": 96
+      }
+    },
+    {
+      "text": "Media Overlay",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 20,
+        "y": 832,
+        "width": 103,
+        "height": 96
+      }
+    },
+    {
+      "text": "Remove Curse Words",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 133,
+        "y": 832,
+        "width": 103,
+        "height": 96
+      }
+    },
+    {
+      "text": "Remove Filler Words",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 20,
+        "y": 938,
+        "width": 103,
+        "height": 96
+      }
+    },
+    {
+      "text": "Remove Fluff",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 133,
+        "y": 938,
+        "width": 103,
+        "height": 96
+      }
+    },
+    {
+      "text": "Smart Zoom",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 20,
+        "y": 1044,
+        "width": 103,
+        "height": 96
+      }
+    },
+    {
+      "text": "",
+      "ariaLabel": "Hide sidebar",
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 256,
+        "y": 152,
+        "width": 28,
+        "height": 28
+      }
+    },
+    {
+      "text": "",
+      "ariaLabel": "Pointer mode",
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 254,
+        "y": 229,
+        "width": 32,
+        "height": 32
+      }
+    },
+    {
+      "text": "",
+      "ariaLabel": "Pan mode",
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 254,
+        "y": 269,
+        "width": 32,
+        "height": 32
+      }
+    },
+    {
+      "text": "Run ManuallyDelete TriggerVideo/Clips Output Manual TriggerTriggers when the user drops in a new videoManual trigger - Click Run",
+      "ariaLabel": null,
+      "role": "button",
+      "tag": "div",
+      "rect": {
+        "x": 74,
+        "y": 21,
+        "width": 288,
+        "height": 158
+      }
+    },
+    {
+      "text": "Run Manually",
+      "ariaLabel": "Run manually",
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 203,
+        "y": -15,
+        "width": 29,
+        "height": 29
+      }
+    },
+    {
+      "text": "Delete",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 232,
+        "y": -15,
+        "width": 2,
+        "height": 29
+      }
+    },
+    {
+      "text": "Delete ActionVideo/Clips Output Add BrainrotAdd brainrot-style effects to your videoBrainrot: RandomVideo on bottom • Overlay 50%",
+      "ariaLabel": null,
+      "role": "button",
+      "tag": "div",
+      "rect": {
+        "x": 470,
+        "y": 21,
+        "width": 288,
+        "height": 158
+      }
+    },
+    {
+      "text": "Delete",
+      "ariaLabel": null,
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 575,
+        "y": -15,
+        "width": 78,
+        "height": 29
+      }
+    },
+    {
+      "text": "",
+      "ariaLabel": "zoom in",
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 263,
+        "y": -23,
+        "width": 26,
+        "height": 27
+      }
+    },
+    {
+      "text": "",
+      "ariaLabel": "zoom out",
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 263,
+        "y": 4,
+        "width": 26,
+        "height": 27
+      }
+    },
+    {
+      "text": "",
+      "ariaLabel": "fit view",
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 263,
+        "y": 31,
+        "width": 26,
+        "height": 27
+      }
+    },
+    {
+      "text": "",
+      "ariaLabel": "toggle interactivity",
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 263,
+        "y": 58,
+        "width": 26,
+        "height": 27
+      }
+    },
+    {
+      "text": "Auto Layout",
+      "ariaLabel": "Auto layout workflow nodes",
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 886,
+        "y": 116,
+        "width": 142,
+        "height": 32
+      }
+    },
+    {
+      "text": "",
+      "ariaLabel": "Open assistant",
+      "role": null,
+      "tag": "button",
+      "rect": {
+        "x": 988,
+        "y": -63,
+        "width": 40,
+        "height": 40
+      }
+    }
+  ]
+}

@@ -1,33 +1,41 @@
 ---
 sidebarTitle: "New Dropbox Video"
+description: "Start a workflow when a new video appears in a Dropbox folder."
 ---
 
-> Triggers upon a new dropbox video being added to a specified folder.
+> Start a workflow automatically when a new video is added to a monitored Dropbox folder.
 
-<img
-  className="block dark:hidden"
-  src="/node-dropbox.png"
-  alt="Hero Light"
-  title={true}
-/>
-
-<Warning>
-  Dropbox accounts are linked at the user-level. So, you have multiple members in the same organization, others may see "Connect Dropbox" even if it is activated and working
-</Warning>
-
-<img
-  className="hidden dark:block"
-  src="/images/hero-dark.png"
-  alt="Hero Dark"
-/>
+The **New Dropbox Video** trigger is for workflows that should watch a Dropbox folder and send new videos into the rest of your workflow. Use it when a shared folder is where new source videos arrive. Dropbox account verification is required before Overlap can monitor folders.
 
 <Info>
   ### Schema
 
-  - **Input**: A dropbox folder to listen to
-  - **Output**: The newly uploaded dropbox video
+  - **Input**: The Dropbox folder to monitor
+  - **Output**: The new Dropbox video that starts the workflow
 </Info>
 
-When a workflow is activated with a _New Dropbox Video_ trigger, we will start listening for file changes. When _any_ file is added in the folder, we will ingest **all unused videos.** This includes videos that were previously in the folder.
+## Add the node
 
-You can find all of the nodes in the left sidebar
+Open **Workflows** from the left sidebar and click **New** to open the workflow builder.
+
+In the **Trigger** stage, choose **New Dropbox Video**. Overlap adds the trigger node to the canvas, selects it, and moves the left panel forward to **Editing** so you can continue building the workflow.
+
+Click the **New Dropbox Video** node on the canvas whenever you need to reopen its settings on the right side.
+
+<Frame>
+  ![New Dropbox Video node settings panel](/images/generated/beta-dropbox-node-settings-framed.png)
+</Frame>
+
+## Choose the Dropbox folder
+
+In the right-side settings panel, use **Dropbox Folder** to choose the folder this trigger should monitor for new videos.
+
+If Dropbox is already connected, the panel shows **Dropbox connected. You can choose a folder below.** Click **Select Folder** and choose the folder that should start the workflow when new videos are added.
+
+Until a folder is selected, the node shows **Incomplete** and displays **Folder required • Set in right panel** on the canvas.
+
+If the panel asks you to connect or verify Dropbox, complete that step first, then return to **Select Folder**.
+
+## Build the rest of the workflow
+
+After the trigger is configured, continue in **Editing** with nodes such as [Find Clips](/nodes/findclips), [Add Subtitles](/nodes/subtitles), or [Reframe](/nodes/reframe). Finish with an export node, then click **Publish** when the workflow is ready to listen for new Dropbox videos.

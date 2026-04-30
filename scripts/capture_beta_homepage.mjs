@@ -11,6 +11,7 @@ const DEFAULT_WINDOW_WIDTH = 1440;
 const DEFAULT_WINDOW_HEIGHT = 960;
 const DEFAULT_WAIT_MS = 10000;
 const DEFAULT_POST_CLICK_WAIT_MS = 3000;
+const DEFAULT_SCREENSHOT_TIMEOUT_MS = 120000;
 const DEFAULT_PROFILE_ROOT = path.join(
   os.homedir(),
   "Library",
@@ -31,21 +32,158 @@ function getArg(name, fallback) {
   return fallback;
 }
 
-function getArgs(name) {
-  const values = [];
+function getClickActions() {
+  const actions = [];
 
   for (let index = 0; index < process.argv.length; index += 1) {
-    if (process.argv[index] === name && index + 1 < process.argv.length) {
-      values.push(process.argv[index + 1]);
+    if (
+      process.argv[index] === "--click-text" &&
+      index + 1 < process.argv.length
+    ) {
+      actions.push({ type: "text", value: process.argv[index + 1] });
+    }
+
+    if (
+      process.argv[index] === "--click-text-dom" &&
+      index + 1 < process.argv.length
+    ) {
+      actions.push({ type: "textDom", value: process.argv[index + 1] });
+    }
+
+    if (
+      process.argv[index] === "--scroll-text-dom" &&
+      index + 1 < process.argv.length
+    ) {
+      actions.push({ type: "scrollTextDom", value: process.argv[index + 1] });
+    }
+
+    if (
+      process.argv[index] === "--click-at" &&
+      index + 1 < process.argv.length
+    ) {
+      const [x, y] = process.argv[index + 1]
+        .split(",")
+        .map((coordinate) => Number(coordinate.trim()));
+
+      if (!Number.isFinite(x) || !Number.isFinite(y)) {
+        throw new Error(
+          `Invalid --click-at value "${process.argv[index + 1]}". Use "x,y".`,
+        );
+      }
+
+      actions.push({ type: "point", x, y });
+    }
+
+    if (
+      process.argv[index] === "--double-click-at" &&
+      index + 1 < process.argv.length
+    ) {
+      const [x, y] = process.argv[index + 1]
+        .split(",")
+        .map((coordinate) => Number(coordinate.trim()));
+
+      if (!Number.isFinite(x) || !Number.isFinite(y)) {
+        throw new Error(
+          `Invalid --double-click-at value "${process.argv[index + 1]}". Use "x,y".`,
+        );
+      }
+
+      actions.push({ type: "doublePoint", x, y });
+    }
+
+    if (
+      process.argv[index] === "--drag" &&
+      index + 2 < process.argv.length
+    ) {
+      const [fromX, fromY] = process.argv[index + 1]
+        .split(",")
+        .map((coordinate) => Number(coordinate.trim()));
+      const [toX, toY] = process.argv[index + 2]
+        .split(",")
+        .map((coordinate) => Number(coordinate.trim()));
+
+      if (
+        !Number.isFinite(fromX) ||
+        !Number.isFinite(fromY) ||
+        !Number.isFinite(toX) ||
+        !Number.isFinite(toY)
+      ) {
+        throw new Error(
+          `Invalid --drag value "${process.argv[index + 1]} ${process.argv[index + 2]}". Use "fromX,fromY toX,toY".`,
+        );
+      }
+
+      actions.push({ type: "drag", fromX, fromY, toX, toY });
+    }
+
+    if (
+      process.argv[index] === "--wheel" &&
+      index + 1 < process.argv.length
+    ) {
+      const [deltaX, deltaY] = process.argv[index + 1]
+        .split(",")
+        .map((coordinate) => Number(coordinate.trim()));
+
+      if (!Number.isFinite(deltaX) || !Number.isFinite(deltaY)) {
+        throw new Error(
+          `Invalid --wheel value "${process.argv[index + 1]}". Use "deltaX,deltaY".`,
+        );
+      }
+
+      actions.push({ type: "wheel", deltaX, deltaY });
+    }
+
+    if (process.argv[index] === "--scroll-window-top") {
+      actions.push({ type: "scrollWindowTop" });
+    }
+
+    if (
+      process.argv[index] === "--fill-placeholder" &&
+      index + 2 < process.argv.length
+    ) {
+      actions.push({
+        type: "fillPlaceholder",
+        placeholder: process.argv[index + 1],
+        value: process.argv[index + 2],
+      });
     }
   }
 
-  return values;
+  return actions;
 }
 
 function delay(ms) {
   return new Promise((resolve) => {
     setTimeout(resolve, ms);
+  });
+}
+
+async function getPageState(page) {
+  return page.evaluate(() => {
+    const controls = [...document.querySelectorAll("button, a, [role='button']")]
+      .map((element) => {
+        const rect = element.getBoundingClientRect();
+        return {
+          text: (element.textContent || "").replace(/\s+/g, " ").trim(),
+          ariaLabel: element.getAttribute("aria-label"),
+          role: element.getAttribute("role"),
+          tag: element.tagName.toLowerCase(),
+          rect: {
+            x: Math.round(rect.x),
+            y: Math.round(rect.y),
+            width: Math.round(rect.width),
+            height: Math.round(rect.height),
+          },
+        };
+      })
+      .filter((item) => item.text || item.ariaLabel);
+
+    return {
+      title: document.title,
+      url: window.location.href,
+      text: document.body?.innerText || "",
+      controls,
+    };
   });
 }
 
@@ -105,6 +243,32 @@ async function waitForDebugEndpoint(port, timeoutMs) {
 }
 
 async function clickByText(page, text) {
+  const clicked = await page.evaluate((targetText) => {
+    const normalize = (value) => value.replace(/\s+/g, " ").trim();
+    const elements = [
+      ...document.querySelectorAll("button, a, [role='button']"),
+    ];
+    const element = elements.find((candidate) => {
+      const rect = candidate.getBoundingClientRect();
+      return (
+        normalize(candidate.textContent || "") === targetText &&
+        rect.width > 0 &&
+        rect.height > 0
+      );
+    });
+
+    if (!element) {
+      return false;
+    }
+
+    element.click();
+    return true;
+  }, text);
+
+  if (clicked) {
+    return;
+  }
+
   const candidates = [
     page.getByRole("button", { name: text, exact: true }),
     page.getByRole("link", { name: text, exact: true }),
@@ -119,7 +283,7 @@ async function clickByText(page, text) {
     const first = candidate.first();
     try {
       await first.waitFor({ state: "visible", timeout: 5000 });
-      await first.click();
+      await first.click({ timeout: 5000, force: true });
       return;
     } catch {
       // Try the next locator strategy.
@@ -127,6 +291,68 @@ async function clickByText(page, text) {
   }
 
   throw new Error(`Could not find a clickable element with text "${text}".`);
+}
+
+async function clickByTextDom(page, text) {
+  const clicked = await page.evaluate((targetText) => {
+    const normalize = (value) => value.replace(/\s+/g, " ").trim();
+    const elements = [
+      ...document.querySelectorAll("button, a, [role='button']"),
+    ];
+    const element = elements.find(
+      (candidate) => normalize(candidate.textContent || "") === targetText,
+    );
+
+    if (!element) {
+      return false;
+    }
+
+    element.click();
+    return true;
+  }, text);
+
+  if (!clicked) {
+    throw new Error(`Could not find a clickable element with text "${text}".`);
+  }
+}
+
+async function captureScreenshot(page, outputPath, timeoutMs) {
+  await page
+    .setViewportSize({
+      width: DEFAULT_WINDOW_WIDTH,
+      height: DEFAULT_WINDOW_HEIGHT,
+    })
+    .catch(async () => {
+      const session = await page.context().newCDPSession(page);
+      await session
+        .send("Emulation.setDeviceMetricsOverride", {
+          width: DEFAULT_WINDOW_WIDTH,
+          height: DEFAULT_WINDOW_HEIGHT,
+          deviceScaleFactor: 1,
+          mobile: false,
+        })
+        .catch(() => {});
+    });
+
+  try {
+    await page.screenshot({
+      path: outputPath,
+      timeout: timeoutMs,
+    });
+    return;
+  } catch (error) {
+    if (error?.name !== "TimeoutError") {
+      throw error;
+    }
+  }
+
+  const session = await page.context().newCDPSession(page);
+  const result = await session.send("Page.captureScreenshot", {
+    format: "png",
+    captureBeyondViewport: false,
+    fromSurface: true,
+  });
+  await writeFile(outputPath, Buffer.from(result.data, "base64"));
 }
 
 async function main() {
@@ -142,7 +368,12 @@ async function main() {
   const postClickWaitMs = Number(
     getArg("--post-click-wait-ms", String(DEFAULT_POST_CLICK_WAIT_MS)),
   );
+  const screenshotTimeoutMs = Number(
+    getArg("--screenshot-timeout-ms", String(DEFAULT_SCREENSHOT_TIMEOUT_MS)),
+  );
   const stateOutputPath = getArg("--state-output", null);
+  const postClickStateOutputPath = getArg("--post-click-state-output", null);
+  const skipScreenshot = process.argv.includes("--skip-screenshot");
   const chromePath = getArg("--chrome-path", DEFAULT_CHROME_PATH);
   const debugTimeoutMs = Number(
     getArg("--debug-timeout-ms", String(DEFAULT_DEBUG_TIMEOUT_MS)),
@@ -150,7 +381,7 @@ async function main() {
   const debugPort = Number(
     getArg("--debug-port", String(42000 + Math.floor(Math.random() * 1000))),
   );
-  const clickTexts = getArgs("--click-text");
+  const clickActions = getClickActions();
 
   const tempUserDataDir = await mkdtemp(
     path.join(os.tmpdir(), "overlap-playwright-profile-"),
@@ -236,23 +467,66 @@ async function main() {
     await page.waitForTimeout(waitMs);
 
     if (stateOutputPath) {
-      const state = await page.evaluate(() => ({
-        title: document.title,
-        url: window.location.href,
-        text: document.body?.innerText || "",
-      }));
+      const state = await getPageState(page);
       await writeFile(path.resolve(stateOutputPath), JSON.stringify(state, null, 2));
     }
 
-    for (const clickText of clickTexts) {
-      await clickByText(page, clickText);
+    for (const clickAction of clickActions) {
+      if (clickAction.type === "text") {
+        await clickByText(page, clickAction.value);
+      } else if (clickAction.type === "textDom") {
+        await clickByTextDom(page, clickAction.value);
+      } else if (clickAction.type === "scrollTextDom") {
+        await page.evaluate((targetText) => {
+          const normalize = (value) => value.replace(/\s+/g, " ").trim();
+          const elements = [
+            ...document.querySelectorAll("button, a, [role='button']"),
+          ];
+          const element = elements.find(
+            (candidate) => normalize(candidate.textContent || "") === targetText,
+          );
+
+          element?.scrollIntoView({ block: "center", inline: "center" });
+        }, clickAction.value);
+      } else if (clickAction.type === "point") {
+        await page.mouse.click(clickAction.x, clickAction.y);
+      } else if (clickAction.type === "doublePoint") {
+        await page.mouse.dblclick(clickAction.x, clickAction.y);
+      } else if (clickAction.type === "drag") {
+        await page.mouse.move(clickAction.fromX, clickAction.fromY);
+        await page.mouse.down();
+        await page.mouse.move(clickAction.toX, clickAction.toY, { steps: 12 });
+        await page.mouse.up();
+      } else if (clickAction.type === "wheel") {
+        await page.mouse.wheel(clickAction.deltaX, clickAction.deltaY);
+      } else if (clickAction.type === "scrollWindowTop") {
+        await page.evaluate(() => {
+          window.scrollTo(0, 0);
+          document.documentElement.scrollTop = 0;
+          document.body.scrollTop = 0;
+        });
+      } else if (clickAction.type === "fillPlaceholder") {
+        await page
+          .getByPlaceholder(new RegExp(clickAction.placeholder, "i"))
+          .fill(clickAction.value);
+      }
+
       await page.waitForTimeout(postClickWaitMs);
     }
 
-    await page.screenshot({
-      path: outputPath,
-      timeout: 0,
-    });
+    if (postClickStateOutputPath) {
+      const state = await getPageState(page);
+      await writeFile(
+        path.resolve(postClickStateOutputPath),
+        JSON.stringify(state, null, 2),
+      );
+    }
+
+    if (skipScreenshot) {
+      return;
+    }
+
+    await captureScreenshot(page, outputPath, screenshotTimeoutMs);
 
     if (!(await pathExists(outputPath)) && browserErrors) {
       throw new Error(browserErrors);
